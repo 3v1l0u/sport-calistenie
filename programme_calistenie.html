@@ -872,8 +872,7 @@
 <div class="container">
 
 <header>
-  <div class="header-tag">Programme Extérieur · Banc · Perte de Poids</div>
-  <h1>CALLIS<span>THÉNIE</span><br>5 JOURS</h1>
+  <h1>CALLIS<span>THÉNIE</span><br>4 JOURS</h1>
   <p class="subtitle">Adapté à ton profil · Sans matériel · Progressif</p>
   <div class="profile-bar">
     <div class="profile-pill">📏 <strong>1m76</strong> taille</div>
@@ -910,10 +909,10 @@
     <div class="wtype">⚡</div>
     <div class="wlbl">Circuit</div>
   </div>
-  <div class="week-cell active-day">
+  <div class="week-cell rest-day">
     <div class="wday">Sam</div>
-    <div class="wtype">🙌</div>
-    <div class="wlbl">Pull</div>
+    <div class="wtype">😴</div>
+    <div class="wlbl">Repos</div>
   </div>
   <div class="week-cell rest-day">
     <div class="wday">Dim</div>
@@ -926,7 +925,7 @@
 <div class="intro-grid">
   <div class="intro-card">
     <div class="emoji">📅</div>
-    <div class="val">5</div>
+    <div class="val">4</div>
     <div class="lbl">Séances / sem</div>
   </div>
   <div class="intro-card">
@@ -950,14 +949,13 @@
 <div class="progress-bar-wrap">
   <div class="progress-top">
     <span>Progression de la semaine</span>
-    <strong id="prog-label">0 / 5</strong>
+    <strong id="prog-label">0 / 4</strong>
   </div>
   <div class="bar-track">
     <div class="bar-seg" id="seg1"></div>
     <div class="bar-seg" id="seg2"></div>
     <div class="bar-seg" id="seg3"></div>
     <div class="bar-seg" id="seg4"></div>
-    <div class="bar-seg" id="seg5"></div>
   </div>
 </div>
 
@@ -983,10 +981,6 @@
   <div class="tab" data-day="4" onclick="switchDay(4)">
     <span class="day-num">J4</span>
     <span class="day-label">Circuit</span>
-  </div>
-  <div class="tab" data-day="5" onclick="switchDay(5)">
-    <span class="day-num">J5</span>
-    <span class="day-label">Pull</span>
   </div>
 </div>
 
@@ -1386,116 +1380,6 @@
   <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J4 comme terminé</button>
 </div>
 
-<!-- ========== JOUR 5 ========== -->
-<div class="day-panel" id="day5">
-  <div class="day-header">
-    <div class="day-icon" style="background:#001520;">🙌</div>
-    <div>
-      <h2>HAUT DU CORPS — PULL</h2>
-      <p>Dos · Biceps · Trapèzes · Rhomboïdes</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">🔥 Échauffement — 5 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Rétraction scapulaire')">Rétraction scapulaire <span>15 reps</span></div>
-    <div class="warm-item" onclick="showStretch('Rotations bras arrière')">Rotations bras arrière <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Marche active')">Marche active <span>2 min</span></div>
-    <div class="warm-item" onclick="showStretch('Ouverture thoracique')">Ouverture thoracique <span>30s</span></div>
-  </div>
-
-  <div class="section-label">💪 Exercices</div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">01</div>
-      <div class="ex-content">
-        <div class="ex-name">Australian Pull-up (sous le banc)</div>
-        <div class="ex-tip">Allonge-toi sous le banc, attrape le bord à deux mains. Corps rigide, talons posés sur une surface stable (autre banc, rebord). Tire ta poitrine vers le banc en serrant les omoplates. C'est le meilleur exercice de dos sans barre !</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">8–10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">02</div>
-      <div class="ex-content">
-        <div class="ex-name">Rétraction scapulaire suspendu</div>
-        <div class="ex-tip">En position Australian pull-up, sans plier les coudes — juste les omoplates qui se rapprochent et s'écartent. Corps rigide. Active le milieu du dos profondément.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">03</div>
-      <div class="ex-content">
-        <div class="ex-name">Hyperextension isométrique (banc)</div>
-        <div class="ex-tip">Assis en bout de banc, buste penché à 45°. Tiens la position 3 secondes en contractant le bas du dos et les fessiers. Remonte. Bras croisés sur la poitrine ou tendus devant pour plus de difficulté.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">04</div>
-      <div class="ex-content">
-        <div class="ex-name">Bicycle crunch assis (banc)</div>
-        <div class="ex-tip">Assis au bord du banc, incliné en arrière, mains derrière la tête. Ramène le coude droit vers le genou gauche qui monte simultanément. Alterne. Même mouvement qu'au sol mais sur le banc !</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Leg raise assis banc (finisher)</div>
-        <div class="ex-tip">Assis au bord du banc, mains derrière. Jambes tendues, monte-les et redescends lentement. Incline légèrement le buste en arrière pour intensifier. Excellent finisher !</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-  </div>
-
-  <div class="section-label">🧘 Retour au calme — 5 min</div>
-  <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Étirement dos (enfant)')">Étirement dos (enfant) <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Étirement biceps')">Étirement biceps <span>30s × bras</span></div>
-    <div class="warm-item" onclick="showStretch('Rotation thoracique')">Rotation thoracique <span>30s × côté</span></div>
-    <div class="warm-item" onclick="showStretch('Respiration 4-7-8')">Respiration 4-7-8 <span>3 cycles</span></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>💡 Conseil du jour</strong>
-    L'Australian pull-up est la base des tractions — plus tu progresses, plus tu peux incliner ton corps (pieds plus haut, corps plus horizontal). D'ici 2 mois tu pourrais tenter une vraie traction si tu trouves une barre dans le parc 🎯
-  </div>
-  <button onclick="markDayDone(5)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J5 comme terminé</button>
-</div>
 
 </div>
 
@@ -1852,104 +1736,6 @@
   <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">✅ Marquer J4 comme terminé</button>
 </div>
 
-<div class="day-panel" id="day5-indoor">
-  <div class="day-header">
-    <div class="day-icon" style="background:#001520;">🙌</div>
-    <div>
-      <h2>HAUT DU CORPS — PULL</h2>
-      <p>Dos · Biceps · Trapèzes · Rhomboïdes</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
-      </div>
-    </div>
-  </div>
-  <div class="section-label">🔥 Échauffement — 5 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Rétraction scapulaire')">Rétraction scapulaire <span>15 reps</span></div>
-    <div class="warm-item" onclick="showStretch('Rotations bras arrière')">Rotations bras arrière <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Marche active')">Marche active <span>2 min</span></div>
-    <div class="warm-item" onclick="showStretch('Ouverture thoracique')">Ouverture thoracique <span>30s</span></div>
-  </div>
-  <div class="section-label">💪 Exercices</div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">01</div>
-      <div class="ex-content">
-        <div class="ex-name">Rowing serviette (porte)</div>
-        <div class="ex-tip">Enroule une serviette autour de la poignée d'une porte fermée à clé. Recule d'un pas, pieds contre la porte, genoux fléchis, buste incliné en arrière. Tire-toi vers la porte en serrant les omoplates. Même muscles que les tractions — zéro matériel.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">8–10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">02</div>
-      <div class="ex-content">
-        <div class="ex-name">Rétraction scapulaire</div>
-        <div class="ex-tip">Tire les omoplates l'une vers l'autre en maintenant 2 secondes. En inverted row, reste en haut et squeeze les omoplates.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">03</div>
-      <div class="ex-content">
-        <div class="ex-name">Superman avec rétention</div>
-        <div class="ex-tip">Allongé ventre, bras le long du corps. Lève la poitrine et les jambes. Tiens 3 secondes. Cible le bas du dos et la chaîne postérieure.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">04</div>
-      <div class="ex-content">
-        <div class="ex-name">Crunch cycliste</div>
-        <div class="ex-tip">Sur le dos, mains derrière la tête. Ramène le coude droit vers le genou gauche en alternant. Lent et contrôlé.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Élévation des jambes allongé</div>
-        <div class="ex-tip">Sur le dos, mains sous les fesses. Jambes tendues, lève-les jusqu'à 90° puis redescends lentement. Si trop dur, fléchis légèrement les genoux.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-  </div>
-  <div class="section-label">🧘 Retour au calme — 5 min</div>
-  <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Étirement dos (enfant)')">Étirement dos <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Étirement biceps')">Étirement biceps <span>30s × bras</span></div>
-    <div class="warm-item" onclick="showStretch('Rotation thoracique')">Rotation thoracique <span>30s × côté</span></div>
-    <div class="warm-item" onclick="showStretch('Respiration 4-7-8')">Respiration 4-7-8 <span>3 cycles</span></div>
-  </div>
-  <div class="tip-box"><strong>💡 Conseil du jour</strong> Tu as tenu toute la semaine 🏆. Repose-toi vraiment dimanche — c'est pendant le repos que les muscles se construisent.</div>
-  <button onclick="markDayDone(5)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">✅ Marquer J5 comme terminé</button>
-</div>
 </div>
 <!-- STRETCH MODAL -->
 <div class="stretch-overlay" id="stretchOverlay" onclick="closeStretch(event)">
@@ -1975,7 +1761,7 @@
   function lsRemove(k) { try { localStorage.removeItem(k); } catch(e) {} }
 
   var SAVE_KEY = 'cali_v4';
-  var dayDone = {1:false,2:false,3:false,4:false,5:false};
+  var dayDone = {1:false,2:false,3:false,4:false};
 
   function saveState() {
     try {
@@ -2238,15 +2024,15 @@
     var seg = document.getElementById('seg'+n);
     if (seg) seg.classList.add('done');
     saveState();
-    if (n < 5) switchDay(n+1);
+    if (n < 4) switchDay(n+1);
   }
 
   function updateProgress() {
     var count = 0;
     for (var k in dayDone) { if(dayDone[k]) count++; }
     var pl = document.getElementById('prog-label');
-    if (pl) pl.textContent = count+' / 5';
-    for (var i=1; i<=5; i++) {
+    if (pl) pl.textContent = count+' / 4';
+    for (var i=1; i<=4; i++) {
       if (dayDone[i]) { var s = document.getElementById('seg'+i); if(s) s.classList.add('done'); }
     }
   }
