@@ -1,6 +1,8 @@
-var CACHE_NAME = 'cali-v2';
+var CACHE_NAME = 'cali-v3';
 var ASSETS = [
+  './index.html',
   './programme_calistenie.html',
+  './mobilite.html',
   './manifest.json'
 ];
 

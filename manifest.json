@@ -1,7 +1,7 @@
 {
-  "name": "Callisthénie 5 Jours",
+  "name": "Callisthénie 4 Jours",
   "short_name": "Calisthénie",
-  "description": "Programme callisthénie 5 semaines — perte de poids",
+  "description": "Programme callisthénie 4 jours — perte de poids",
   "start_url": "./programme_calistenie.html",
   "display": "standalone",
   "background_color": "#0d0f13",
