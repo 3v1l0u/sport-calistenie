@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Cardio Doux & Mobilite — Perte de poids — 4 Jours</title>
+<title>Callisthénie Niveau 2 — Semaine 3+</title>
 
 <style>
   :root {
@@ -76,9 +76,9 @@
   .section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; padding-left: 4px; }
   .warmup-list, .cooldown-list { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 8px; }
   .warm-item { background: var(--card); border-radius: 8px; padding: 6px 12px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; cursor: pointer; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
-  .warm-item:hover { border-color: var(--accent); background: #1a2a2a; }
+  .warm-item:hover { border-color: var(--accent); background: #252c3a; }
   .warm-item span { color: var(--muted); font-size: 11px; }
-  .warm-item::after { content: '\203A'; color: var(--muted); margin-left: auto; font-size: 14px; }
+  .warm-item::after { content: '›'; color: var(--muted); margin-left: auto; font-size: 14px; }
 
   .stretch-overlay { display: none; position: fixed; inset: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: flex-end; justify-content: center; padding: 16px; }
   .stretch-overlay.open { display: flex; }
@@ -92,7 +92,7 @@
   .stretch-step { display: flex; gap: 10px; margin-bottom: 10px; padding: 10px 12px; background: var(--card); border-radius: 10px; }
   .stretch-step-num { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 20px; color: var(--accent); line-height: 1; min-width: 20px; }
   .stretch-step-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  .stretch-focus { background: #001a1a; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 11px; color: #40c0a0; margin-top: 10px; }
+  .stretch-focus { background: #002820; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 11px; color: #40c0a0; margin-top: 10px; }
 
   .exercises { display: flex; flex-direction: column; gap: 8px; }
   .exercise-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.2s; cursor: pointer; }
@@ -110,6 +110,9 @@
   .stat-orange { color: var(--orange); }
   .check-icon { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; transition: all 0.2s; margin-top: 2px; }
   .exercise-card.done .check-icon { background: var(--accent); border-color: var(--accent); color: #000; }
+
+  .circuit-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 14px; padding: 16px; margin-bottom: 8px; }
+  .circuit-title { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 18px; color: var(--accent); letter-spacing: 1px; margin-bottom: 12px; }
 
   .tip-box { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.6; }
   .tip-box strong { color: var(--accent); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
@@ -150,7 +153,6 @@
     .timer-svg-wrap { width: 100px; height: 100px; }
     .timer-svg { width: 100px; height: 100px; }
     .timer-time { font-size: 32px; }
-    .timer-ring-fill { stroke-dasharray: 260.8; }
     .timer-ring-bg { stroke-width: 6; }
     .timer-ring-fill { stroke-width: 6; }
   }
@@ -165,10 +167,9 @@
     .timer-status { margin-bottom: 0; font-size: 10px; }
     .timer-btn-stop { width: auto; padding: 7px 14px; white-space: nowrap; }
     .timer-hint { display: none; }
-    .timer-ring-fill { stroke-dasharray: 163; }
   }
 
-  .exercise-card.timing { border-color: var(--accent) !important; background: #0a2020; }
+  .exercise-card.timing { border-color: var(--accent) !important; background: #001a16; }
   .exercise-card.timing .ex-number { color: var(--accent); }
 
   .global-timer { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 10px 28px; display: none; align-items: center; gap: 14px; z-index: 800; box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
@@ -226,13 +227,13 @@
     .timer-status { font-size: 9px; margin-bottom: 4px !important; }
     .timer-btn-stop { width: auto !important; padding: 6px 10px !important; font-size: 11px; white-space: nowrap; }
     .timer-hint { display: none; }
-    .timer-ring-fill { stroke-dasharray: 148 !important; }
     .series-row { gap: 5px; margin-top: 6px; }
     .serie-btn { font-size: 10px; padding: 6px 4px; }
     .stretch-modal { padding: 16px; }
     .recap-modal { padding: 24px 16px; }
     .recap-time { font-size: 52px; }
     .section-label { font-size: 9px; }
+    .circuit-box { padding: 12px; }
   }
 </style>
 </head>
@@ -240,75 +241,31 @@
 <div class="container">
 
 <header>
-  <h1>CARDIO<span> DOUX</span><br>4 JOURS</h1>
-  <p class="subtitle">Perte de poids &middot; Complementaire callisthenie &middot; Low impact &middot; Sans materiel</p>
+  <h1>NIVEAU<span> 2</span><br>SEMAINE 3+</h1>
+  <p class="subtitle">Progression callisthénie · Volume +33% · Variations plus exigeantes</p>
   <div class="profile-bar">
-    <div class="profile-pill">&#x1F4CF; <strong>1m76</strong> taille</div>
-    <div class="profile-pill">&#x2696;&#xFE0F; <strong>113 kg</strong> poids</div>
-    <div class="profile-pill">&#x1F6B6; <strong>30-60 min</strong> marche x 6/sem</div>
-    <div class="profile-pill">&#x1F7E2; <strong>Debutant</strong></div>
+    <div class="profile-pill">📈 <strong>Volume</strong> +</div>
+    <div class="profile-pill">💪 <strong>4 séries</strong></div>
+    <div class="profile-pill">⏱️ <strong>40–55 min</strong></div>
+    <div class="profile-pill">🟡 <strong>Intermédiaire</strong></div>
   </div>
 </header>
 
 <div class="week-grid">
-  <div class="week-cell active-day">
-    <div class="wday">Lun</div>
-    <div class="wtype">&#x1F525;</div>
-    <div class="wlbl">Cardio</div>
-  </div>
-  <div class="week-cell rest-day">
-    <div class="wday">Mar</div>
-    <div class="wtype">&#x1F6B6;</div>
-    <div class="wlbl">Marche</div>
-  </div>
-  <div class="week-cell active-day">
-    <div class="wday">Mer</div>
-    <div class="wtype">&#x1F30A;</div>
-    <div class="wlbl">Mobilite</div>
-  </div>
-  <div class="week-cell rest-day">
-    <div class="wday">Jeu</div>
-    <div class="wtype">&#x1F6B6;</div>
-    <div class="wlbl">Marche</div>
-  </div>
-  <div class="week-cell active-day">
-    <div class="wday">Ven</div>
-    <div class="wtype">&#x26A1;</div>
-    <div class="wlbl">Circuit</div>
-  </div>
-  <div class="week-cell active-day">
-    <div class="wday">Sam</div>
-    <div class="wtype">&#x1F9D8;</div>
-    <div class="wlbl">Recup</div>
-  </div>
-  <div class="week-cell rest-day">
-    <div class="wday">Dim</div>
-    <div class="wtype">&#x1F634;</div>
-    <div class="wlbl">Repos</div>
-  </div>
+  <div class="week-cell active-day"><div class="wday">Lun</div><div class="wtype">🦵</div><div class="wlbl">Bas corps</div></div>
+  <div class="week-cell active-day"><div class="wday">Mar</div><div class="wtype">💪</div><div class="wlbl">Push</div></div>
+  <div class="week-cell active-day"><div class="wday">Mer</div><div class="wtype">🔥</div><div class="wlbl">Core</div></div>
+  <div class="week-cell rest-day"><div class="wday">Jeu</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
+  <div class="week-cell active-day"><div class="wday">Ven</div><div class="wtype">⚡</div><div class="wlbl">Circuit</div></div>
+  <div class="week-cell rest-day"><div class="wday">Sam</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
+  <div class="week-cell rest-day"><div class="wday">Dim</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
 </div>
 
 <div class="intro-grid">
-  <div class="intro-card">
-    <div class="emoji">&#x1F4C5;</div>
-    <div class="val">4</div>
-    <div class="lbl">Seances / sem</div>
-  </div>
-  <div class="intro-card">
-    <div class="emoji">&#x23F1;&#xFE0F;</div>
-    <div class="val">25-35</div>
-    <div class="lbl">Min / seance</div>
-  </div>
-  <div class="intro-card">
-    <div class="emoji">&#x1F527;</div>
-    <div class="val">0</div>
-    <div class="lbl">Materiel requis</div>
-  </div>
-  <div class="intro-card">
-    <div class="emoji">&#x1F525;</div>
-    <div class="val">~250</div>
-    <div class="lbl">Kcal / seance</div>
-  </div>
+  <div class="intro-card"><div class="emoji">📅</div><div class="val">4</div><div class="lbl">Séances / sem</div></div>
+  <div class="intro-card"><div class="emoji">⏱️</div><div class="val">40–55</div><div class="lbl">Min / séance</div></div>
+  <div class="intro-card"><div class="emoji">🔧</div><div class="val">0</div><div class="lbl">Matériel requis</div></div>
+  <div class="intro-card"><div class="emoji">🔥</div><div class="val">~500</div><div class="lbl">Kcal / séance</div></div>
 </div>
 
 <div class="progress-bar-wrap">
@@ -325,489 +282,383 @@
 </div>
 
 <div class="tabs">
-  <div class="tab active" data-day="1" onclick="switchDay(1)">
-    <span class="day-num">J1</span>
-    <span class="day-label">Cardio</span>
-  </div>
-  <div class="tab" data-day="2" onclick="switchDay(2)">
-    <span class="day-num">J2</span>
-    <span class="day-label">Mobilite</span>
-  </div>
-  <div class="tab" data-day="3" onclick="switchDay(3)">
-    <span class="day-num">J3</span>
-    <span class="day-label">Circuit</span>
-  </div>
-  <div class="tab" data-day="4" onclick="switchDay(4)">
-    <span class="day-num">J4</span>
-    <span class="day-label">Recup</span>
-  </div>
+  <div class="tab active" data-day="1" onclick="switchDay(1)"><span class="day-num">J1</span><span class="day-label">Bas corps</span></div>
+  <div class="tab" data-day="2" onclick="switchDay(2)"><span class="day-num">J2</span><span class="day-label">Push</span></div>
+  <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Core</span></div>
+  <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Circuit</span></div>
 </div>
 
-<!-- ========== JOUR 1 — CARDIO LOW IMPACT ========== -->
+<!-- ========== JOUR 1 — BAS DU CORPS ========== -->
 <div class="day-panel active" id="day1">
   <div class="day-header">
-    <div class="day-icon" style="background:#1a0a00;">&#x1F525;</div>
+    <div class="day-icon" style="background:#002820;">🦵</div>
     <div>
-      <h2>CARDIO LOW IMPACT</h2>
-      <p>Frequence cardiaque &middot; Brule-graisse &middot; Zero impact</p>
+      <h2>BAS DU CORPS</h2>
+      <p>Quadriceps · Fessiers · Ischio-jambiers · Mollets</p>
       <div class="meta-tags">
         <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Lundi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~30 min</span>
-        <span class="meta-tag" style="background:#0a1a20;color:#47ffe8;">3 series</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~50 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">4 séries</span>
       </div>
     </div>
   </div>
-
-  <div class="section-label">&#x1F525; Echauffement &mdash; 4 min</div>
+  <div class="section-label">🔥 Échauffement — 6 min</div>
   <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Marche sur place')">Marche sur place <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Rotation cervicales douces')">Rotations cervicales <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Cercles de hanches')">Cercles de hanches <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Balancement des bras')">Balancement bras <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Marche sur place genoux hauts')">Genoux hauts <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations hanches')">Rotations hanches <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Leg swings avant/arrière')">Leg swings <span>30 sec × 2</span></div>
+    <div class="warm-item" onclick="showStretch('Fente avec rotation')">Fente + rotation <span>30 sec × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air lents <span>15 reps</span></div>
   </div>
-
-  <div class="section-label">&#x1F4AA; Exercices</div>
+  <div class="section-label">💪 Exercices</div>
   <div class="exercises">
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Marche rapide genoux hauts</div>
-        <div class="ex-tip">Debout, monte les genoux a hauteur des hanches en alternant. Balance les bras en opposition. Garde le dos droit, contracte les abdos. Rythme soutenu mais respiration controlee. C'est du cardio pur sans aucun impact sur les articulations.</div>
+        <div class="ex-name">Squat profond (full ROM)</div>
+        <div class="ex-tip">Descends jusqu'à ce que les cuisses soient sous la parallèle. Pause 1 seconde en bas, remonte en explosivité. Garde le dos droit et les talons au sol.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">02</div>
-      <div class="ex-content">
-        <div class="ex-name">Step touch lateral</div>
-        <div class="ex-tip">Debout, fais un pas lateral a droite et ramene le pied gauche. Puis inverse. Ajoute les bras : pousse-les vers le haut a chaque pas. Plus tu vas vite et plus tu leves les bras haut, plus tu brules. Pas de saut = zero impact.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">03</div>
-      <div class="ex-content">
-        <div class="ex-name">Squat assiste (chaise)</div>
-        <div class="ex-tip">Debout devant une chaise. Descends comme si tu allais t'asseoir, frole la chaise avec les fesses sans te poser, remonte. Pousse dans les talons. Les cuisses sont le plus gros groupe musculaire du corps : plus elles bossent, plus tu brules.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">45s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">04</div>
-      <div class="ex-content">
-        <div class="ex-name">Glute Bridge dynamique</div>
-        <div class="ex-tip">Allonge sur le dos, pieds a plat au sol. Monte les hanches en serrant les fessiers fort, redescends sans poser. Enchaine les reps sans pause en bas. Les fessiers sont un moteur de depense calorique enorme quand ils bossent.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">75s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Shadow boxing</div>
-        <div class="ex-tip">Debout, position de garde (pieds decales, poings devant le visage). Enchaine des directs gauche-droite en pivotant les hanches. Ajoute des crochets. Garde les abdos gaines. Excellent cardio, zero impact et ca deroule &mdash; imagine que tu frappes tes kilos en trop.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">06</div>
-      <div class="ex-content">
-        <div class="ex-name">Dead Bug (finisher abdos)</div>
-        <div class="ex-tip">Allonge sur le dos, bras vers le plafond, genoux a 90 degres. Tends le bras droit derriere toi et la jambe gauche vers le sol en meme temps. Reviens, alterne. Le bas du dos RESTE colle au sol. Brule les abdos profonds sans crunch classique.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-  </div>
-
-  <div class="section-label">&#x1F9D8; Retour au calme &mdash; 3 min</div>
-  <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration diaphragmatique <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Etirement quadriceps debout')">Etirement quadriceps <span>30s x jambe</span></div>
-    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Child Pose <span>1 min</span></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>&#x1F4A1; Conseil du jour</strong>
-    La zone brule-graisse c'est quand tu peux encore parler mais pas chanter. Si tu es essouffle au point de ne plus parler, ralentis un peu. L'objectif c'est de tenir 30 minutes, pas de sprinter 5 minutes et mourir.
-  </div>
-  <button onclick="markDayDone(1)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">&#x2705; Marquer J1 comme termine</button>
-</div>
-
-<!-- ========== JOUR 2 — MOBILITE ACTIVE ========== -->
-<div class="day-panel" id="day2">
-  <div class="day-header">
-    <div class="day-icon" style="background:#001020;">&#x1F30A;</div>
-    <div>
-      <h2>MOBILITE ACTIVE</h2>
-      <p>Mobilite dynamique &middot; Chaines musculaires &middot; Brule en bougeant</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mercredi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~25 min</span>
-        <span class="meta-tag" style="background:#0a1a20;color:#47ffe8;">3 series</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">&#x1F525; Echauffement &mdash; 3 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Marche sur place')">Marche sur place <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Cercles de chevilles')">Cercles chevilles <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Rotations des poignets')">Rotations poignets <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Cercles de hanches')">Cercles de hanches <span>30s</span></div>
-  </div>
-
-  <div class="section-label">&#x1F4AA; Exercices</div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">01</div>
-      <div class="ex-content">
-        <div class="ex-name">Inchworm (ver de terre)</div>
-        <div class="ex-tip">Debout, penche-toi en avant, mains au sol (plie les genoux si besoin). Marche les mains vers l'avant jusqu'a la planche, puis marche les pieds vers les mains. C'est un exo de mobilite ET de gainage. A 113kg plie les genoux autant que necessaire, la souplesse viendra.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">6 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">45s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">World's Greatest Stretch</div>
-        <div class="ex-tip">Fente avant, pose la main interieure au sol, tourne le buste et leve l'autre bras vers le ciel. Tiens 3 secondes. Garde le genou arriere au sol. C'est LE meilleur etirement multi-zones : hanches, dos, epaules, tout y passe en un mouvement.</div>
+        <div class="ex-name">Bulgarian Split Squat</div>
+        <div class="ex-tip">Pied arrière surélevé sur une chaise. Descends le genou arrière vers le sol, garde le buste droit. Très exigeant pour les quadriceps et fessiers.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">5 reps x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">03</div>
       <div class="ex-content">
-        <div class="ex-name">Bear Crawl sur place</div>
-        <div class="ex-tip">A 4 pattes, genoux a 2 cm du sol (ne touchent PAS). Avance la main droite et le pied gauche en meme temps, puis inverse. Reste sur place. C'est un exo de gainage dynamique qui fait monter le cardio en fleche tout en travaillant la coordination.</div>
+        <div class="ex-name">Single Leg Glute Bridge</div>
+        <div class="ex-tip">Glute bridge sur une seule jambe, l'autre tendue vers le ciel. Pousse fort dans le talon de la jambe d'appui. Serre 1 seconde en haut.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">30 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">45s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Fente arriere alternee</div>
-        <div class="ex-tip">Debout, fais un grand pas en arriere, genou arriere vers le sol (sans toucher si possible). Remonte en poussant sur le pied avant. Alterne les jambes. Tiens-toi au mur si l'equilibre est difficile. La fente arriere est plus douce pour les genoux que la fente avant.</div>
+        <div class="ex-name">Squat sauté (jump squat)</div>
+        <div class="ex-tip">Descends en squat puis explose vers le haut en sautant. Atterris en douceur sur les pointes puis sur les talons. Excellent pour la puissance et le cardio.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">8 reps x jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">45s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">75s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Cat-Cow dynamique + rotation</div>
-        <div class="ex-tip">A 4 pattes : enchaine chat-vache rapidement (dos rond, dos creux). Toutes les 4 reps, ajoute une rotation thoracique : leve un bras vers le ciel en ouvrant la poitrine. Combine mobilite de colonne et travail musculaire actif.</div>
+        <div class="ex-name">Wall sit lesté (mains en haut)</div>
+        <div class="ex-tip">Dos plaqué au mur, cuisses parallèles au sol. Garde les bras tendus à la verticale au-dessus de la tête pour augmenter la difficulté.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps + 4 rotations</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">40 secondes</span></div>
+          <div class="ex-stat"><span class="stat-orange">75s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
   </div>
-
-  <div class="section-label">&#x1F9D8; Retour au calme &mdash; 3 min</div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
   <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Pigeon yoga (fessier)')">Pigeon modifie <span>30s x cote</span></div>
-    <div class="warm-item" onclick="showStretch('Genou poitrine allonge')">Genou poitrine <span>30s x cote</span></div>
-    <div class="warm-item" onclick="showStretch('Respiration 4-7-8')">Respiration 4-7-8 <span>3 cycles</span></div>
-  </div>
-
-  <div class="tip-box">
-    <strong>&#x1F4A1; Conseil du jour</strong>
-    La mobilite active c'est pas du stretching passif. Tu bouges, tu depenses, et en meme temps tu ameliores tes amplitudes. A 113kg, une bonne mobilite c'est ce qui te protege des blessures pendant la callisthenie.
-  </div>
-  <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">&#x2705; Marquer J2 comme termine</button>
-</div>
-
-<!-- ========== JOUR 3 — CIRCUIT BRULE-GRAISSE ========== -->
-<div class="day-panel" id="day3">
-  <div class="day-header">
-    <div class="day-icon" style="background:#1a1000;">&#x26A1;</div>
-    <div>
-      <h2>CIRCUIT BRULE-GRAISSE</h2>
-      <p>Intervals doux &middot; Tout le corps &middot; Depense max</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~30 min</span>
-        <span class="meta-tag" style="background:#0a1a20;color:#47ffe8;">3 series</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">&#x1F525; Echauffement &mdash; 4 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Marche sur place')">Marche rapide sur place <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Cercles de hanches')">Cercles de hanches <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Balancement des bras')">Balancement bras <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Squat partiel echauffement')">Squats partiels <span>1 min</span></div>
-  </div>
-
-  <div class="section-label">&#x1F4AA; Exercices</div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">01</div>
-      <div class="ex-content">
-        <div class="ex-name">Squat sumo</div>
-        <div class="ex-tip">Pieds tres ecartes, pointes vers l'exterieur. Descends en pliant les genoux, dos droit, fesses en arriere. Remonte en serrant les fessiers en haut. Les cuisses + fessiers = les plus gros muscles du corps. Plus ils bossent, plus tu brules de calories au repos aussi.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">02</div>
-      <div class="ex-content">
-        <div class="ex-name">Mountain Climber lent</div>
-        <div class="ex-tip">En position planche (mains au sol, bras tendus). Ramene un genou vers la poitrine, repose, alterne. Version LENTE et controlee, pas de vitesse. Si la planche au sol est trop dure, mets les mains sur une chaise. Cardio + gainage en un seul mouvement.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps x jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">03</div>
-      <div class="ex-content">
-        <div class="ex-name">Step up sur marche</div>
-        <div class="ex-tip">Trouve une marche d'escalier ou un step bas (15-20 cm max). Monte avec le pied droit, monte le genou gauche en haut, redescends. Fais toutes les reps d'un cote puis change. Tiens-toi au mur. C'est le meilleur bruleur de calories low-impact pour les debutants.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps x jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">45s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">04</div>
-      <div class="ex-content">
-        <div class="ex-name">Planche dynamique genoux</div>
-        <div class="ex-tip">En planche sur les genoux (pas les pieds). Tape ton epaule gauche avec ta main droite, puis inverse. Garde les hanches stables, ne te balance pas. Si tu te balances trop, ecarte les genoux. Gainage + cardio sans aucun impact.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">10 taps x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Jumping Jack sans saut</div>
-        <div class="ex-tip">Debout, fais un pas lateral a droite + bras au-dessus de la tete, ramene. Puis a gauche. C'est un jumping jack mais en marchant au lieu de sauter. Meme depense, meme mouvement, zero impact sur les genoux et les chevilles.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">06</div>
-      <div class="ex-content">
-        <div class="ex-name">Bicycle Crunch lent (finisher)</div>
-        <div class="ex-tip">Sur le dos, mains derriere la tete. Ramene le coude droit vers le genou gauche en alternant. Lent et controle : 2 secondes par cote. Expire a chaque crunch. Le finisher parfait pour les abdos et les obliques.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">&#x2713;</div>
-    </div>
-  </div>
-
-  <div class="section-label">&#x1F9D8; Retour au calme &mdash; 3 min</div>
-  <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Etirement quadriceps debout')">Etirement quadriceps <span>30s x jambe</span></div>
-    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Child Pose <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement quadriceps')">Étirement quadriceps <span>30s × jambe</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement ischio debout')">Étirement ischio debout <span>30s × jambe</span></div>
+    <div class="warm-item" onclick="showStretch('Pigeon yoga (fessier)')">Pigeon yoga <span>45s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement adducteurs')">Adducteurs (papillon) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
   </div>
-
-  <div class="tip-box">
-    <strong>&#x1F4A1; Conseil du jour</strong>
-    Un circuit c'est pas une course. Si tu fais les mouvements proprement et a ton rythme, tu bruleras PLUS que si tu bacles vite fait. La qualite du mouvement > la vitesse. Le vendredi c'est la seance la plus intense de la semaine &mdash; sois fier de la finir.
-  </div>
-  <button onclick="markDayDone(3)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">&#x2705; Marquer J3 comme termine</button>
+  <div class="tip-box"><strong>💡 Conseil du jour</strong> Le bulgarian split squat est l'un des exercices les plus efficaces pour les jambes. Si tu perds l'équilibre, garde une main sur un mur les premières fois.</div>
+  <button onclick="markDayDone(1)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J1 comme terminé</button>
 </div>
 
-<!-- ========== JOUR 4 — RECUP ACTIVE ========== -->
-<div class="day-panel" id="day4">
+<!-- ========== JOUR 2 — PUSH ========== -->
+<div class="day-panel" id="day2">
   <div class="day-header">
-    <div class="day-icon" style="background:#0a0a1a;">&#x1F9D8;</div>
+    <div class="day-icon" style="background:#001a28;">💪</div>
     <div>
-      <h2>RECUP ACTIVE</h2>
-      <p>Etirements &middot; Mobilite articulaire &middot; Decompression</p>
+      <h2>HAUT DU CORPS — PUSH</h2>
+      <p>Pectoraux · Épaules · Triceps</p>
       <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~20 min</span>
-        <span class="meta-tag" style="background:#0a1a20;color:#47ffe8;">2 series</span>
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mardi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">4 séries</span>
       </div>
     </div>
   </div>
-
-  <div class="section-label">&#x1F525; Echauffement &mdash; 2 min</div>
+  <div class="section-label">🔥 Échauffement — 6 min</div>
   <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Marche sur place')">Marche douce <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Rotation cervicales douces')">Rotations cervicales <span>30s</span></div>
-    <div class="warm-item" onclick="showStretch('Respiration profonde')">Respirations ventre <span>30s</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations d\'épaules')">Rotations épaules <span>45 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>45 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur <span>15 reps</span></div>
+    <div class="warm-item" onclick="showStretch('Ouverture thoracique')">Ouverture thoracique <span>45 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Scapular push-ups')">Scapular push-ups <span>10 reps</span></div>
   </div>
-
-  <div class="section-label">&#x1F4AA; Exercices</div>
+  <div class="section-label">💪 Exercices</div>
   <div class="exercises">
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">CARs des hanches (debout)</div>
-        <div class="ex-tip">Debout, tiens-toi au mur. Leve le genou devant, ouvre sur le cote, pousse derriere, ramene. Comme si tu enjambais une cloture au ralenti. Plus le cercle est grand, mieux c'est. Ca lubrifie l'articulation de la hanche et protege tes genoux.</div>
+        <div class="ex-name">Pompes classiques (au sol)</div>
+        <div class="ex-tip">Corps en planche, mains sous les épaules. Descends la poitrine à 5 cm du sol, remonte en soufflant. Si trop dur, garde les genoux au sol mais pas tout le temps.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">2</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">5 cercles x sens x jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10–12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">CARs des epaules</div>
-        <div class="ex-tip">Debout, bras le long du corps. Leve le bras devant, passe au-dessus de la tete, derriere, et reviens. Le plus grand cercle possible. Serre le poing pour maximiser la tension. Protege les epaules pour les pompes du programme callisthenie.</div>
+        <div class="ex-name">Pompes diamant (mains serrées)</div>
+        <div class="ex-tip">Mains jointes formant un diamant sous la poitrine. Coudes proches du corps. Cible directement les triceps. Genoux possibles si nécessaire.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">2</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">5 cercles x sens x bras</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">8 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">03</div>
       <div class="ex-content">
-        <div class="ex-name">Torsion allongee (Supine Twist)</div>
-        <div class="ex-tip">Allonge sur le dos, bras en croix. Ramene les genoux a 90 degres puis laisse-les tomber d'un cote. Garde les epaules au sol. La gravite fait le travail &mdash; ne force rien. Meilleur etirement pour le dos apres une semaine chargee.</div>
+        <div class="ex-name">Pike Push-up profond</div>
+        <div class="ex-tip">Position V inversé, fesses hautes. Descends la tête vers le sol entre les mains, presque jusqu'à toucher. Travail intense sur les épaules.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">2</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 sec x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">15s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Pigeon modifie (sur le dos)</div>
-        <div class="ex-tip">Allonge sur le dos. Cheville droite sur le genou gauche. Tire le genou gauche vers la poitrine. Sens l'etirement profond du fessier. Beaucoup plus confortable que le pigeon classique et tout aussi efficace. Les fessiers tendus = douleurs de dos.</div>
+        <div class="ex-name">Dips sur chaise (jambes tendues)</div>
+        <div class="ex-tip">Mains sur le bord d'une chaise, jambes tendues devant toi (talons au sol). Descends les coudes à 90°, remonte en poussant fort. Plus dur que jambes pliées.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">2</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">45 sec x cote</span></div>
-          <div class="ex-stat"><span class="stat-orange">15s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
-
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Glute Bridge + hold (recuperation)</div>
-        <div class="ex-tip">Allonge sur le dos, pieds a plat. Monte les hanches, TIENS 10 secondes en haut en serrant les fessiers. Redescends doucement. Meme le jour recup, on active les fessiers &mdash; ca accelere la recuperation musculaire et ca brule quelques calories bonus.</div>
+        <div class="ex-name">Plank to Push-up (passages)</div>
+        <div class="ex-tip">Pars en planche sur les avant-bras. Monte sur les mains une à une, puis redescends sur les avant-bras. Alterne le bras qui démarre. Brûle les épaules et les triceps.</div>
         <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">2</span> series</div>
-          <div class="ex-stat"><span class="stat-blue">8 reps (10s hold)</span></div>
-          <div class="ex-stat"><span class="stat-orange">30s repos</span></div>
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">8 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">75s repos</span></div>
         </div>
       </div>
-      <div class="check-icon">&#x2713;</div>
+      <div class="check-icon">✓</div>
     </div>
   </div>
-
-  <div class="section-label">&#x1F9D8; Retour au calme &mdash; 3 min</div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
   <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Child Pose <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Rotation thoracique')">Rotation thoracique <span>30s x cote</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement pectoraux (porte)')">Étirement pectoraux <span>45s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement triceps')">Étirement triceps <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement épaule croisée')">Épaule croisée <span>30s × côté</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Conseil du jour</strong> Si les pompes au sol sont trop dures pour 10 reps, fais ce que tu peux puis termine sur les genoux. L'important c'est de progresser semaine après semaine.</div>
+  <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J2 comme terminé</button>
+</div>
+
+<!-- ========== JOUR 3 — CORE ========== -->
+<div class="day-panel" id="day3">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0a00;">🔥</div>
+    <div>
+      <h2>CORE & GAINAGE</h2>
+      <p>Abdominaux · Obliques · Stabilisateurs du tronc</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mercredi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">4 séries</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Chat-vache (cat-cow)')">Chat-vache <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>45s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Marche sur place genoux hauts')">Genoux hauts <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Inclinaisons latérales')">Inclinaisons latérales <span>45 sec</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Hollow Body Hold</div>
+        <div class="ex-tip">Allongé sur le dos, bras tendus derrière la tête, jambes tendues. Décolle bras et jambes du sol, bas du dos plaqué. Tiens la position en respirant.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">25 secondes</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Leg Raises (relevés de jambes)</div>
+        <div class="ex-tip">Allongé sur le dos, mains sous les fessiers. Lève les jambes tendues jusqu'à 90°, redescends lentement sans toucher le sol. Bas du dos plaqué.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Bicycle Crunch</div>
+        <div class="ex-tip">Mains derrière la tête. Amène le coude droit vers le genou gauche en tendant la jambe droite. Alterne lentement, contrôle le mouvement. Cible les obliques.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Planche latérale + lift de hanche</div>
+        <div class="ex-tip">Planche latérale sur l'avant-bras. Au lieu de tenir, descends la hanche vers le sol puis remonte en serrant les obliques. Travail dynamique des flancs.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Plank Shoulder Taps</div>
+        <div class="ex-tip">En planche haute (sur les mains). Touche ton épaule gauche avec la main droite, puis l'inverse. Ne bouge pas le bassin — anti-rotation, super exigeant.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">06</div>
+      <div class="ex-content">
+        <div class="ex-name">Planche frontale longue</div>
+        <div class="ex-tip">Sur les avant-bras, corps droit. Contracte abdos et fessiers. Respire normalement. Tiens 45 secondes — la dernière série, va à fond.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">45 secondes</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Cobra (stretch abdos)')">Cobra <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Twist assis')">Twist assis <span>45s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Genou poitrine allongé')">Genou poitrine <span>30s × côté</span></div>
     <div class="warm-item" onclick="showStretch('Respiration 4-7-8')">Respiration 4-7-8 <span>3 cycles</span></div>
   </div>
+  <div class="tip-box"><strong>💡 Conseil du jour</strong> Pour le hollow body, si c'est trop dur, plie légèrement les genoux. L'important c'est de garder le bas du dos collé au sol — sinon tu sollicites les fléchisseurs de hanche.</div>
+  <button onclick="markDayDone(3)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J3 comme terminé</button>
+</div>
 
-  <div class="tip-box">
-    <strong>&#x1F4A1; Conseil du jour</strong>
-    Le jour recup c'est PAS un jour off. C'est le jour ou ton corps se repare et ou tes muscles se construisent. Plus de muscles = metabolisme plus eleve = tu brules plus au repos. Ne saute jamais cette seance.
+<!-- ========== JOUR 4 — CIRCUIT ========== -->
+<div class="day-panel" id="day4">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0018;">⚡</div>
+    <div>
+      <h2>CIRCUIT FULL BODY</h2>
+      <p>Cardio · Force · Endurance</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a0018;color:#d946ef;">5 rounds</span>
+      </div>
+    </div>
   </div>
-  <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">&#x2705; Marquer J4 comme termine</button>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Saut sur place (léger)')">Saut léger <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations complètes')">Rotations complètes <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air × 15</div>
+    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur × 15</div>
+  </div>
+  <div class="section-label">⚡ Le Circuit — 5 rounds</div>
+  <div class="circuit-box">
+    <div class="circuit-title">🔄 ENCHAÎNER LES 6 EXOS SANS PAUSE · 75s REPOS ENTRE ROUNDS</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.5;padding:4px 0 12px;">
+      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squats sautés — 12 reps</strong><br>
+      <span style="padding-left:18px;display:inline-block;">Descends en squat profond et explose vers le haut. Atterris en douceur sur les pointes puis les talons. Bras qui balancent pour aider.</span><br><br>
+      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Pompes — 10 reps</strong><br>
+      <span style="padding-left:18px;display:inline-block;">Pompes au sol, genoux levés. Si tu fatigues, finis sur les genoux. Ne sacrifie pas la forme.</span><br><br>
+      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Mountain Climbers rapides — 15 reps × jambe</strong><br>
+      <span style="padding-left:18px;display:inline-block;">En planche haute, ramène les genoux vers la poitrine en alternance, rythme rapide. Garde le bassin bas, pas en l'air.</span><br><br>
+      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Fentes alternées sautées — 8 reps × jambe</strong><br>
+      <span style="padding-left:18px;display:inline-block;">Position fente, saute pour échanger les jambes en l'air, atterris en fente opposée. Si trop intense, fais des fentes alternées simples.</span><br><br>
+      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Burpee modifié (sans pompe) — 8 reps</strong><br>
+      <span style="padding-left:18px;display:inline-block;">Squat → mains au sol → recule les pieds en planche → ramène les pieds → debout + petit saut. Pas obligé de mettre la pompe.</span><br><br>
+      <strong style="color:var(--accent);">F.</strong> <strong style="color:var(--text);">Planche — 30 sec</strong><br>
+      <span style="padding-left:18px;display:inline-block;">Avant-bras, corps droit. Serre tout, respire. Termine le round en force.</span>
+    </div>
+    <div class="exercises">
+      <div class="exercise-card" onclick="handleCardClick(this)">
+        <div class="ex-number">⚡</div>
+        <div class="ex-content">
+          <div class="ex-name">Circuit complet (6 exos enchaînés)</div>
+          <div class="ex-tip">Enchaîne les 6 exercices sans pause : jump squats, pompes, mountain climbers, fentes sautées, burpees, planche. 75 secondes de repos entre chaque round. 5 rounds au total.</div>
+          <div class="ex-stats">
+            <div class="ex-stat"><span class="stat-accent">5</span> rounds</div>
+            <div class="ex-stat"><span class="stat-orange">75s repos</span></div>
+          </div>
+        </div>
+        <div class="check-icon">✓</div>
+      </div>
+    </div>
+  </div>
+  <div class="tip-box"><strong>💡 Conseil du jour</strong> Si tu manques de souffle, marche sur place 30 secondes avant de reprendre. L'objectif c'est de finir les 5 rounds, pas d'aller à la mort dès le premier.</div>
+  <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J4 comme terminé</button>
 </div>
 
 <!-- STRETCH MODAL -->
@@ -818,7 +669,7 @@
         <div class="stretch-modal-title" id="stretchTitle"></div>
         <div class="stretch-modal-duration" id="stretchDuration"></div>
       </div>
-      <div class="stretch-close" onclick="closeStretchDirect()">&#x2715;</div>
+      <div class="stretch-close" onclick="closeStretchDirect()">✕</div>
     </div>
     <div class="stretch-modal-body" id="stretchBody"></div>
   </div>
@@ -832,7 +683,8 @@
   function lsSet(k,v) { try { localStorage.setItem(k,v); } catch(e) {} }
   function lsRemove(k) { try { localStorage.removeItem(k); } catch(e) {} }
 
-  var SAVE_KEY = 'mobil_v1';
+  var SAVE_KEY = 'cali_lvl2';
+  var ACTIVE_KEY = 'cali_lvl2_activeDay';
   var dayDone = {1:false,2:false,3:false,4:false};
 
   function getWeekNumber() {
@@ -859,7 +711,7 @@
       var state = JSON.parse(raw);
       if (!state.week || state.week !== getWeekNumber()) {
         lsRemove(SAVE_KEY);
-        lsRemove('mobil_activeDay');
+        lsRemove(ACTIVE_KEY);
         return;
       }
       if (state.dayDone) {
@@ -877,24 +729,36 @@
   }
 
   function resetProgress() {
-    if (!confirm('Remettre a zero ?')) return;
+    if (!confirm('Remettre à zéro ?')) return;
     lsRemove(SAVE_KEY);
-    lsRemove('mobil_activeDay');
+    lsRemove(ACTIVE_KEY);
     location.reload();
+  }
+
+  function recheckDayDone() {
+    for (var n=1; n<=4; n++) {
+      var panel = document.getElementById('day'+n);
+      if (!panel) continue;
+      var cards = panel.querySelectorAll('.exercise-card');
+      var all = true;
+      for (var i=0; i<cards.length; i++) { if (!cards[i].classList.contains('done')) { all=false; break; } }
+      dayDone[n] = all;
+    }
   }
 
   // Global timer
   var globalInterval = null, globalSecs = 0, globalStarted = false;
+  var elGlobalTimer = null, elGlobalDisplay = null;
 
   function startGlobalTimer() {
     if (globalStarted) return;
     globalStarted = true;
-    var el = document.getElementById('globalTimer');
-    if (el) el.classList.add('running');
+    elGlobalTimer = elGlobalTimer || document.getElementById('globalTimer');
+    elGlobalDisplay = elGlobalDisplay || document.getElementById('globalDisplay');
+    if (elGlobalTimer) elGlobalTimer.classList.add('running');
     globalInterval = setInterval(function() {
       globalSecs++;
-      var el = document.getElementById('globalDisplay');
-      if (el) el.textContent = Math.floor(globalSecs/60)+':'+('0'+(globalSecs%60)).slice(-2);
+      if (elGlobalDisplay) elGlobalDisplay.textContent = Math.floor(globalSecs/60)+':'+('0'+(globalSecs%60)).slice(-2);
     }, 1000);
   }
 
@@ -912,71 +776,64 @@
     if (globalInterval) { clearInterval(globalInterval); globalInterval = null; }
     globalStarted = false;
     globalSecs = 0;
-    var el = document.getElementById('globalTimer');
-    if (el) el.classList.remove('running');
-    var d = document.getElementById('globalDisplay');
-    if (d) d.textContent = '0:00';
+    elGlobalTimer = elGlobalTimer || document.getElementById('globalTimer');
+    elGlobalDisplay = elGlobalDisplay || document.getElementById('globalDisplay');
+    if (elGlobalTimer) elGlobalTimer.classList.remove('running');
+    if (elGlobalDisplay) elGlobalDisplay.textContent = '0:00';
     stopTimer();
   }
 
-  // Timer widget
-  var timerInterval = null, timerSecs = 0, activeCard = null;
+  // Timer widget — cached DOM refs
+  var timerSecs = 0, activeCard = null;
   var CIRC = 2 * Math.PI * 54;
+  var elTimerDisplay = null, elTimerRing = null, elTimerStatus = null, elTimerWidget = null, elTimerExName = null;
 
-  function updateTimerDisplay() {
-    var el = document.getElementById('timerDisplay');
-    if (el) el.textContent = Math.floor(timerSecs/60)+':'+('0'+(timerSecs%60)).slice(-2);
-    var ring = document.getElementById('timerRing');
-    if (ring) { ring.style.strokeDasharray = CIRC; ring.style.strokeDashoffset = CIRC - (timerSecs%60)/60*CIRC; }
+  function getTimerEls() {
+    if (!elTimerDisplay) {
+      elTimerDisplay = document.getElementById('timerDisplay');
+      elTimerRing = document.getElementById('timerRing');
+      elTimerStatus = document.getElementById('timerStatus');
+      elTimerWidget = document.getElementById('timerWidget');
+      elTimerExName = document.getElementById('timerExName');
+    }
   }
 
-  function startChrono() {
-    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-    timerSecs = 0; updateTimerDisplay();
-    var st = document.getElementById('timerStatus');
-    if (st) { st.textContent = 'EN COURS'; st.className = 'timer-status active'; }
-    timerInterval = setInterval(function() { timerSecs++; updateTimerDisplay(); }, 1000);
-  }
-
-  function stopChrono() { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } }
-
+  // Rest countdown
   var restInterval = null;
 
   function startRest(seconds, onDone) {
-    stopChrono();
     if (restInterval) { clearInterval(restInterval); restInterval = null; }
+    getTimerEls();
     var rem = seconds;
-    var st = document.getElementById('timerStatus');
-    var td = document.getElementById('timerDisplay');
-    var ring = document.getElementById('timerRing');
-    if (st) { st.textContent = 'REPOS'; st.className = 'timer-status'; }
-    if (td) td.textContent = rem+'s';
-    if (ring) { ring.style.strokeDasharray = CIRC; ring.style.strokeDashoffset = 0; ring.style.stroke = 'var(--blue)'; }
+    if (elTimerStatus) { elTimerStatus.textContent = 'REPOS'; elTimerStatus.className = 'timer-status'; }
+    if (elTimerDisplay) elTimerDisplay.textContent = rem+'s';
+    if (elTimerRing) { elTimerRing.style.strokeDashoffset = '0'; elTimerRing.style.stroke = 'var(--blue)'; }
     restInterval = setInterval(function() {
       rem--;
-      if (td) td.textContent = rem > 0 ? rem+'s' : 'GO!';
-      if (ring) ring.style.strokeDashoffset = CIRC * (1 - rem/seconds);
-      if (st && rem > 0) st.textContent = 'REPOS '+rem+'s';
+      if (elTimerDisplay) elTimerDisplay.textContent = rem > 0 ? rem+'s' : 'GO!';
+      if (elTimerRing) elTimerRing.style.strokeDashoffset = String(CIRC * (1 - rem/seconds));
+      if (elTimerStatus && rem > 0) elTimerStatus.textContent = 'REPOS '+rem+'s';
       if (rem <= 0) {
         clearInterval(restInterval); restInterval = null;
-        if (ring) ring.style.stroke = '';
+        if (elTimerRing) elTimerRing.style.stroke = '';
         setTimeout(onDone, 400);
       }
     }, 1000);
   }
 
-  var currentSerie = 0, totalSeries = 3, restSeconds = 30;
+  // Series
+  var currentSerie = 0, totalSeries = 4, restSeconds = 75;
 
   function getCardSeries(card) {
     var el = card.querySelector('.stat-accent');
     if (el) { var n = parseInt(el.textContent); if (n >= 1 && n <= 6) return n; }
-    return 3;
+    return 4;
   }
 
   function getCardRest(card) {
     var el = card.querySelector('.stat-orange');
     if (el) { var m = el.textContent.match(/[0-9]+/); if (m) return parseInt(m[0]); }
-    return 30;
+    return 75;
   }
 
   function buildSeries(n) {
@@ -1022,26 +879,22 @@
       } else {
         var next = document.querySelector('#seriesRow [data-serie="'+(n+1)+'"]');
         if (next) next.disabled = false;
-        timerSecs = 0; updateTimerDisplay();
-        var st2 = document.getElementById('timerStatus');
-        if (st2) { st2.textContent = 'PRET'; st2.className = 'timer-status'; }
-        var ring2 = document.getElementById('timerRing');
-        if (ring2) { ring2.style.stroke = ''; ring2.style.strokeDashoffset = CIRC; }
+        getTimerEls();
+        timerSecs = 0;
+        if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
+        if (elTimerStatus) { elTimerStatus.textContent = 'PRÊT'; elTimerStatus.className = 'timer-status'; }
+        if (elTimerRing) { elTimerRing.style.stroke = ''; elTimerRing.style.strokeDashoffset = String(CIRC); }
       }
     });
   }
 
   function hideWidget() {
-    stopChrono();
     if (restInterval) { clearInterval(restInterval); restInterval = null; }
-    var w = document.getElementById('timerWidget');
-    if (w) { w.classList.add('hidden'); w.classList.remove('running'); }
-    var st = document.getElementById('timerStatus');
-    if (st) { st.textContent = 'EN ATTENTE'; st.className = 'timer-status'; }
-    var td = document.getElementById('timerDisplay');
-    if (td) td.textContent = '0:00';
-    var ring = document.getElementById('timerRing');
-    if (ring) { ring.style.strokeDashoffset = 0; ring.style.stroke = ''; }
+    getTimerEls();
+    if (elTimerWidget) { elTimerWidget.classList.add('hidden'); elTimerWidget.classList.remove('running'); }
+    if (elTimerStatus) { elTimerStatus.textContent = 'EN ATTENTE'; elTimerStatus.className = 'timer-status'; }
+    if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
+    if (elTimerRing) { elTimerRing.style.strokeDashoffset = '0'; elTimerRing.style.stroke = ''; }
     timerSecs = 0;
   }
 
@@ -1051,7 +904,13 @@
   }
 
   function handleCardClick(card) {
-    if (card.classList.contains('done')) { card.classList.remove('done'); saveState(); return; }
+    if (card.classList.contains('done')) {
+      card.classList.remove('done');
+      recheckDayDone();
+      updateProgress();
+      saveState();
+      return;
+    }
     if (card === activeCard) return;
     if (activeCard) { activeCard.classList.remove('timing'); }
     hideWidget();
@@ -1062,20 +921,14 @@
     totalSeries = getCardSeries(card);
     restSeconds = getCardRest(card);
     buildSeries(totalSeries);
+    getTimerEls();
     var name = card.querySelector('.ex-name');
-    var en = document.getElementById('timerExName');
-    if (en) en.textContent = name ? name.textContent : 'Exercice';
-    var st = document.getElementById('timerStatus');
-    if (st) { st.textContent = 'PRET'; st.className = 'timer-status active'; }
-    var td = document.getElementById('timerDisplay');
-    if (td) td.textContent = '0:00';
-    var ring = document.getElementById('timerRing');
-    if (ring) { ring.style.strokeDashoffset = CIRC; ring.style.stroke = ''; }
-    var w = document.getElementById('timerWidget');
-    if (w) { w.classList.remove('hidden'); w.classList.add('running'); }
+    if (elTimerExName) elTimerExName.textContent = name ? name.textContent : 'Exercice';
+    if (elTimerStatus) { elTimerStatus.textContent = 'PRÊT'; elTimerStatus.className = 'timer-status active'; }
+    if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
+    if (elTimerRing) { elTimerRing.style.strokeDashoffset = String(CIRC); elTimerRing.style.stroke = ''; }
+    if (elTimerWidget) { elTimerWidget.classList.remove('hidden'); elTimerWidget.classList.add('running'); }
   }
-
-  function toggleDone(card) { handleCardClick(card); }
 
   function markDayDone(n) {
     var panel = document.getElementById('day'+n);
@@ -1085,9 +938,8 @@
         if (!cards[c].classList.contains('done')) cards[c].classList.add('done');
       }
     }
-    dayDone[n] = true; updateProgress();
-    var seg = document.getElementById('seg'+n);
-    if (seg) seg.classList.add('done');
+    dayDone[n] = true;
+    updateProgress();
     saveState();
     if (n < 4) switchDay(n+1);
   }
@@ -1098,26 +950,41 @@
     var pl = document.getElementById('prog-label');
     if (pl) pl.textContent = count+' / 4';
     for (var i=1; i<=4; i++) {
-      if (dayDone[i]) { var s = document.getElementById('seg'+i); if(s) s.classList.add('done'); }
+      var s = document.getElementById('seg'+i);
+      if (s) { if (dayDone[i]) s.classList.add('done'); else s.classList.remove('done'); }
     }
   }
 
   // Stretch dictionary
   var stretches = {
-    "Marche sur place":{duration:"1 minute",steps:["Leve les genoux a hauteur des hanches, un a un.","Balance les bras en opposition.","Garde le dos droit, regarde devant toi.","Rythme modere, respiration reguliere."],focus:"Active la circulation sanguine et monte la frequence cardiaque."},
-    "Rotation cervicales douces":{duration:"30 secondes",steps:["Epaules relachees.","Incline la tete a droite, oreille vers l'epaule.","Tiens 5 secondes. Change de cote.","Pas de rotations completes."],focus:"Relache les tensions cervicales."},
-    "Rotations des poignets":{duration:"30 secondes",steps:["Mains devant toi, poings fermes.","Grands cercles dans les deux sens.","15 secondes par sens.","Lent et ample."],focus:"Lubrifie les articulations du poignet."},
-    "Balancement des bras":{duration:"30 secondes",steps:["Debout, bras detendus.","Balance les bras d'avant en arriere naturellement.","Laisse le mouvement venir du torse.","Augmente l'amplitude progressivement."],focus:"Relache les epaules et le haut du dos."},
-    "Cercles de chevilles":{duration:"30 secondes",steps:["Assis ou debout (appui mur).","Leve un pied, trace des cercles avec la pointe.","10 cercles par sens, par cheville.","Amplitude maximale."],focus:"Lubrifie les chevilles, previent les entorses."},
-    "Cercles de hanches":{duration:"30 secondes",steps:["Debout, mains sur les hanches.","Trace de grands cercles avec le bassin.","15 secondes dans un sens, 15 dans l'autre.","Amplitude maximale, mouvement fluide."],focus:"Active les hanches et le bas du dos."},
-    "Respiration profonde":{duration:"1 minute",steps:["Assis ou allonge confortablement.","Inspire lentement par le nez en 4 temps.","Expire par la bouche en 6 temps.","Sens la frequence cardiaque descendre."],focus:"Active la recuperation et le systeme parasympathique."},
-    "Enfant (child pose)":{duration:"1 minute",steps:["A genoux, assis sur les talons.","Tends les bras devant toi, paumes au sol.","Laisse le front se poser.","Relache tout. Respire profondement."],focus:"Decompresse la colonne vertebrale."},
-    "Pigeon yoga (fessier)":{duration:"30 sec x cote",steps:["Allonge sur le dos, cheville droite sur genou gauche.","Tire le genou gauche vers la poitrine.","Sens l'etirement profond du fessier.","30 secondes par cote."],focus:"Etire les fessiers en profondeur."},
-    "Genou poitrine allonge":{duration:"30 sec x cote",steps:["Allonge sur le dos, jambe gauche tendue.","Ramene le genou droit vers la poitrine.","Dos plat au sol.","30 secondes par cote."],focus:"Etire le bas du dos et les flechisseurs de hanche."},
-    "Respiration 4-7-8":{duration:"3 cycles",steps:["Assis ou allonge. Expire completement.","Inspire par le nez 4 secondes.","Bloque 7 secondes.","Expire par la bouche 8 secondes. Repete 3 fois."],focus:"Recuperation acceleree, baisse du cortisol."},
-    "Rotation thoracique":{duration:"30 sec x cote",steps:["Allonge sur le cote, genoux plies.","Bras gauche tendu vers l'avant.","Trace un arc de cercle vers l'arriere.","Laisse la tete suivre la main."],focus:"Mobilite thoracique, contrecarre la position assise."},
-    "Etirement quadriceps debout":{duration:"30 sec x jambe",steps:["Debout, tiens-toi au mur d'une main.","Attrape le pied derriere toi avec l'autre main.","Tire doucement le talon vers la fesse.","Garde les genoux alignes, dos droit."],focus:"Etire les quadriceps apres le travail de squats et fentes."},
-    "Squat partiel echauffement":{duration:"1 minute",steps:["Debout, pieds largeur epaules.","Descends a mi-chemin seulement.","Remonte. Enchaine a rythme modere.","Pas besoin de descendre bas, c'est l'echauffement."],focus:"Prepare les genoux, hanches et chevilles pour l'effort."}
+    "Marche sur place genoux hauts":{duration:"1 minute",steps:["Monte les genoux à hauteur des hanches.","Balance les bras en opposition.","Rythme soutenu et continu.","Reste bien droit."],focus:"Active les fléchisseurs de hanche."},
+    "Rotations hanches":{duration:"30 secondes",steps:["Pieds écartés largeur épaules, mains sur les hanches.","Fais de grands cercles avec le bassin.","15 secondes dans chaque sens.","Amplitude maximale."],focus:"Mobilise les hanches et le bas du dos."},
+    "Leg swings avant/arrière":{duration:"30 sec x jambe",steps:["Tiens-toi à un support fixe.","Balance la jambe d'avant en arrière.","Amplitude progressive.","30 secondes par jambe."],focus:"Active les fléchisseurs et extenseurs de hanche."},
+    "Fente avec rotation":{duration:"30 sec x côté",steps:["Pose un grand pas en avant en fente.","Pose la main opposée au sol près du pied avant.","Tourne le buste vers le ciel en levant le bras.","Reviens et change de côté."],focus:"Mobilise hanches et colonne thoracique."},
+    "Squats air lents":{duration:"15 répétitions",steps:["Pieds écartés largeur épaules, orteils ouverts.","Descends lentement sur 3 secondes.","Genoux dans l'axe des pieds, dos droit.","Remonte sur 2 secondes."],focus:"Prépare genoux, hanches et chevilles."},
+    "Rotations d'épaules":{duration:"45 secondes",steps:["Bras le long du corps.","Grands cercles vers l'avant 20s, vers l'arrière 25s.","Amplitude maximale.",""],focus:"Lubrifie l'articulation d'épaule."},
+    "Cercles de bras":{duration:"45 secondes",steps:["Bras tendus à l'horizontale.","Petits cercles vers l'avant 20s, grands vers l'arrière 25s.","Garde les bras à hauteur d'épaule.",""],focus:"Réchauffe les deltoïdes."},
+    "Pompes mur lentes":{duration:"15 répétitions",steps:["Face au mur, mains à hauteur d'épaule.","Corps droit, ne creuse pas les reins.","Descends lentement sur 3 secondes.","Remonte sur 2 secondes."],focus:"Active pectoraux et triceps en douceur."},
+    "Ouverture thoracique":{duration:"45 secondes",steps:["Mains croisées derrière la nuque.","Ouvre les coudes en poussant la poitrine.","Regarde légèrement vers le haut.","Tiens 2-3 secondes, relâche, répète."],focus:"Contre la fermeture thoracique."},
+    "Scapular push-ups":{duration:"10 répétitions",steps:["Position planche haute, bras tendus.","Sans plier les coudes, rapproche les omoplates.","Puis pousse pour les écarter.","Mouvement court et contrôlé."],focus:"Active les stabilisateurs des omoplates."},
+    "Chat-vache (cat-cow)":{duration:"1 minute",steps:["À 4 pattes, mains sous les épaules.","Inspiration : creuse le dos (vache).","Expiration : arrondi le dos (chat).","Enchaîne au rythme de ta respiration."],focus:"Mobilise toute la colonne vertébrale."},
+    "Rotations du tronc":{duration:"45 sec x côté",steps:["Debout, mains sur les hanches.","Tourne le buste à droite, hanches fixes.","Pousse l'amplitude, regarde derrière toi.","45s à droite, 45s à gauche."],focus:"Mobilise la colonne thoracique."},
+    "Inclinaisons latérales":{duration:"45 secondes",steps:["Debout, pieds joints.","Incline-toi latéralement, main vers le genou.","Sens l'étirement sur le côté opposé.","Alterne gauche/droite lentement."],focus:"Réveille les obliques."},
+    "Saut sur place (léger)":{duration:"1 minute",steps:["Petits sauts légers sur la pointe des pieds.","Genoux légèrement fléchis à l'atterrissage.","Bras détendus.","L'objectif c'est la chaleur, pas l'intensité."],focus:"Monte la fréquence cardiaque."},
+    "Rotations complètes":{duration:"1 minute",steps:["Rotations tête 10s, épaules 10s, hanches 10s, genoux 10s, chevilles 10s.","Toujours dans les deux sens.","Mouvements amples et lents.","Check-up de toutes les articulations."],focus:"Mobilise l'ensemble du corps."},
+    "Étirement quadriceps":{duration:"30 sec x jambe",steps:["Debout, attrape la cheville derrière toi.","Genoux collés — ne tire pas le genou en arrière.","Pousse les hanches vers l'avant.","30 secondes par jambe."],focus:"Étire le quadriceps."},
+    "Étirement ischio debout":{duration:"30 sec x jambe",steps:["Pose le talon sur une surface, jambe tendue.","Penche le buste en avant, dos droit.","Sens l'étirement à l'arrière de la cuisse.","30 secondes par jambe."],focus:"Étire les ischio-jambiers."},
+    "Pigeon yoga (fessier)":{duration:"45 sec x côté",steps:["Pose la cheville droite sur le genou gauche.","Fléchis le genou gauche pour t'asseoir en arrière.","Plus tu penches le buste, plus c'est intense.","45 secondes par côté."],focus:"Étire les fessiers."},
+    "Étirement adducteurs":{duration:"1 minute",steps:["Assis au sol, plantes des pieds collées (papillon).","Laisse les genoux tomber sur les côtés.","Penche le buste en avant doucement.","Respire profondément."],focus:"Étire l'intérieur des cuisses."},
+    "Respiration profonde":{duration:"1 minute",steps:["Assis ou allongé confortablement.","Inspire lentement par le nez en 4 temps.","Expire par la bouche en 6 temps.","Sens la fréquence cardiaque descendre."],focus:"Active la récupération."},
+    "Étirement pectoraux (porte)":{duration:"45 sec x côté",steps:["Avant-bras contre le mur, coude à 90°.","Tourne le buste dans le sens opposé.","Ne force pas.","45 secondes par côté."],focus:"Ouvre les pectoraux."},
+    "Étirement triceps":{duration:"30 sec x côté",steps:["Lève le bras, plie le coude, main dans le dos.","Avec l'autre main, pousse le coude vers le bas.","Sens l'étirement à l'arrière du bras.","30 secondes par bras."],focus:"Étire les triceps."},
+    "Enfant (child pose)":{duration:"1 minute",steps:["À genoux, assis sur les talons.","Tends les bras devant toi, paumes au sol.","Laisse le front se poser.","Relâche tout. Respire profondément."],focus:"Décompresse la colonne vertébrale."},
+    "Étirement épaule croisée":{duration:"30 sec x côté",steps:["Tends le bras droit devant toi.","Avec la main gauche, ramène-le vers la poitrine.","Garde l'épaule basse, ne hausse pas.","30 secondes par bras."],focus:"Étire le deltoïde postérieur."},
+    "Cobra (stretch abdos)":{duration:"1 minute",steps:["Allongé sur le ventre, mains sous les épaules.","Pousse sur les mains pour lever le buste.","Coudes légèrement fléchis.","Respire profondément."],focus:"Contre-étirement après les abdos."},
+    "Twist assis":{duration:"45 sec x côté",steps:["Assis, jambe droite tendue, genou gauche fléchi.","Tourne le buste vers la gauche.","Regarde derrière toi.","45 secondes par côté."],focus:"Étire les obliques."},
+    "Genou poitrine allongé":{duration:"30 sec x côté",steps:["Allongé sur le dos, jambe gauche tendue.","Ramène le genou droit vers la poitrine.","Dos plat au sol.","30 secondes par côté."],focus:"Étire le bas du dos."},
+    "Respiration 4-7-8":{duration:"3 cycles",steps:["Assis ou allongé. Expire complètement.","Inspire par le nez 4 secondes.","Bloque 7 secondes.","Expire par la bouche 8 secondes. Répète 3 fois."],focus:"Récupération accélérée."}
   };
 
   function showStretch(name) {
@@ -1157,13 +1024,14 @@
     for (var i=0; i<tabs.length; i++) tabs[i].classList.remove('active');
     var target = document.querySelector('.tab[data-day="'+n+'"]');
     if (target) target.classList.add('active');
-    lsSet('mobil_activeDay', String(n));
+    lsSet(ACTIVE_KEY, String(n));
   }
 
+  // Init
   document.addEventListener('DOMContentLoaded', function() {
     try { loadState(); } catch(e) {}
     try {
-      var savedDay = lsGet('mobil_activeDay');
+      var savedDay = lsGet(ACTIVE_KEY);
       if (savedDay) switchDay(parseInt(savedDay, 10));
     } catch(e) {}
     try {
@@ -1176,7 +1044,6 @@
   });
 
   window.handleCardClick = handleCardClick;
-  window.toggleDone = toggleDone;
   window.stopTimer = stopTimer;
   window.cancelGlobalTimer = cancelGlobalTimer;
   window.markDayDone = markDayDone;
@@ -1201,22 +1068,22 @@
   </div>
   <div>
     <div class="timer-status" id="timerStatus">EN ATTENTE</div>
-    <button class="timer-btn-stop" onclick="stopTimer()">&#x2715; Annuler</button>
-  <div class="timer-hint">Clique sur une serie pour lancer le repos</div>
+    <button class="timer-btn-stop" onclick="stopTimer()">✕ Annuler</button>
+  <div class="timer-hint">Clique sur une série pour lancer le repos</div>
   </div>
   <div class="series-row" id="seriesRow"></div>
 </div>
 
 <div class="global-timer" id="globalTimer">
-  <span class="global-lbl">Seance</span>
+  <span class="global-lbl">Séance</span>
   <span class="global-time" id="globalDisplay">0:00</span>
-  <button class="global-stop" onclick="cancelGlobalTimer()">&#x2715;</button>
+  <button class="global-stop" onclick="cancelGlobalTimer()">✕</button>
 </div>
 <div class="recap-overlay" id="recapOverlay">
   <div class="recap-modal">
-    <div class="recap-title">Seance terminee !</div>
+    <div class="recap-title">Séance terminée !</div>
     <div class="recap-time" id="recapTime">0:00</div>
-    <div class="recap-msg">Tous les exercices sont valides.</div>
+    <div class="recap-msg">Tous les exercices sont validés.</div>
     <button class="recap-close" onclick="document.getElementById('recapOverlay').classList.remove('open')">Fermer</button>
   </div>
 </div>
