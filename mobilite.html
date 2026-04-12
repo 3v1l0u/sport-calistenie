@@ -235,10 +235,38 @@
     .section-label { font-size: 9px; }
     .circuit-box { padding: 12px; }
   }
+
+  .nav-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+  .nav-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; transition: all 0.2s; }
+  .nav-link:hover { border-color: var(--accent); color: var(--text); }
+  .nav-link.current { background: var(--accent); border-color: var(--accent); color: #000; pointer-events: none; }
+
+  .week-badge { display: inline-block; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+  .prog-adjusted { font-size: 10px; color: var(--muted); margin-top: 6px; }
+  .prog-adjusted strong { color: var(--accent); }
+
+  .history-section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
+  .history-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .history-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .history-chip { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); text-align: center; min-width: 70px; }
+  .history-chip .hw { font-weight: 700; color: var(--text); font-size: 12px; display: block; }
+  .history-chip .hscore { color: var(--accent); font-weight: 600; }
+  .history-chip.perfect { border-color: var(--accent); }
+  .history-empty { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  .warm-item.checked { opacity: 0.4; text-decoration: line-through; }
+
+  .bonus-btn { background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 9px 6px; font-size: 11px; font-weight: 700; color: var(--accent); cursor: pointer; transition: all 0.15s; flex: 1; min-width: 60px; text-align: center; }
+  .bonus-btn:hover { background: var(--accent); color: #000; }
 </style>
 </head>
 <body>
 <div class="container">
+
+<div class="nav-switch">
+  <a class="nav-link" href="index.html">Niveau 1</a>
+  <a class="nav-link current" href="mobilite.html">Niveau 2</a>
+</div>
 
 <header>
   <h1>NIVEAU<span> 2</span><br>SEMAINE 3+</h1>
@@ -270,7 +298,7 @@
 
 <div class="progress-bar-wrap">
   <div class="progress-top">
-    <span>Progression de la semaine</span>
+    <span>Progression de la semaine <span class="week-badge" id="weekBadge">S1</span></span>
     <strong id="prog-label">0 / 4</strong>
   </div>
   <div class="bar-track">
@@ -278,6 +306,14 @@
     <div class="bar-seg" id="seg2"></div>
     <div class="bar-seg" id="seg3"></div>
     <div class="bar-seg" id="seg4"></div>
+  </div>
+  <div class="prog-adjusted" id="progAdjusted"></div>
+</div>
+
+<div class="history-section" id="historySection">
+  <div class="history-title">Historique</div>
+  <div class="history-grid" id="historyGrid">
+    <div class="history-empty">Aucune semaine complétée</div>
   </div>
 </div>
 
@@ -685,7 +721,10 @@
 
   var SAVE_KEY = 'cali_lvl2';
   var ACTIVE_KEY = 'cali_lvl2_activeDay';
+  var HISTORY_KEY = 'cali_lvl2_history';
+  var START_KEY = 'cali_lvl2_start_week';
   var dayDone = {1:false,2:false,3:false,4:false};
+  var trainingWeek = 0;
 
   function getWeekNumber() {
     var now = new Date();
@@ -695,12 +734,113 @@
     return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
   }
 
+  function getTrainingWeek() {
+    var cur = getWeekNumber();
+    var start = lsGet(START_KEY);
+    if (!start) { lsSet(START_KEY, String(cur)); return 0; }
+    var diff = cur - parseInt(start, 10);
+    return diff < 0 ? 0 : diff;
+  }
+
+  function applyProgression() {
+    trainingWeek = getTrainingWeek();
+    var badge = document.getElementById('weekBadge');
+    if (badge) badge.textContent = 'S' + (trainingWeek + 1);
+    var adj = document.getElementById('progAdjusted');
+    if (trainingWeek > 0 && adj) {
+      adj.innerHTML = '📈 Semaine ' + (trainingWeek + 1) + ' : <strong>+' + (trainingWeek * 2) + ' reps</strong>, <strong>repos -' + (trainingWeek * 5) + 's</strong>';
+    }
+    var cards = document.querySelectorAll('.exercise-card');
+    for (var i = 0; i < cards.length; i++) {
+      var blueStat = cards[i].querySelector('.stat-blue');
+      var orangeStat = cards[i].querySelector('.stat-orange');
+      if (blueStat) {
+        var txt = blueStat.textContent;
+        if (!blueStat.getAttribute('data-orig')) blueStat.setAttribute('data-orig', txt);
+        var orig = blueStat.getAttribute('data-orig');
+        if (/secondes?|sec\b/i.test(orig) && !/reps?/i.test(orig)) {
+          blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
+            return String(parseInt(m, 10) + trainingWeek * 5);
+          });
+        } else if (/reps|rep/i.test(orig)) {
+          blueStat.textContent = orig.replace(/([0-9]+)/, function(m) {
+            return String(parseInt(m, 10) + trainingWeek * 2);
+          });
+        }
+      }
+      if (orangeStat) {
+        var otxt = orangeStat.textContent;
+        if (!orangeStat.getAttribute('data-orig')) orangeStat.setAttribute('data-orig', otxt);
+        var oorig = orangeStat.getAttribute('data-orig');
+        orangeStat.textContent = oorig.replace(/([0-9]+)/, function(m) {
+          var v = parseInt(m, 10) - trainingWeek * 5;
+          return String(v < 45 ? 45 : v);
+        });
+      }
+    }
+    var circuitBox = document.querySelector('.circuit-box > div:nth-child(2)');
+    if (circuitBox && trainingWeek > 0) {
+      if (!circuitBox.getAttribute('data-orig')) circuitBox.setAttribute('data-orig', circuitBox.innerHTML);
+      var chtml = circuitBox.getAttribute('data-orig');
+      chtml = chtml.replace(/(\d+)(\s*reps)/g, function(full, num, suffix) {
+        return String(parseInt(num, 10) + trainingWeek * 2) + suffix;
+      });
+      chtml = chtml.replace(/(\d+)(–\d+)?\s*sec/g, function(full, num, range) {
+        var base = parseInt(num, 10) + trainingWeek * 5;
+        if (range) {
+          var end = parseInt(range.replace('–',''), 10) + trainingWeek * 5;
+          return base + '–' + end + ' sec';
+        }
+        return base + ' sec';
+      });
+      circuitBox.innerHTML = chtml;
+    }
+  }
+
+  function saveHistory() {
+    try {
+      var raw = lsGet(HISTORY_KEY);
+      var hist = raw ? JSON.parse(raw) : [];
+      var wk = getWeekNumber();
+      var count = 0;
+      for (var k in dayDone) { if (dayDone[k]) count++; }
+      var found = false;
+      for (var i = 0; i < hist.length; i++) {
+        if (hist[i].wk === wk) { hist[i].done = count; hist[i].tw = trainingWeek + 1; found = true; break; }
+      }
+      if (!found) hist.push({wk: wk, done: count, tw: trainingWeek + 1});
+      if (hist.length > 12) hist = hist.slice(hist.length - 12);
+      lsSet(HISTORY_KEY, JSON.stringify(hist));
+    } catch(e) {}
+  }
+
+  function renderHistory() {
+    var grid = document.getElementById('historyGrid');
+    if (!grid) return;
+    try {
+      var raw = lsGet(HISTORY_KEY);
+      var hist = raw ? JSON.parse(raw) : [];
+      if (hist.length === 0) { grid.innerHTML = '<div class="history-empty">Aucune semaine complétée</div>'; return; }
+      var html = '';
+      for (var i = 0; i < hist.length; i++) {
+        var perfect = hist[i].done >= 4 ? ' perfect' : '';
+        html += '<div class="history-chip' + perfect + '"><span class="hw">S' + hist[i].tw + '</span><span class="hscore">' + hist[i].done + '/4</span></div>';
+      }
+      grid.innerHTML = html;
+    } catch(e) {}
+  }
+
   function saveState() {
     try {
       var cards = document.querySelectorAll('.exercise-card');
       var done = [];
       for (var i=0; i<cards.length; i++) { if(cards[i].classList.contains('done')) done.push(i); }
-      lsSet(SAVE_KEY, JSON.stringify({dayDone:dayDone, doneCards:done, week:getWeekNumber()}));
+      var warmDone = [];
+      var warms = document.querySelectorAll('.warm-item');
+      for (var w=0; w<warms.length; w++) { if(warms[w].classList.contains('checked')) warmDone.push(w); }
+      lsSet(SAVE_KEY, JSON.stringify({dayDone:dayDone, doneCards:done, warmDone:warmDone, week:getWeekNumber()}));
+      saveHistory();
+      renderHistory();
     } catch(e) {}
   }
 
@@ -722,6 +862,12 @@
         var cards = document.querySelectorAll('.exercise-card');
         for (var i=0; i<state.doneCards.length; i++) {
           if(cards[state.doneCards[i]]) cards[state.doneCards[i]].classList.add('done');
+        }
+      }
+      if (state.warmDone) {
+        var warms = document.querySelectorAll('.warm-item');
+        for (var i=0; i<state.warmDone.length; i++) {
+          if(warms[state.warmDone[i]]) warms[state.warmDone[i]].classList.add('checked');
         }
       }
       updateProgress();
@@ -853,6 +999,49 @@
     }
   }
 
+  function finishExercise() {
+    hideWidget();
+    if (activeCard) {
+      activeCard.classList.remove('timing');
+      activeCard.classList.add('done');
+      var ac = activeCard;
+      activeCard = null;
+      saveState();
+      var panel = ac.closest('.day-panel');
+      if (panel) {
+        var cards = panel.querySelectorAll('.exercise-card');
+        var allDone = true;
+        for (var i=0; i<cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone=false; break; } }
+        if (allDone) endGlobalTimer();
+      }
+    }
+  }
+
+  function showBonusBtn() {
+    var row = document.getElementById('seriesRow');
+    if (!row) return;
+    var existing = row.querySelector('.bonus-btn');
+    if (existing) return;
+    var b = document.createElement('button');
+    b.className = 'bonus-btn';
+    b.textContent = '🔥 +1 Bonus';
+    b.onclick = function() { clickBonus(); };
+    row.appendChild(b);
+    getTimerEls();
+    if (elTimerStatus) { elTimerStatus.textContent = 'BONUS ?'; elTimerStatus.className = 'timer-status active'; }
+    if (elTimerDisplay) elTimerDisplay.textContent = '✓';
+    if (elTimerRing) { elTimerRing.style.stroke = 'var(--green)'; elTimerRing.style.strokeDashoffset = '0'; }
+  }
+
+  function clickBonus() {
+    var row = document.getElementById('seriesRow');
+    var btn = row ? row.querySelector('.bonus-btn') : null;
+    if (btn) { btn.classList.add('done'); btn.style.background = 'var(--accent)'; btn.style.color = '#000'; btn.style.borderColor = 'var(--accent)'; btn.disabled = true; btn.textContent = '🔥 Bonus ✓'; }
+    totalSeries++;
+    currentSerie++;
+    startRest(restSeconds, function() { finishExercise(); });
+  }
+
   function clickSerie(n) {
     if (n !== currentSerie + 1) return;
     currentSerie = n;
@@ -861,20 +1050,12 @@
     var isLast = (n === totalSeries);
     startRest(restSeconds, function() {
       if (isLast) {
-        hideWidget();
-        if (activeCard) {
-          activeCard.classList.remove('timing');
-          activeCard.classList.add('done');
-          var ac = activeCard;
-          activeCard = null;
-          saveState();
-          var panel = ac.closest('.day-panel');
-          if (panel) {
-            var cards = panel.querySelectorAll('.exercise-card');
-            var allDone = true;
-            for (var i=0; i<cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone=false; break; } }
-            if (allDone) endGlobalTimer();
-          }
+        showBonusBtn();
+        var bonusTimeout = setTimeout(function() { finishExercise(); }, 10000);
+        var row = document.getElementById('seriesRow');
+        var bonusBtn = row ? row.querySelector('.bonus-btn') : null;
+        if (bonusBtn) {
+          bonusBtn.onclick = function() { clearTimeout(bonusTimeout); clickBonus(); };
         }
       } else {
         var next = document.querySelector('#seriesRow [data-serie="'+(n+1)+'"]');
@@ -1029,11 +1210,22 @@
 
   // Init
   document.addEventListener('DOMContentLoaded', function() {
+    try { applyProgression(); } catch(e) {}
     try { loadState(); } catch(e) {}
+    try { renderHistory(); } catch(e) {}
     try {
       var savedDay = lsGet(ACTIVE_KEY);
       if (savedDay) switchDay(parseInt(savedDay, 10));
     } catch(e) {}
+    var warms = document.querySelectorAll('.warm-item');
+    for (var w = 0; w < warms.length; w++) {
+      (function(item) {
+        item.addEventListener('click', function(e) {
+          item.classList.toggle('checked');
+          saveState();
+        });
+      })(warms[w]);
+    }
     try {
       if (navigator.serviceWorker) {
         navigator.serviceWorker.getRegistrations().then(function(r) {
