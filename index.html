@@ -718,16 +718,16 @@
 
   function getTrainingWeek() {
     var cur = getWeekNumber();
-    var start = lsGet(START_KEY);
-    if (!start) {
-      // Seed : programme commencé 2 semaines avant la semaine courante
+    // Seed one-time : on a commencé il y a 2 semaines
+    if (!lsGet('cali_seeded')) {
       var startWk = cur - 2;
       lsSet(START_KEY, String(startWk));
-      // Pré-remplir l'historique S1 et S2
       var seed = [{wk: startWk, done: 4, tw: 1}, {wk: startWk + 1, done: 4, tw: 2}];
-      if (!lsGet(HISTORY_KEY)) lsSet(HISTORY_KEY, JSON.stringify(seed));
-      return 2;
+      lsSet(HISTORY_KEY, JSON.stringify(seed));
+      lsSet('cali_seeded', '1');
     }
+    var start = lsGet(START_KEY);
+    if (!start) { lsSet(START_KEY, String(cur)); return 0; }
     var diff = cur - parseInt(start, 10);
     return diff < 0 ? 0 : diff;
   }
