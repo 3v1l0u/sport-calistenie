@@ -758,7 +758,7 @@
             return String(parseInt(m, 10) + trainingWeek * 5);
           });
         } else if (/reps|rep/i.test(orig)) {
-          blueStat.textContent = orig.replace(/([0-9]+)/, function(m) {
+          blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
             return String(parseInt(m, 10) + trainingWeek * 2);
           });
         }
@@ -767,7 +767,7 @@
         var otxt = orangeStat.textContent;
         if (!orangeStat.getAttribute('data-orig')) orangeStat.setAttribute('data-orig', otxt);
         var oorig = orangeStat.getAttribute('data-orig');
-        orangeStat.textContent = oorig.replace(/([0-9]+)/, function(m) {
+        orangeStat.textContent = oorig.replace(/([0-9]+)/g, function(m) {
           var v = parseInt(m, 10) - trainingWeek * 5;
           return String(v < 45 ? 45 : v);
         });
