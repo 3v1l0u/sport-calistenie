@@ -1017,15 +1017,24 @@
     }
   }
 
+  var bonusTimeout = null;
+
+  function clearBonusTimeout() {
+    if (bonusTimeout) { clearTimeout(bonusTimeout); bonusTimeout = null; }
+  }
+
   function showBonusBtn() {
     var row = document.getElementById('seriesRow');
     if (!row) return;
-    var existing = row.querySelector('.bonus-btn');
-    if (existing) return;
+    var skip = document.createElement('button');
+    skip.className = 'serie-btn done';
+    skip.textContent = '✓ Valider';
+    skip.onclick = function() { clearBonusTimeout(); finishExercise(); };
+    row.appendChild(skip);
     var b = document.createElement('button');
     b.className = 'bonus-btn';
     b.textContent = '🔥 +1 Bonus';
-    b.onclick = function() { clickBonus(); };
+    b.onclick = function() { clearBonusTimeout(); clickBonus(); };
     row.appendChild(b);
     getTimerEls();
     if (elTimerStatus) { elTimerStatus.textContent = 'BONUS ?'; elTimerStatus.className = 'timer-status active'; }
@@ -1051,12 +1060,7 @@
     startRest(restSeconds, function() {
       if (isLast) {
         showBonusBtn();
-        var bonusTimeout = setTimeout(function() { finishExercise(); }, 10000);
-        var row = document.getElementById('seriesRow');
-        var bonusBtn = row ? row.querySelector('.bonus-btn') : null;
-        if (bonusBtn) {
-          bonusBtn.onclick = function() { clearTimeout(bonusTimeout); clickBonus(); };
-        }
+        bonusTimeout = setTimeout(function() { finishExercise(); }, 15000);
       } else {
         var next = document.querySelector('#seriesRow [data-serie="'+(n+1)+'"]');
         if (next) next.disabled = false;
@@ -1093,7 +1097,8 @@
       return;
     }
     if (card === activeCard) return;
-    if (activeCard) { activeCard.classList.remove('timing'); }
+    clearBonusTimeout();
+    if (activeCard) { activeCard.classList.remove('timing'); activeCard.classList.add('done'); }
     hideWidget();
     activeCard = card;
     card.classList.add('timing');
