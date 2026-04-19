@@ -108,6 +108,14 @@
   .stat-accent { color: var(--accent); }
   .stat-blue { color: var(--blue); }
   .stat-orange { color: var(--orange); }
+  .adj-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    border-radius: 4px; width: 20px; height: 20px; font-size: 13px; font-weight: 700;
+    cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; line-height: 1; transition: background 0.12s, color 0.12s, border-color 0.12s;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  .adj-btn:active { background: var(--accent); color: #000; border-color: var(--accent); }
   .check-icon { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; transition: all 0.2s; margin-top: 2px; }
   .exercise-card.done .check-icon { background: var(--accent); border-color: var(--accent); color: #000; }
 
@@ -742,58 +750,96 @@
     return diff < 0 ? 0 : diff;
   }
 
-  function applyProgression() {
+  // Progression manuelle : boutons +/- par exercice
+  var ADJUST_KEY = 'cali_lvl2_adj';
+  var adjustments = {};
+
+  function initAdjustButtons() {
+    var cards = document.querySelectorAll('.exercise-card');
+    for (var i = 0; i < cards.length; i++) {
+      (function(idx) {
+        var card = cards[idx];
+        var blueStat = card.querySelector('.stat-blue');
+        var orangeStat = card.querySelector('.stat-orange');
+        if (blueStat && !blueStat.getAttribute('data-orig')) blueStat.setAttribute('data-orig', blueStat.textContent);
+        if (orangeStat && !orangeStat.getAttribute('data-orig')) orangeStat.setAttribute('data-orig', orangeStat.textContent);
+        if (blueStat) {
+          var bm = makeAdjBtn('−', function(e) { e.stopPropagation(); adjustStat(idx, 'reps', -1); });
+          var bp = makeAdjBtn('+', function(e) { e.stopPropagation(); adjustStat(idx, 'reps', +1); });
+          blueStat.parentNode.insertBefore(bm, blueStat);
+          blueStat.parentNode.appendChild(bp);
+        }
+        if (orangeStat) {
+          var om = makeAdjBtn('−', function(e) { e.stopPropagation(); adjustStat(idx, 'rest', -5); });
+          var op = makeAdjBtn('+', function(e) { e.stopPropagation(); adjustStat(idx, 'rest', +5); });
+          orangeStat.parentNode.insertBefore(om, orangeStat);
+          orangeStat.parentNode.appendChild(op);
+        }
+      })(i);
+    }
+  }
+
+  function makeAdjBtn(label, handler) {
+    var btn = document.createElement('button');
+    btn.className = 'adj-btn';
+    btn.textContent = label;
+    btn.addEventListener('click', handler);
+    return btn;
+  }
+
+  function loadAdjustments() {
     trainingWeek = getTrainingWeek();
     var badge = document.getElementById('weekBadge');
     if (badge) badge.textContent = 'S' + (trainingWeek + 1);
-    var adj = document.getElementById('progAdjusted');
-    if (trainingWeek > 0 && adj) {
-      adj.innerHTML = '📈 Semaine ' + (trainingWeek + 1) + ' : <strong>+' + (trainingWeek * 2) + ' reps</strong>, <strong>repos -' + (trainingWeek * 5) + 's</strong>';
-    }
+    try { var raw = lsGet(ADJUST_KEY); if (raw) adjustments = JSON.parse(raw); } catch(e) { adjustments = {}; }
+    applyAdjustments();
+  }
+
+  function adjustStat(cardIndex, type, delta) {
+    if (!adjustments[cardIndex]) adjustments[cardIndex] = {reps: 0, rest: 0};
+    adjustments[cardIndex][type] = (adjustments[cardIndex][type] || 0) + delta;
+    applyAdjustments();
+    try { lsSet(ADJUST_KEY, JSON.stringify(adjustments)); } catch(e) {}
+  }
+
+  function applyAdjustments() {
     var cards = document.querySelectorAll('.exercise-card');
     for (var i = 0; i < cards.length; i++) {
-      var blueStat = cards[i].querySelector('.stat-blue');
-      var orangeStat = cards[i].querySelector('.stat-orange');
+      var adj = adjustments[i] || {reps: 0, rest: 0};
+      var card = cards[i];
+      var blueStat = card.querySelector('.stat-blue');
+      var orangeStat = card.querySelector('.stat-orange');
       if (blueStat) {
-        var txt = blueStat.textContent;
-        if (!blueStat.getAttribute('data-orig')) blueStat.setAttribute('data-orig', txt);
-        var orig = blueStat.getAttribute('data-orig');
-        if (/secondes?|sec\b/i.test(orig) && !/reps?/i.test(orig)) {
-          blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
-            return String(parseInt(m, 10) + trainingWeek * 5);
-          });
-        } else if (/reps|rep/i.test(orig)) {
-          blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
-            return String(parseInt(m, 10) + trainingWeek * 2);
-          });
+        var orig = blueStat.getAttribute('data-orig') || blueStat.textContent;
+        var repDelta = adj.reps || 0;
+        if (repDelta !== 0) {
+          if (/secondes?|sec\b/i.test(orig) && !/reps?/i.test(orig)) {
+            blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
+              var v = parseInt(m, 10) + repDelta * 5;
+              return String(v < 5 ? 5 : v);
+            });
+          } else {
+            blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
+              var v = parseInt(m, 10) + repDelta;
+              return String(v < 1 ? 1 : v);
+            });
+          }
+        } else {
+          blueStat.textContent = orig;
         }
       }
       if (orangeStat) {
-        var otxt = orangeStat.textContent;
-        if (!orangeStat.getAttribute('data-orig')) orangeStat.setAttribute('data-orig', otxt);
-        var oorig = orangeStat.getAttribute('data-orig');
-        orangeStat.textContent = oorig.replace(/([0-9]+)/g, function(m) {
-          var v = parseInt(m, 10) - trainingWeek * 5;
-          return String(v < 45 ? 45 : v);
-        });
-      }
-    }
-    var circuitBox = document.querySelector('.circuit-box > div:nth-child(2)');
-    if (circuitBox && trainingWeek > 0) {
-      if (!circuitBox.getAttribute('data-orig')) circuitBox.setAttribute('data-orig', circuitBox.innerHTML);
-      var chtml = circuitBox.getAttribute('data-orig');
-      chtml = chtml.replace(/(\d+)(\s*reps)/g, function(full, num, suffix) {
-        return String(parseInt(num, 10) + trainingWeek * 2) + suffix;
-      });
-      chtml = chtml.replace(/(\d+)(–\d+)?\s*sec/g, function(full, num, range) {
-        var base = parseInt(num, 10) + trainingWeek * 5;
-        if (range) {
-          var end = parseInt(range.replace('–',''), 10) + trainingWeek * 5;
-          return base + '–' + end + ' sec';
+        var oorig = orangeStat.getAttribute('data-orig') || orangeStat.textContent;
+        var restDelta = adj.rest || 0;
+        if (restDelta !== 0) {
+          orangeStat.textContent = oorig.replace(/([0-9]+)/g, function(m) {
+            var v = parseInt(m, 10) + restDelta;
+            return String(v < 0 ? 0 : v);
+          });
+        } else {
+          orangeStat.textContent = oorig;
         }
-        return base + ' sec';
-      });
-      circuitBox.innerHTML = chtml;
+      }
     }
   }
 
@@ -1215,7 +1261,8 @@
 
   // Init
   document.addEventListener('DOMContentLoaded', function() {
-    try { applyProgression(); } catch(e) {}
+    try { loadAdjustments(); } catch(e) {}
+    try { initAdjustButtons(); } catch(e) {}
     try { loadState(); } catch(e) {}
     try { renderHistory(); } catch(e) {}
     try {
