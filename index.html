@@ -108,14 +108,6 @@
   .stat-accent { color: var(--accent); }
   .stat-blue { color: var(--blue); }
   .stat-orange { color: var(--orange); }
-  .adj-btn {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    border-radius: 4px; width: 20px; height: 20px; font-size: 13px; font-weight: 700;
-    cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;
-    flex-shrink: 0; line-height: 1; transition: background 0.12s, color 0.12s, border-color 0.12s;
-    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-  }
-  .adj-btn:active { background: var(--accent); color: #000; border-color: var(--accent); }
   .check-icon { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; transition: all 0.2s; margin-top: 2px; }
   .exercise-card.done .check-icon { background: var(--accent); border-color: var(--accent); color: #000; }
 
@@ -195,10 +187,8 @@
   .recap-close { margin-top: 20px; background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 12px 28px; font-weight: 700; font-size: 14px; cursor: pointer; }
 
   .series-row { display: flex; gap: 7px; margin-top: 14px; justify-content: center; flex-wrap: wrap; }
-  .serie-btn { flex: 1; min-width: 60px; padding: 9px 6px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--muted); font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
-  .serie-btn:disabled:not(.done) { opacity: 0.3; cursor: default; }
-  .serie-btn:not(:disabled):not(.done):hover { border-color: var(--accent); color: var(--text); }
-  .serie-btn.done { background: var(--accent); color: #000; border-color: var(--accent); cursor: default; }
+  .serie-done-btn { width: 100%; padding: 13px; margin-top: 8px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .serie-done-btn:disabled { opacity: 0.35; cursor: default; }
 
   @media (max-width: 600px) {
     body { padding: 12px 10px 120px; }
@@ -244,11 +234,6 @@
     .circuit-box { padding: 12px; }
   }
 
-  .nav-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
-  .nav-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; transition: all 0.2s; }
-  .nav-link:hover { border-color: var(--accent); color: var(--text); }
-  .nav-link.current { background: var(--accent); border-color: var(--accent); color: #000; pointer-events: none; }
-
   .week-badge { display: inline-block; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
   .prog-adjusted { font-size: 10px; color: var(--muted); margin-top: 6px; }
   .prog-adjusted strong { color: var(--accent); }
@@ -264,21 +249,14 @@
 
   .warm-item.checked { opacity: 0.4; text-decoration: line-through; }
 
-  .bonus-btn { background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 9px 6px; font-size: 11px; font-weight: 700; color: var(--accent); cursor: pointer; transition: all 0.15s; flex: 1; min-width: 60px; text-align: center; }
-  .bonus-btn:hover { background: var(--accent); color: #000; }
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="nav-switch">
-  <a class="nav-link current" href="index.html">Niveau 1</a>
-  <a class="nav-link" href="mobilite.html">Niveau 2</a>
-</div>
-
 <header>
-  <h1>CALLIS<span>THÉNIE</span><br>4 JOURS</h1>
-  <p class="subtitle">Adapté à ton profil · Sans matériel · Progressif</p>
+  <h1>CALLIS<span>THÉNIE</span><br>5 JOURS</h1>
+  <p class="subtitle">Adapté à ton profil · SmartWorkout Elite · Progressif</p>
   <div class="profile-bar">
     <div class="profile-pill">📏 <strong>1m76</strong> taille</div>
     <div class="profile-pill">⚖️ <strong>113 kg</strong> poids</div>
@@ -293,29 +271,29 @@
   <div class="week-cell active-day"><div class="wday">Mer</div><div class="wtype">🔥</div><div class="wlbl">Core</div></div>
   <div class="week-cell rest-day"><div class="wday">Jeu</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
   <div class="week-cell active-day"><div class="wday">Ven</div><div class="wtype">⚡</div><div class="wlbl">Circuit</div></div>
-  <div class="week-cell rest-day"><div class="wday">Sam</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
+  <div class="week-cell active-day"><div class="wday">Sam</div><div class="wtype">🏋️</div><div class="wlbl">Tirage</div></div>
   <div class="week-cell rest-day"><div class="wday">Dim</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
 </div>
 
 <div class="intro-grid">
-  <div class="intro-card"><div class="emoji">📅</div><div class="val">4</div><div class="lbl">Séances / sem</div></div>
+  <div class="intro-card"><div class="emoji">📅</div><div class="val">5</div><div class="lbl">Séances / sem</div></div>
   <div class="intro-card"><div class="emoji">⏱️</div><div class="val">30–45</div><div class="lbl">Min / séance</div></div>
-  <div class="intro-card"><div class="emoji">🔧</div><div class="val">0</div><div class="lbl">Matériel requis</div></div>
+  <div class="intro-card"><div class="emoji">🏋️</div><div class="val">Barre</div><div class="lbl">SmartWorkout Elite</div></div>
   <div class="intro-card"><div class="emoji">🔥</div><div class="val">~400</div><div class="lbl">Kcal / séance</div></div>
 </div>
 
 <div class="progress-bar-wrap">
   <div class="progress-top">
     <span>Progression de la semaine <span class="week-badge" id="weekBadge">S1</span></span>
-    <strong id="prog-label">0 / 4</strong>
+    <strong id="prog-label">0 / 5</strong>
   </div>
   <div class="bar-track">
     <div class="bar-seg" id="seg1"></div>
     <div class="bar-seg" id="seg2"></div>
     <div class="bar-seg" id="seg3"></div>
     <div class="bar-seg" id="seg4"></div>
+    <div class="bar-seg" id="seg5"></div>
   </div>
-  <div class="prog-adjusted" id="progAdjusted"></div>
 </div>
 
 <div class="history-section" id="historySection">
@@ -330,6 +308,7 @@
   <div class="tab" data-day="2" onclick="switchDay(2)"><span class="day-num">J2</span><span class="day-label">Push</span></div>
   <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Core</span></div>
   <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Circuit</span></div>
+  <div class="tab" data-day="5" onclick="switchDay(5)"><span class="day-num">J5</span><span class="day-label">Tirage</span></div>
 </div>
 
 <!-- ========== JOUR 1 — BAS DU CORPS ========== -->
@@ -415,7 +394,7 @@
         <div class="ex-tip">Dos plaqué au mur, cuisse à 90°. Tiens la position. Respire normalement. C'est brûlant mais très efficace pour les quadriceps !</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">20–30 secondes</span></div>
+          <div class="ex-stat"><span class="stat-blue">20 secondes</span></div>
           <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
@@ -464,7 +443,7 @@
         <div class="ex-tip">Commence aux genoux si nécessaire. Corps droit, coudes à 45°. Descends la poitrine à 5 cm du sol. Remonte en soufflant.</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">8–10 reps</span></div>
+          <div class="ex-stat"><span class="stat-blue">8 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
@@ -477,7 +456,7 @@
         <div class="ex-tip">Mains sur une table ou plan de travail. Plus c'est haut, plus c'est facile. Excellent pour les pectoraux hauts et les épaules.</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10–12 reps</span></div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
@@ -490,7 +469,7 @@
         <div class="ex-tip">Mains sur le bord d'une chaise stable, jambes tendues en avant. Descends les coudes à 90°, remonte. Les triceps vont chauffer !</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">8–10 reps</span></div>
+          <div class="ex-stat"><span class="stat-blue">8 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
@@ -616,7 +595,7 @@
         <div class="ex-tip">Sur les avant-bras, corps droit. Contracte les abdos, les fessiers, sans retenir ta respiration. Commence à 20s et progresse chaque semaine.</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">20–30 secondes</span></div>
+          <div class="ex-stat"><span class="stat-blue">20 secondes</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -688,6 +667,106 @@
   <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J4 comme terminé</button>
 </div>
 
+<!-- ========== JOUR 5 — TIRAGE BARRE ========== -->
+<div class="day-panel" id="day5">
+  <div class="day-header">
+    <div class="day-icon" style="background:#0a001a;">🏋️</div>
+    <div>
+      <h2>TIRAGE — BARRE</h2>
+      <p>Dorsaux · Biceps · Arrière des épaules</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Rotations d\'épaules')">Rotations épaules <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Chat-vache (cat-cow)')">Chat-vache <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Dead hang (suspension statique)</div>
+        <div class="ex-tip">Attrape la barre en prise pronation (paumes vers l'avant). Laisse ton poids décompresser la colonne. Épaules actives — ne les laisse pas remonter vers les oreilles.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">20 secondes</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Rétraction scapulaire (dead hang actif)</div>
+        <div class="ex-tip">En suspension, pousse les épaules vers le bas et les omoplates l'une vers l'autre — sans plier les coudes. Tiens 1 seconde. C'est le fondement de la traction.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Traction négative (descente contrôlée)</div>
+        <div class="ex-tip">Monte en sautant en position haute (menton au-dessus de la barre). Descends LENTEMENT en 5 secondes en résistant. Développe la force de traction sans pouvoir encore monter seul.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">5 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">120s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Élévation de genoux suspendu</div>
+        <div class="ex-tip">En dead hang, ramène les deux genoux vers la poitrine en contractant les abdos. Redescends lentement sans te balancer. Renforce les abdos et les fléchisseurs de hanche.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">8 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Dips à la barre (prise large)</div>
+        <div class="ex-tip">Utilise les poignées de dips de la barre. Corps droit, descends jusqu'à 90° aux coudes, remonte sans verrouiller. Plus stable et plus profond que sur chaise — excellent pour triceps et pectoraux bas.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">8 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Étirement triceps')">Étirement triceps <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Genou poitrine allongé')">Genou poitrine <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Conseil du jour</strong> Les tractions négatives sont le meilleur investissement à 110 kg. En 4–6 semaines de négatifs tu seras en mesure de faire ta première vraie traction.</div>
+  <button onclick="markDayDone(5)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J5 comme terminé</button>
+</div>
+
 <!-- STRETCH MODAL -->
 <div class="stretch-overlay" id="stretchOverlay" onclick="closeStretch(event)">
   <div class="stretch-modal">
@@ -713,7 +792,7 @@
   var SAVE_KEY = 'cali_v4';
   var HISTORY_KEY = 'cali_history';
   var START_KEY = 'cali_start_week';
-  var dayDone = {1:false,2:false,3:false,4:false};
+  var dayDone = {1:false,2:false,3:false,4:false,5:false};
   var trainingWeek = 0;
 
   function getWeekNumber() {
@@ -740,97 +819,10 @@
     return diff < 0 ? 0 : diff;
   }
 
-  // Progression manuelle : boutons +/- par exercice
-  var ADJUST_KEY = 'cali_v4_adj';
-  var adjustments = {}; // { cardIndex: { reps: delta, rest: delta } }
-
-  function initAdjustButtons() {
-    var cards = document.querySelectorAll('.exercise-card');
-    for (var i = 0; i < cards.length; i++) {
-      (function(idx) {
-        var card = cards[idx];
-        var blueStat = card.querySelector('.stat-blue');
-        var orangeStat = card.querySelector('.stat-orange');
-        if (blueStat && !blueStat.getAttribute('data-orig')) blueStat.setAttribute('data-orig', blueStat.textContent);
-        if (orangeStat && !orangeStat.getAttribute('data-orig')) orangeStat.setAttribute('data-orig', orangeStat.textContent);
-        if (blueStat) {
-          var bm = makeAdjBtn('−', function(e) { e.stopPropagation(); adjustStat(idx, 'reps', -1); });
-          var bp = makeAdjBtn('+', function(e) { e.stopPropagation(); adjustStat(idx, 'reps', +1); });
-          blueStat.parentNode.insertBefore(bm, blueStat);
-          blueStat.parentNode.appendChild(bp);
-        }
-        if (orangeStat) {
-          var om = makeAdjBtn('−', function(e) { e.stopPropagation(); adjustStat(idx, 'rest', -5); });
-          var op = makeAdjBtn('+', function(e) { e.stopPropagation(); adjustStat(idx, 'rest', +5); });
-          orangeStat.parentNode.insertBefore(om, orangeStat);
-          orangeStat.parentNode.appendChild(op);
-        }
-      })(i);
-    }
-  }
-
-  function makeAdjBtn(label, handler) {
-    var btn = document.createElement('button');
-    btn.className = 'adj-btn';
-    btn.textContent = label;
-    btn.addEventListener('click', handler);
-    return btn;
-  }
-
-  function loadAdjustments() {
+  function initWeekBadge() {
     trainingWeek = getTrainingWeek();
     var badge = document.getElementById('weekBadge');
     if (badge) badge.textContent = 'S' + (trainingWeek + 1);
-    try { var raw = lsGet(ADJUST_KEY); if (raw) adjustments = JSON.parse(raw); } catch(e) { adjustments = {}; }
-    applyAdjustments();
-  }
-
-  function adjustStat(cardIndex, type, delta) {
-    if (!adjustments[cardIndex]) adjustments[cardIndex] = {reps: 0, rest: 0};
-    adjustments[cardIndex][type] = (adjustments[cardIndex][type] || 0) + delta;
-    applyAdjustments();
-    try { lsSet(ADJUST_KEY, JSON.stringify(adjustments)); } catch(e) {}
-  }
-
-  function applyAdjustments() {
-    var cards = document.querySelectorAll('.exercise-card');
-    for (var i = 0; i < cards.length; i++) {
-      var adj = adjustments[i] || {reps: 0, rest: 0};
-      var card = cards[i];
-      var blueStat = card.querySelector('.stat-blue');
-      var orangeStat = card.querySelector('.stat-orange');
-      if (blueStat) {
-        var orig = blueStat.getAttribute('data-orig') || blueStat.textContent;
-        var repDelta = adj.reps || 0;
-        if (repDelta !== 0) {
-          if (/secondes?|sec\b/i.test(orig) && !/reps?/i.test(orig)) {
-            blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
-              var v = parseInt(m, 10) + repDelta * 5;
-              return String(v < 5 ? 5 : v);
-            });
-          } else {
-            blueStat.textContent = orig.replace(/([0-9]+)/g, function(m) {
-              var v = parseInt(m, 10) + repDelta;
-              return String(v < 1 ? 1 : v);
-            });
-          }
-        } else {
-          blueStat.textContent = orig;
-        }
-      }
-      if (orangeStat) {
-        var oorig = orangeStat.getAttribute('data-orig') || orangeStat.textContent;
-        var restDelta = adj.rest || 0;
-        if (restDelta !== 0) {
-          orangeStat.textContent = oorig.replace(/([0-9]+)/g, function(m) {
-            var v = parseInt(m, 10) + restDelta;
-            return String(v < 0 ? 0 : v);
-          });
-        } else {
-          orangeStat.textContent = oorig;
-        }
-      }
-    }
   }
 
   // History: store weekly completion
@@ -923,7 +915,7 @@
 
   // Recalcule dayDone à partir du DOM
   function recheckDayDone() {
-    for (var n=1; n<=4; n++) {
+    for (var n=1; n<=5; n++) {
       var panel = document.getElementById('day'+n);
       if (!panel) continue;
       var cards = panel.querySelectorAll('.exercise-card');
@@ -1024,20 +1016,17 @@
   }
 
   function buildSeries(n) {
+    totalSeries = n;
+    currentSerie = 0;
     var row = document.getElementById('seriesRow');
     if (!row) return;
     row.innerHTML = '';
-    for (var i = 1; i <= n; i++) {
-      (function(num) {
-        var b = document.createElement('button');
-        b.className = 'serie-btn';
-        b.setAttribute('data-serie', num);
-        b.textContent = 'Serie ' + num;
-        b.disabled = (num > 1);
-        b.onclick = function() { clickSerie(num); };
-        row.appendChild(b);
-      })(i);
-    }
+    var btn = document.createElement('button');
+    btn.id = 'serieDoneBtn';
+    btn.className = 'serie-done-btn';
+    btn.textContent = '✓ Série 1/' + n + ' — Terminée';
+    btn.onclick = function() { clickSerie(currentSerie + 1); };
+    row.appendChild(btn);
   }
 
   function finishExercise() {
@@ -1052,65 +1041,36 @@
       if (panel) {
         var cards = panel.querySelectorAll('.exercise-card');
         var allDone = true;
-        for (var i=0; i<cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone=false; break; } }
-        if (allDone) endGlobalTimer();
+        for (var i = 0; i < cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone = false; break; } }
+        if (allDone) {
+          endGlobalTimer();
+          var dayNum = parseInt((panel.id || '').replace('day', ''), 10);
+          if (dayNum >= 1 && dayNum <= 5) {
+            setTimeout(function() { markDayDone(dayNum); }, 600);
+          }
+        }
       }
     }
-  }
-
-  var bonusTimeout = null;
-
-  function clearBonusTimeout() {
-    if (bonusTimeout) { clearTimeout(bonusTimeout); bonusTimeout = null; }
-  }
-
-  function showBonusBtn() {
-    var row = document.getElementById('seriesRow');
-    if (!row) return;
-    // Bouton Valider (skip bonus)
-    var skip = document.createElement('button');
-    skip.className = 'serie-btn done';
-    skip.textContent = '✓ Valider';
-    skip.onclick = function() { clearBonusTimeout(); finishExercise(); };
-    row.appendChild(skip);
-    // Bouton Bonus
-    var b = document.createElement('button');
-    b.className = 'bonus-btn';
-    b.textContent = '🔥 +1 Bonus';
-    b.onclick = function() { clearBonusTimeout(); clickBonus(); };
-    row.appendChild(b);
-    getTimerEls();
-    if (elTimerStatus) { elTimerStatus.textContent = 'BONUS ?'; elTimerStatus.className = 'timer-status active'; }
-    if (elTimerDisplay) elTimerDisplay.textContent = '✓';
-    if (elTimerRing) { elTimerRing.style.stroke = 'var(--green)'; elTimerRing.style.strokeDashoffset = '0'; }
-  }
-
-  function clickBonus() {
-    var row = document.getElementById('seriesRow');
-    var btn = row ? row.querySelector('.bonus-btn') : null;
-    if (btn) { btn.classList.add('done'); btn.style.background = 'var(--accent)'; btn.style.color = '#000'; btn.style.borderColor = 'var(--accent)'; btn.disabled = true; btn.textContent = '🔥 Bonus ✓'; }
-    totalSeries++;
-    currentSerie++;
-    startRest(restSeconds, function() { finishExercise(); });
   }
 
   function clickSerie(n) {
     if (n !== currentSerie + 1) return;
     currentSerie = n;
-    var btn = document.querySelector('#seriesRow [data-serie="'+n+'"]');
-    if (btn) { btn.classList.add('done'); btn.disabled = true; }
+    var btn = document.getElementById('serieDoneBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Repos…'; }
     var isLast = (n === totalSeries);
     startRest(restSeconds, function() {
       if (isLast) {
-        showBonusBtn();
-        bonusTimeout = setTimeout(function() { finishExercise(); }, 15000);
+        finishExercise();
       } else {
-        var next = document.querySelector('#seriesRow [data-serie="'+(n+1)+'"]');
-        if (next) next.disabled = false;
+        var nextN = n + 1;
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '✓ Série ' + nextN + '/' + totalSeries + ' — Terminée';
+        }
         getTimerEls();
-        timerSecs = 0;
+        if (elTimerStatus) { elTimerStatus.textContent = 'SÉRIE ' + nextN + '/' + totalSeries; elTimerStatus.className = 'timer-status active'; }
         if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
-        if (elTimerStatus) { elTimerStatus.textContent = 'PRÊT'; elTimerStatus.className = 'timer-status'; }
         if (elTimerRing) { elTimerRing.style.stroke = ''; elTimerRing.style.strokeDashoffset = String(CIRC); }
       }
     });
@@ -1140,7 +1100,6 @@
       return;
     }
     if (card === activeCard) return;
-    clearBonusTimeout();
     if (activeCard) { activeCard.classList.remove('timing'); activeCard.classList.add('done'); }
     hideWidget();
     activeCard = card;
@@ -1170,15 +1129,15 @@
     dayDone[n] = true;
     updateProgress();
     saveState();
-    if (n < 4) switchDay(n+1);
+    if (n < 5) switchDay(n+1);
   }
 
   function updateProgress() {
     var count = 0;
     for (var k in dayDone) { if(dayDone[k]) count++; }
     var pl = document.getElementById('prog-label');
-    if (pl) pl.textContent = count+' / 4';
-    for (var i=1; i<=4; i++) {
+    if (pl) pl.textContent = count+' / 5';
+    for (var i=1; i<=5; i++) {
       var s = document.getElementById('seg'+i);
       if (s) { if (dayDone[i]) s.classList.add('done'); else s.classList.remove('done'); }
     }
@@ -1258,8 +1217,7 @@
 
   // Init
   document.addEventListener('DOMContentLoaded', function() {
-    try { loadAdjustments(); } catch(e) {}
-    try { initAdjustButtons(); } catch(e) {}
+    try { initWeekBadge(); } catch(e) {}
     try { loadState(); } catch(e) {}
     try { renderHistory(); } catch(e) {}
     try {
