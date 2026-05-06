@@ -255,8 +255,8 @@
 <div class="container">
 
 <header>
-  <h1>CALLIS<span>THÉNIE</span><br>5 JOURS</h1>
-  <p class="subtitle">Adapté à ton profil · SmartWorkout Elite · Progressif</p>
+  <h1>CALLIS<span>THÉNIE</span><br>4 JOURS</h1>
+  <p class="subtitle">Adapté à ton profil · Sans matériel · Progressif</p>
   <div class="profile-bar">
     <div class="profile-pill">📏 <strong>1m76</strong> taille</div>
     <div class="profile-pill">⚖️ <strong>113 kg</strong> poids</div>
@@ -271,28 +271,27 @@
   <div class="week-cell active-day"><div class="wday">Mer</div><div class="wtype">🔥</div><div class="wlbl">Core</div></div>
   <div class="week-cell rest-day"><div class="wday">Jeu</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
   <div class="week-cell active-day"><div class="wday">Ven</div><div class="wtype">⚡</div><div class="wlbl">Circuit</div></div>
-  <div class="week-cell active-day"><div class="wday">Sam</div><div class="wtype">🏋️</div><div class="wlbl">Tirage</div></div>
+  <div class="week-cell rest-day"><div class="wday">Sam</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
   <div class="week-cell rest-day"><div class="wday">Dim</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
 </div>
 
 <div class="intro-grid">
-  <div class="intro-card"><div class="emoji">📅</div><div class="val">5</div><div class="lbl">Séances / sem</div></div>
+  <div class="intro-card"><div class="emoji">📅</div><div class="val">4</div><div class="lbl">Séances / sem</div></div>
   <div class="intro-card"><div class="emoji">⏱️</div><div class="val">30–45</div><div class="lbl">Min / séance</div></div>
-  <div class="intro-card"><div class="emoji">🏋️</div><div class="val">Barre</div><div class="lbl">SmartWorkout Elite</div></div>
+  <div class="intro-card"><div class="emoji">🔧</div><div class="val">0</div><div class="lbl">Matériel requis</div></div>
   <div class="intro-card"><div class="emoji">🔥</div><div class="val">~400</div><div class="lbl">Kcal / séance</div></div>
 </div>
 
 <div class="progress-bar-wrap">
   <div class="progress-top">
     <span>Progression de la semaine <span class="week-badge" id="weekBadge">S1</span></span>
-    <strong id="prog-label">0 / 5</strong>
+    <strong id="prog-label">0 / 4</strong>
   </div>
   <div class="bar-track">
     <div class="bar-seg" id="seg1"></div>
     <div class="bar-seg" id="seg2"></div>
     <div class="bar-seg" id="seg3"></div>
     <div class="bar-seg" id="seg4"></div>
-    <div class="bar-seg" id="seg5"></div>
   </div>
 </div>
 
@@ -308,7 +307,6 @@
   <div class="tab" data-day="2" onclick="switchDay(2)"><span class="day-num">J2</span><span class="day-label">Push</span></div>
   <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Core</span></div>
   <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Circuit</span></div>
-  <div class="tab" data-day="5" onclick="switchDay(5)"><span class="day-num">J5</span><span class="day-label">Tirage</span></div>
 </div>
 
 <!-- ========== JOUR 1 — BAS DU CORPS ========== -->
@@ -667,7 +665,8 @@
   <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J4 comme terminé</button>
 </div>
 
-<!-- ========== JOUR 5 — TIRAGE BARRE ========== -->
+<!-- ========== JOUR 5 RÉSERVÉ BARRE — À VENIR ========== -->
+<!--
 <div class="day-panel" id="day5">
   <div class="day-header">
     <div class="day-icon" style="background:#0a001a;">🏋️</div>
@@ -766,6 +765,7 @@
   <div class="tip-box"><strong>💡 Conseil du jour</strong> Les tractions négatives sont le meilleur investissement à 110 kg. En 4–6 semaines de négatifs tu seras en mesure de faire ta première vraie traction.</div>
   <button onclick="markDayDone(5)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J5 comme terminé</button>
 </div>
+-->
 
 <!-- STRETCH MODAL -->
 <div class="stretch-overlay" id="stretchOverlay" onclick="closeStretch(event)">
@@ -792,7 +792,7 @@
   var SAVE_KEY = 'cali_v4';
   var HISTORY_KEY = 'cali_history';
   var START_KEY = 'cali_start_week';
-  var dayDone = {1:false,2:false,3:false,4:false,5:false};
+  var dayDone = {1:false,2:false,3:false,4:false};
   var trainingWeek = 0;
 
   function getWeekNumber() {
@@ -915,7 +915,7 @@
 
   // Recalcule dayDone à partir du DOM
   function recheckDayDone() {
-    for (var n=1; n<=5; n++) {
+    for (var n=1; n<=4; n++) {
       var panel = document.getElementById('day'+n);
       if (!panel) continue;
       var cards = panel.querySelectorAll('.exercise-card');
@@ -1045,7 +1045,7 @@
         if (allDone) {
           endGlobalTimer();
           var dayNum = parseInt((panel.id || '').replace('day', ''), 10);
-          if (dayNum >= 1 && dayNum <= 5) {
+          if (dayNum >= 1 && dayNum <= 4) {
             setTimeout(function() { markDayDone(dayNum); }, 600);
           }
         }
@@ -1129,15 +1129,15 @@
     dayDone[n] = true;
     updateProgress();
     saveState();
-    if (n < 5) switchDay(n+1);
+    if (n < 4) switchDay(n+1);
   }
 
   function updateProgress() {
     var count = 0;
     for (var k in dayDone) { if(dayDone[k]) count++; }
     var pl = document.getElementById('prog-label');
-    if (pl) pl.textContent = count+' / 5';
-    for (var i=1; i<=5; i++) {
+    if (pl) pl.textContent = count+' / 4';
+    for (var i=1; i<=4; i++) {
       var s = document.getElementById('seg'+i);
       if (s) { if (dayDone[i]) s.classList.add('done'); else s.classList.remove('done'); }
     }
