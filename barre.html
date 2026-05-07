@@ -5,340 +5,703 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>SmartWorkout — Dos & Tirage</title>
-
+<title>SmartWorkout Elite — 5 Jours</title>
 <style>
   :root {
-    --bg: #0d0f13;
-    --surface: #161a22;
-    --card: #1d2230;
-    --border: #2a3045;
-    --accent: #47c8ff;
-    --accent2: #ff6b35;
-    --text: #e8eaf0;
-    --muted: #6b7591;
-    --green: #4ade80;
-    --blue: #60a5fa;
-    --purple: #a78bfa;
-    --orange: #fb923c;
+    --bg: #0d0f13; --surface: #161a22; --card: #1d2230; --border: #2a3045;
+    --accent: #47c8ff; --text: #e8eaf0; --muted: #6b7591;
+    --green: #4ade80; --blue: #60a5fa; --orange: #fb923c;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; min-height:100vh; padding:20px 16px 140px; }
+  .container { max-width:700px; margin:0 auto; width:100%; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .nav-back { margin-bottom:20px; }
+  .nav-back a { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 16px; font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; transition:all 0.2s; }
+  .nav-back a:hover { border-color:var(--accent); color:var(--text); }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    min-height: 100vh;
-    padding: 20px 16px 140px;
-  }
+  header { text-align:center; margin-bottom:24px; }
+  h1 { font-weight:900; font-size:38px; letter-spacing:2px; line-height:0.9; color:var(--text); }
+  h1 span { color:var(--accent); }
+  .subtitle { margin-top:10px; color:var(--muted); font-size:13px; letter-spacing:0.5px; }
+  .profile-bar { display:flex; justify-content:center; gap:12px; margin-top:14px; flex-wrap:wrap; }
+  .profile-pill { background:var(--surface); border:1px solid var(--border); border-radius:100px; padding:5px 14px; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+  .profile-pill strong { color:var(--text); font-weight:600; }
 
-  .container { max-width: 700px; margin: 0 auto; width: 100%; }
+  .gear-box { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:20px; }
+  .gear-title { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .gear-grid { display:flex; gap:8px; flex-wrap:wrap; }
+  .gear-chip { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font-size:11px; color:var(--text); display:flex; align-items:center; gap:6px; }
+  .gear-chip span { color:var(--accent); font-size:14px; }
 
-  .nav-back { display: flex; align-items: center; margin-bottom: 20px; }
-  .nav-back a { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; transition: all 0.2s; }
-  .nav-back a:hover { border-color: var(--accent); color: var(--text); }
+  .progress-bar-wrap { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:16px; }
+  .progress-top { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--muted); margin-bottom:10px; }
+  .progress-top strong { color:var(--accent); font-size:14px; }
+  .bar-track { display:flex; gap:3px; height:6px; }
+  .bar-seg { flex:1; background:var(--border); border-radius:3px; transition:background 0.3s; }
+  .bar-seg.done { background:var(--accent); }
+  .week-badge { display:inline-block; background:var(--accent); color:#000; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; }
 
-  header { text-align: center; margin-bottom: 24px; }
-  h1 { font-weight: 900; font-size: 38px; letter-spacing: 2px; line-height: 0.9; color: var(--text); }
-  h1 span { color: var(--accent); }
-  .subtitle { margin-top: 10px; color: var(--muted); font-size: 13px; font-weight: 400; letter-spacing: 0.5px; }
+  .history-section { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:20px; }
+  .history-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .history-grid { display:flex; gap:6px; flex-wrap:wrap; }
+  .history-chip { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:11px; color:var(--muted); text-align:center; min-width:60px; }
+  .history-chip .hw { font-weight:700; color:var(--text); font-size:12px; display:block; }
+  .history-chip .hscore { color:var(--accent); font-weight:600; }
+  .history-chip.perfect { border-color:var(--accent); }
+  .history-empty { font-size:11px; color:var(--muted); font-style:italic; }
 
-  .profile-bar { display: flex; justify-content: center; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
-  .profile-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 5px 14px; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
-  .profile-pill strong { color: var(--text); font-weight: 600; }
+  .tabs { display:flex; gap:6px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; justify-content:center; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px 14px; cursor:pointer; transition:all 0.2s; text-align:center; min-width:70px; }
+  .tab:hover { border-color:var(--accent); }
+  .tab.active { background:var(--accent); border-color:var(--accent); color:#000; }
+  .tab .day-num { font-weight:900; font-size:22px; line-height:1; display:block; }
+  .tab .day-label { font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; opacity:0.7; display:block; margin-top:2px; }
+  .tab.active .day-label { opacity:0.6; }
 
-  .gear-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
-  .gear-title { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .gear-grid { display: flex; gap: 8px; flex-wrap: wrap; }
-  .gear-chip { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 11px; color: var(--text); display: flex; align-items: center; gap: 6px; }
-  .gear-chip span { color: var(--accent); font-size: 14px; }
+  .day-panel { display:none; }
+  .day-panel.active { display:block; }
 
-  .progress-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; }
-  .progress-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .progress-top strong { color: var(--accent); font-size: 14px; }
-  .bar-track { display: flex; gap: 3px; height: 6px; }
-  .bar-seg { flex: 1; background: var(--border); border-radius: 3px; transition: background 0.3s; }
-  .bar-seg.done { background: var(--accent); }
-  .week-badge { display: inline-block; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+  .day-header { display:flex; gap:14px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:18px; }
+  .day-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .day-header h2 { font-size:20px; font-weight:800; letter-spacing:1px; margin-bottom:3px; }
+  .day-header p { font-size:12px; color:var(--muted); }
+  .meta-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+  .meta-tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:100px; }
 
-  .history-section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
-  .history-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .history-grid { display: flex; gap: 6px; flex-wrap: wrap; }
-  .history-chip { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); text-align: center; min-width: 60px; }
-  .history-chip .hw { font-weight: 700; color: var(--text); font-size: 12px; display: block; }
-  .history-chip .hscore { color: var(--accent); font-weight: 600; }
-  .history-chip.perfect { border-color: var(--accent); }
-  .history-empty { font-size: 11px; color: var(--muted); font-style: italic; }
+  .section-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:18px 0 10px; }
 
-  .day-header { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 18px; }
-  .day-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-  .day-header h2 { font-size: 20px; font-weight: 800; letter-spacing: 1px; margin-bottom: 3px; }
-  .day-header p { font-size: 12px; color: var(--muted); }
-  .meta-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-  .meta-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+  .warmup-list, .cooldown-list { display:flex; flex-direction:column; gap:4px; margin-bottom:6px; }
+  .warm-item { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:12px; color:var(--text); display:flex; justify-content:space-between; cursor:pointer; transition:opacity 0.2s; }
+  .warm-item span { color:var(--muted); font-size:11px; }
+  .warm-item.checked { opacity:0.4; text-decoration:line-through; }
 
-  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 18px 0 10px; }
+  .exercises { display:flex; flex-direction:column; gap:10px; }
+  .exercise-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; gap:12px; align-items:flex-start; cursor:pointer; transition:all 0.2s; }
+  .exercise-card.timing { border-color:var(--accent); background:#0f1824; }
+  .exercise-card.done { opacity:0.55; }
+  .exercise-card.done .check-icon { background:var(--accent); border-color:var(--accent); color:#000; }
+  .ex-number { font-size:22px; font-weight:900; color:var(--border); min-width:28px; line-height:1.2; }
+  .exercise-card.timing .ex-number { color:var(--accent); }
+  .ex-content { flex:1; min-width:0; }
+  .ex-name { font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; }
+  .ex-tip { font-size:11px; color:var(--muted); line-height:1.5; }
+  .ex-setup { font-size:11px; color:var(--accent); margin-top:4px; font-weight:600; }
+  .ex-stats { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  .ex-stat { background:var(--surface); border-radius:6px; padding:4px 10px; font-size:11px; font-weight:600; display:flex; align-items:center; gap:4px; }
+  .stat-accent { color:var(--accent); }
+  .stat-blue { color:var(--blue); }
+  .stat-orange { color:var(--orange); }
+  .check-icon { width:26px; height:26px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; transition:all 0.2s; margin-top:2px; }
 
-  .warmup-list, .cooldown-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
-  .warm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: var(--text); display: flex; justify-content: space-between; cursor: pointer; transition: opacity 0.2s; }
-  .warm-item span { color: var(--muted); font-size: 11px; }
-  .warm-item.checked { opacity: 0.4; text-decoration: line-through; }
+  .circuit-box { background:var(--surface); border:2px solid var(--accent); border-radius:14px; padding:16px; margin-bottom:8px; }
+  .circuit-title { font-weight:900; font-size:15px; color:var(--accent); letter-spacing:1px; margin-bottom:12px; }
 
-  .exercises { display: flex; flex-direction: column; gap: 10px; }
-  .exercise-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; transition: all 0.2s; position: relative; }
-  .exercise-card.timing { border-color: var(--accent); background: #0f1824; }
-  .exercise-card.done { opacity: 0.55; }
-  .exercise-card.done .check-icon { background: var(--accent); border-color: var(--accent); color: #000; }
-  .ex-number { font-size: 22px; font-weight: 900; color: var(--border); min-width: 28px; line-height: 1.2; }
-  .exercise-card.timing .ex-number { color: var(--accent); }
-  .ex-content { flex: 1; min-width: 0; }
-  .ex-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-  .ex-tip { font-size: 11px; color: var(--muted); line-height: 1.5; }
-  .ex-setup { font-size: 11px; color: var(--accent); margin-top: 4px; font-weight: 600; }
-  .ex-stats { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-  .ex-stat { background: var(--surface); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
-  .stat-accent { color: var(--accent); }
-  .stat-blue { color: var(--blue); }
-  .stat-orange { color: var(--orange); }
-  .check-icon { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; transition: all 0.2s; margin-top: 2px; }
+  .tip-box { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:10px; padding:12px 14px; font-size:12px; color:var(--muted); margin-top:18px; line-height:1.6; }
+  .tip-box strong { color:var(--text); }
 
-  .tip-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 12px 14px; font-size: 12px; color: var(--muted); margin-top: 18px; line-height: 1.6; }
-  .tip-box strong { color: var(--text); }
+  .done-btn { width:100%; margin-top:14px; padding:14px; background:var(--accent); color:#000; border:none; border-radius:12px; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; letter-spacing:0.5px; }
 
-  .done-btn { width: 100%; margin-top: 14px; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; }
+  .global-timer { position:fixed; top:12px; left:50%; transform:translateX(-50%); background:var(--card); border:1px solid var(--border); border-radius:100px; padding:8px 20px; display:flex; align-items:center; gap:10px; z-index:100; transition:all 0.3s; opacity:0; pointer-events:none; }
+  .global-timer.running { opacity:1; pointer-events:auto; }
+  .global-time { font-size:32px; font-weight:900; color:var(--text); min-width:80px; text-align:center; }
+  .global-stop { background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:5px 10px; font-size:11px; font-weight:600; cursor:pointer; }
 
-  /* Global timer */
-  .global-timer { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 8px 20px; display: flex; align-items: center; gap: 10px; z-index: 100; transition: all 0.3s; opacity: 0; pointer-events: none; }
-  .global-timer.running { opacity: 1; pointer-events: auto; }
-  .global-time { font-size: 32px; font-weight: 900; letter-spacing: 1px; color: var(--text); min-width: 80px; text-align: center; }
-  .global-stop { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 600; cursor: pointer; }
+  .timer-widget { position:fixed; bottom:20px; right:20px; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:16px; display:flex; flex-direction:column; align-items:center; gap:6px; width:160px; z-index:200; transition:all 0.25s; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
+  .timer-widget.hidden { opacity:0; pointer-events:none; transform:scale(0.9); }
+  .timer-ex-name { font-size:11px; color:var(--muted); text-align:center; min-height:28px; line-height:1.4; font-weight:500; }
+  .timer-svg-wrap { position:relative; width:80px; height:80px; margin:4px 0; }
+  .timer-svg { width:80px; height:80px; transform:rotate(-90deg); }
+  .timer-ring-bg { fill:none; stroke:var(--border); stroke-width:6; }
+  .timer-ring-fill { fill:none; stroke:var(--accent); stroke-width:6; stroke-linecap:round; stroke-dasharray:213.6; stroke-dashoffset:213.6; transition:stroke-dashoffset 0.9s linear, stroke 0.3s; }
+  .timer-time { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:20px; font-weight:900; color:var(--text); letter-spacing:-0.5px; }
+  .timer-status { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+  .timer-status.active { color:var(--accent); }
+  .series-row { display:flex; flex-direction:column; gap:6px; width:100%; }
+  .serie-done-btn { width:100%; padding:10px; background:var(--accent); color:#000; border:none; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+  .serie-done-btn:disabled { opacity:0.35; cursor:default; }
+  .timer-btn-stop { width:100%; padding:7px; background:none; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:11px; font-weight:600; cursor:pointer; }
 
-  /* Timer widget */
-  .timer-widget { position: fixed; bottom: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 160px; z-index: 200; transition: all 0.25s; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-  .timer-widget.hidden { opacity: 0; pointer-events: none; transform: scale(0.9); }
-  .timer-ex-name { font-size: 11px; color: var(--muted); text-align: center; min-height: 28px; line-height: 1.4; font-weight: 500; }
-  .timer-svg-wrap { position: relative; width: 80px; height: 80px; margin: 4px 0; }
-  .timer-svg { width: 80px; height: 80px; transform: rotate(-90deg); }
-  .timer-ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
-  .timer-ring-fill { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 339.3; stroke-dashoffset: 339.3; transition: stroke-dashoffset 0.9s linear, stroke 0.3s; }
-  .timer-time { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; font-weight: 900; color: var(--text); letter-spacing: -0.5px; }
-  .timer-status { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-  .timer-status.active { color: var(--accent); }
-  .series-row { display: flex; flex-direction: column; gap: 6px; width: 100%; }
-  .serie-done-btn { width: 100%; padding: 10px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-  .serie-done-btn:disabled { opacity: 0.35; cursor: default; }
-  .timer-btn-stop { width: 100%; padding: 7px; background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 11px; font-weight: 600; cursor: pointer; }
+  .recap-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:500; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+  .recap-overlay.open { opacity:1; pointer-events:auto; }
+  .recap-modal { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:36px 28px; text-align:center; max-width:320px; width:90%; }
+  .recap-emoji { font-size:52px; margin-bottom:12px; }
+  .recap-title { font-size:22px; font-weight:900; margin-bottom:6px; }
+  .recap-sub { font-size:13px; color:var(--muted); margin-bottom:20px; }
+  .recap-time { font-size:58px; font-weight:900; color:var(--accent); letter-spacing:-2px; }
+  .recap-label { font-size:12px; color:var(--muted); margin-top:4px; }
+  .recap-close { margin-top:20px; background:var(--accent); color:#000; border:none; border-radius:10px; padding:12px 28px; font-weight:700; font-size:14px; cursor:pointer; }
 
-  /* Recap */
-  .recap-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 500; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .recap-overlay.open { opacity: 1; pointer-events: auto; }
-  .recap-modal { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 36px 28px; text-align: center; max-width: 320px; width: 90%; }
-  .recap-emoji { font-size: 52px; margin-bottom: 12px; }
-  .recap-title { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
-  .recap-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-  .recap-time { font-size: 58px; font-weight: 900; color: var(--accent); letter-spacing: -2px; }
-  .recap-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .recap-close { margin-top: 20px; background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 12px 28px; font-weight: 700; font-size: 14px; cursor: pointer; }
+  .stretch-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.82); display:flex; align-items:flex-end; justify-content:center; z-index:400; opacity:0; pointer-events:none; transition:opacity 0.25s; }
+  .stretch-overlay.open { opacity:1; pointer-events:auto; }
+  .stretch-modal { background:var(--card); border-radius:24px 24px 0 0; padding:24px 20px 36px; width:100%; max-width:700px; max-height:70vh; overflow-y:auto; }
+  .stretch-modal-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+  .stretch-modal-title { font-size:18px; font-weight:800; }
+  .stretch-modal-duration { font-size:12px; color:var(--accent); margin-top:3px; }
+  .stretch-close { width:28px; height:28px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px; color:var(--muted); flex-shrink:0; }
+  .stretch-step { display:flex; gap:10px; margin-bottom:12px; }
+  .stretch-step-num { width:22px; height:22px; border-radius:50%; background:var(--accent); color:#000; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .stretch-step-text { font-size:13px; line-height:1.5; }
+  .stretch-focus { margin-top:14px; font-size:11px; color:var(--accent); font-weight:600; background:rgba(71,200,255,0.08); border-radius:8px; padding:8px 12px; }
 
-  /* Stretch modal */
-  .stretch-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); display: flex; align-items: flex-end; justify-content: center; z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
-  .stretch-overlay.open { opacity: 1; pointer-events: auto; }
-  .stretch-modal { background: var(--card); border-radius: 24px 24px 0 0; padding: 24px 20px 36px; width: 100%; max-width: 700px; max-height: 70vh; overflow-y: auto; }
-  .stretch-modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-  .stretch-modal-title { font-size: 18px; font-weight: 800; }
-  .stretch-modal-duration { font-size: 12px; color: var(--accent); margin-top: 3px; }
-  .stretch-close { width: 28px; height: 28px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--muted); flex-shrink: 0; }
-  .stretch-step { display: flex; gap: 10px; margin-bottom: 12px; }
-  .stretch-step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .stretch-step-text { font-size: 13px; line-height: 1.5; }
-  .stretch-focus { margin-top: 14px; font-size: 11px; color: var(--accent); font-weight: 600; background: rgba(71,200,255,0.08); border-radius: 8px; padding: 8px 12px; }
-
-  @media (max-width: 600px) {
-    body { padding: 12px 10px 140px; }
-    h1 { font-size: 30px; }
-    .timer-widget { position: fixed !important; right: auto !important; top: auto !important; bottom: 10px; left: 50%; transform: translateX(-50%); width: calc(100vw - 20px); max-width: 420px; flex-direction: row !important; align-items: center; gap: 10px; padding: 10px 14px !important; border-radius: 20px !important; }
-    .timer-widget.hidden { transform: translateX(-50%) scale(0.92) !important; opacity: 0; }
-    .timer-ex-name { font-size: 10px; min-height: auto !important; margin-bottom: 0 !important; text-align: left; flex: 1; }
-    .timer-svg-wrap { width: 50px !important; height: 50px !important; margin: 0 !important; }
-    .timer-svg { width: 50px !important; height: 50px !important; }
-    .timer-time { font-size: 16px !important; }
-    .timer-status { font-size: 9px; margin-bottom: 4px !important; }
-    .serie-done-btn { font-size: 11px; padding: 8px; }
-    .timer-btn-stop { font-size: 10px; padding: 5px; }
-    .series-row { gap: 4px; }
+  @media (max-width:600px) {
+    body { padding:12px 10px 140px; }
+    h1 { font-size:30px; }
+    .tab { min-width:54px; padding:8px 8px; }
+    .tab .day-num { font-size:18px; }
+    .tab .day-label { font-size:8px; }
+    .timer-widget { position:fixed !important; right:auto !important; top:auto !important; bottom:10px; left:50%; transform:translateX(-50%); width:calc(100vw - 20px); max-width:420px; flex-direction:row !important; align-items:center; gap:10px; padding:10px 14px !important; border-radius:20px !important; }
+    .timer-widget.hidden { transform:translateX(-50%) scale(0.92) !important; opacity:0; }
+    .timer-ex-name { font-size:10px; min-height:auto !important; margin-bottom:0 !important; text-align:left; flex:1; }
+    .timer-svg-wrap { width:50px !important; height:50px !important; margin:0 !important; }
+    .timer-svg { width:50px !important; height:50px !important; }
+    .timer-time { font-size:16px !important; }
+    .timer-status { font-size:9px; margin-bottom:4px !important; }
+    .serie-done-btn { font-size:11px; padding:8px; }
+    .timer-btn-stop { font-size:10px; padding:5px; }
+    .series-row { gap:4px; }
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="nav-back">
-  <a href="index.html">← Programme Callisthénie</a>
-</div>
+<div class="nav-back"><a href="index.html">← Programme Callisthénie</a></div>
 
 <header>
   <h1>SMART<span>WORKOUT</span></h1>
-  <p class="subtitle">Dos & Tirage · Élastiques + Barre · Samedi</p>
+  <p class="subtitle">Programme Complet · Élastiques + Barre · 5 Jours</p>
   <div class="profile-bar">
     <div class="profile-pill">⚖️ <strong>113 kg</strong> poids</div>
     <div class="profile-pill">🏋️ <strong>SmartWorkout Elite</strong></div>
-    <div class="profile-pill">🟡 <strong>Intermédiaire</strong></div>
+    <div class="profile-pill">📅 <strong>5 séances</strong> / semaine</div>
   </div>
 </header>
 
 <div class="gear-box">
-  <div class="gear-title">🎒 Matériel nécessaire</div>
+  <div class="gear-title">🎒 Matériel nécessaire pour toutes les séances</div>
   <div class="gear-grid">
     <div class="gear-chip"><span>🔵</span> Barre SmartWorkout (106 cm)</div>
-    <div class="gear-chip"><span>🟠</span> Élastiques 2–4 bandes</div>
+    <div class="gear-chip"><span>🟠</span> Élastiques 1–4 bandes</div>
     <div class="gear-chip"><span>🚪</span> Ancre de porte XL</div>
     <div class="gear-chip"><span>🤝</span> Poignées incluses</div>
+    <div class="gear-chip"><span>👟</span> Chevilles straps</div>
   </div>
 </div>
 
 <div class="progress-bar-wrap">
   <div class="progress-top">
-    <span>Séance de la semaine <span class="week-badge" id="weekBadge">S1</span></span>
-    <strong id="prog-label">–</strong>
+    <span>Semaine <span class="week-badge" id="weekBadge">S1</span></span>
+    <strong id="prog-label">0 / 5</strong>
   </div>
   <div class="bar-track">
     <div class="bar-seg" id="seg1"></div>
+    <div class="bar-seg" id="seg2"></div>
+    <div class="bar-seg" id="seg3"></div>
+    <div class="bar-seg" id="seg4"></div>
+    <div class="bar-seg" id="seg5"></div>
   </div>
 </div>
 
-<div class="history-section" id="historySection">
+<div class="history-section">
   <div class="history-title">Historique</div>
   <div class="history-grid" id="historyGrid">
-    <div class="history-empty">Aucune séance complétée</div>
+    <div class="history-empty">Aucune semaine complétée</div>
   </div>
 </div>
 
-<!-- HEADER JOUR -->
-<div class="day-header">
-  <div class="day-icon" style="background:#001a2a;">🏋️</div>
-  <div>
-    <h2>DOS & TIRAGE</h2>
-    <p>Dorsaux · Biceps · Trapèzes · Épaules arrière</p>
-    <div class="meta-tags">
-      <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
-      <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
-      <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
-    </div>
-  </div>
+<div class="tabs">
+  <div class="tab active" data-day="1" onclick="switchDay(1)"><span class="day-num">J1</span><span class="day-label">Bas corps</span></div>
+  <div class="tab" data-day="2" onclick="switchDay(2)"><span class="day-num">J2</span><span class="day-label">Push</span></div>
+  <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Core</span></div>
+  <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Circuit</span></div>
+  <div class="tab" data-day="5" onclick="switchDay(5)"><span class="day-num">J5</span><span class="day-label">Dos</span></div>
 </div>
 
-<!-- ÉCHAUFFEMENT -->
-<div class="section-label">🔥 Échauffement — 5 min</div>
-<div class="warmup-list">
-  <div class="warm-item" onclick="showStretch('Rotations épaules')">Rotations épaules <span>30 sec</span></div>
-  <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>30 sec</span></div>
-  <div class="warm-item" onclick="showStretch('Rowing léger')">Rowing léger à vide (1 bande) <span>15 reps</span></div>
-  <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
-</div>
-
-<!-- EXERCICES -->
-<div class="section-label">💪 Exercices</div>
-<div class="exercises">
-
-  <div class="exercise-card" onclick="handleCardClick(this)">
-    <div class="ex-number">01</div>
-    <div class="ex-content">
-      <div class="ex-name">Rowing courbé à la barre</div>
-      <div class="ex-tip">Pieds écartés sur l'élastique, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates. Redescends lentement en 2 secondes.</div>
-      <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 2–3 bandes (35–55 kg) · prise pronation</div>
-      <div class="ex-stats">
-        <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-        <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-        <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+<!-- ===== J1 — BAS DU CORPS ===== -->
+<div class="day-panel active" id="day1">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a2800;">🦵</div>
+    <div>
+      <h2>BAS DU CORPS</h2>
+      <p>Quadriceps · Fessiers · Ischio-jambiers · Mollets</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Lundi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
       </div>
     </div>
-    <div class="check-icon">✓</div>
   </div>
-
-  <div class="exercise-card" onclick="handleCardClick(this)">
-    <div class="ex-number">02</div>
-    <div class="ex-content">
-      <div class="ex-name">Tirage vertical (Lat Pulldown)</div>
-      <div class="ex-tip">Ancre fixée en haut de la porte. Assis sur une chaise, dos droit. Tire la barre vers la poitrine en ramenant les coudes vers les hanches — pas vers l'arrière. Contrôle la remontée.</div>
-      <div class="ex-setup">⚙️ Ancre de porte EN HAUT · 2 bandes (30–40 kg) · prise pronation large</div>
-      <div class="ex-stats">
-        <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-        <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-        <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Rotations hanches')">Rotations hanches <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations genoux')">Rotations genoux <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Leg swings')">Leg swings avant/arrière <span>30 sec × jambe</span></div>
+    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air lents <span>10 reps</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Squat à la barre SmartWorkout</div>
+        <div class="ex-tip">Barre posée sur les trapèzes (pas la nuque), élastiques sous les pieds. Pieds largeur épaules, descends lentement en 2 secondes, cuisses parallèles au sol. Pousse dans les talons pour remonter.</div>
+        <div class="ex-setup">⚙️ Barre sur épaules · 2 bandes sous les 2 pieds</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
       </div>
+      <div class="check-icon">✓</div>
     </div>
-    <div class="check-icon">✓</div>
-  </div>
-
-  <div class="exercise-card" onclick="handleCardClick(this)">
-    <div class="ex-number">03</div>
-    <div class="ex-content">
-      <div class="ex-name">Face pull</div>
-      <div class="ex-tip">Ancre à hauteur des yeux. Avec les poignées, tire vers ton visage en écartant les coudes à 90°. Les mains finissent de chaque côté de la tête. Essentiel pour la santé des épaules et la posture.</div>
-      <div class="ex-setup">⚙️ Ancre de porte à hauteur YEUX · 1 bande légère (10–15 kg) · poignées</div>
-      <div class="ex-stats">
-        <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-        <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
-        <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Fentes avec résistance</div>
+        <div class="ex-tip">Élastique sous le pied avant, poignées tenues dans les mains bras le long du corps. Un pied en avant fixé, l'autre en arrière. Descends le genou arrière vers le sol sans le toucher.</div>
+        <div class="ex-setup">⚙️ 1–2 bandes sous le pied avant · poignées dans les mains</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
       </div>
+      <div class="check-icon">✓</div>
     </div>
-    <div class="check-icon">✓</div>
-  </div>
-
-  <div class="exercise-card" onclick="handleCardClick(this)">
-    <div class="ex-number">04</div>
-    <div class="ex-content">
-      <div class="ex-name">Rowing menton (Upright row)</div>
-      <div class="ex-tip">Debout sur l'élastique, barre en prise pronation plus large que les épaules. Monte la barre le long du corps jusqu'au menton, coudes vers le haut et vers l'extérieur. Ne hausse pas les épaules en fin de mouvement.</div>
-      <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–25 kg) · prise large</div>
-      <div class="ex-stats">
-        <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-        <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-        <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Hip Thrust à la barre</div>
+        <div class="ex-tip">Dos contre le canapé (hauteur des omoplates), barre en travers des cuisses + élastique. Pousse les hanches vers le plafond, serre les fesses fort en haut et tiens 2 secondes. Meilleur exercice fessiers qui existe.</div>
+        <div class="ex-setup">⚙️ Barre + 1–2 bandes en travers des hanches · dos appuyé sur le canapé</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
       </div>
+      <div class="check-icon">✓</div>
     </div>
-    <div class="check-icon">✓</div>
-  </div>
-
-  <div class="exercise-card" onclick="handleCardClick(this)">
-    <div class="ex-number">05</div>
-    <div class="ex-content">
-      <div class="ex-name">Curl biceps à la barre</div>
-      <div class="ex-tip">Debout sur l'élastique, prise supination (paumes vers le haut). Coudes plaqués contre les flancs — ils ne bougent pas. Monte la barre jusqu'aux épaules, redescends lentement en 3 secondes. Travail isolé biceps.</div>
-      <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–30 kg) · prise supination</div>
-      <div class="ex-stats">
-        <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-        <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-        <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Romanian Deadlift à la barre</div>
+        <div class="ex-tip">Debout, élastiques sous les pieds, barre tenue prise pronation devant les cuisses. Penche le buste (DOS DROIT, jambes quasi tendues), barre le long des jambes jusqu'au milieu des tibias. Sens l'étirement ischio, remonte.</div>
+        <div class="ex-setup">⚙️ 2–3 bandes sous les pieds · dos droit impératif · prise pronation</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
       </div>
+      <div class="check-icon">✓</div>
     </div>
-    <div class="check-icon">✓</div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Élévations de mollets</div>
+        <div class="ex-tip">Debout, tiens la barre horizontalement devant toi pour l'équilibre. Monte sur la pointe des pieds en serrant les mollets, redescends lentement sur 3 secondes. Amplitude maximale à chaque rep.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">25 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
   </div>
-
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Étirement quadriceps')">Étirement quadriceps <span>30s × jambe</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement ischio')">Étirement ischio debout <span>30s × jambe</span></div>
+    <div class="warm-item" onclick="showStretch('Pigeon yoga')">Pigeon yoga (fessier) <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Résistance progressive</strong> Commence avec 2 bandes sur le squat. Dès que 12 reps passent facilement sur 3 séries consécutives, rajoute une bande. Le RDL est technique — maîtrise le mouvement avant d'augmenter.</div>
+  <button class="done-btn" onclick="markDayDone(1)">✅ Marquer J1 comme terminé</button>
 </div>
 
-<!-- RETOUR AU CALME -->
-<div class="section-label">🧘 Retour au calme — 5 min</div>
-<div class="cooldown-list">
-  <div class="warm-item" onclick="showStretch('Étirement biceps')">Étirement biceps & avant-bras <span>30s × bras</span></div>
-  <div class="warm-item" onclick="showStretch('Étirement pectoraux')">Ouverture pectoraux (porte) <span>30s × côté</span></div>
-  <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
-  <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
+<!-- ===== J2 — PUSH ===== -->
+<div class="day-panel" id="day2">
+  <div class="day-header">
+    <div class="day-icon" style="background:#00111a;">💪</div>
+    <div>
+      <h2>HAUT DU CORPS — PUSH</h2>
+      <p>Pectoraux · Épaules · Triceps</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mardi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Rotations épaules')">Rotations épaules <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur lentes <span>10 reps</span></div>
+    <div class="warm-item" onclick="showStretch('Ouverture thoracique')">Ouverture thoracique <span>30 sec</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Pompes classiques</div>
+        <div class="ex-tip">Corps droit de la tête aux talons, coudes à 45° du corps. Descends la poitrine à 5 cm du sol, remonte en soufflant. Genoux au sol si nécessaire. Fondamental du push — ne néglige pas.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Développé militaire à la barre</div>
+        <div class="ex-tip">Debout, élastiques sous les pieds, barre à hauteur des épaules prise légèrement + large que les épaules. Pousse la barre au-dessus de la tête bras tendus, redescends lentement. Core serré, ne cambre pas le dos.</div>
+        <div class="ex-setup">⚙️ Barre + 2 bandes sous les 2 pieds · debout · prise légèrement large</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Élévations latérales</div>
+        <div class="ex-tip">Debout, une poignée dans chaque main, élastiques sous les pieds. Lève les bras sur les côtés jusqu'à hauteur des épaules — pas plus haut. Redescends lentement en 2 secondes. C'est la descente qui sculpte.</div>
+        <div class="ex-setup">⚙️ Poignées · 1 bande légère sous chaque pied · bras légèrement fléchis</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Extension triceps (pushdown)</div>
+        <div class="ex-tip">Ancre porte haute, barre ou poignées tenues à hauteur de poitrine. Coudes collés aux flancs — ils ne bougent absolument pas. Pousse vers le bas jusqu'à extension complète, redescends lentement. Isolé triceps.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUTE · barre ou poignées · 1–2 bandes</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Fly debout (câble croisé)</div>
+        <div class="ex-tip">Ancre porte haute, une poignée par main. Bras légèrement fléchis, ramène les mains devant toi en arc de cercle comme pour enlacer quelqu'un. Sens le squeeze des pectoraux internes en fin de mouvement.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUTE · 1 poignée par côté · 1 bande chacune · arc vers l'avant</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Étirement pectoraux')">Ouverture pectoraux (porte) <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement triceps')">Étirement triceps <span>30s × bras</span></div>
+    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Les 3 angles épaules</strong> Développé militaire (épaule antérieure) + élévations latérales (épaule médiane) + fly (pectoraux internes) = couverture complète. Descente lente sur chaque mouvement — c'est là que le muscle se construit.</div>
+  <button class="done-btn" onclick="markDayDone(2)">✅ Marquer J2 comme terminé</button>
 </div>
 
-<div class="tip-box">
-  <strong>💡 Résistance élastiques</strong> La résistance augmente au fur et à mesure que tu étires l'élastique — c'est différent des poids. Les kg indiqués sont à l'extension maximale. Commence plutôt léger pour maîtriser le mouvement, augmente quand tu gardes une forme parfaite sur toutes les séries.
+<!-- ===== J3 — CORE ===== -->
+<div class="day-panel" id="day3">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0a00;">🔥</div>
+    <div>
+      <h2>CORE & GAINAGE</h2>
+      <p>Abdominaux · Obliques · Stabilisateurs · Fessiers</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mercredi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Chat-vache')">Chat-vache (cat-cow) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Genoux hauts')">Genoux hauts sur place <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Inclinaisons latérales')">Inclinaisons latérales <span>30 sec</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Dead Bug</div>
+        <div class="ex-tip">Sur le dos, bras vers le ciel, genoux à 90°. Descends UN bras et la jambe OPPOSÉE simultanément sans creuser le dos. Lent et contrôlé — si le bas du dos se décolle, tu vas trop loin.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Crunch câble debout</div>
+        <div class="ex-tip">Ancre porte haute, tiens les poignées ou la barre derrière la nuque. Courbe le buste vers le bas en contractant fort les abdos — pense à ramener les côtes vers le bassin. Remonte lentement. Bien supérieur au crunch au sol.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUTE · poignées ou barre · 1–2 bandes</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Woodchop (rotation diagonale)</div>
+        <div class="ex-tip">Ancre porte haute, une poignée. Tire en diagonale de haut en bas vers ta hanche opposée — rotation complète du tronc. Les hanches restent face à la porte, c'est le buste qui tourne. Alterne les côtés chaque série.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUTE · 1 poignée · 1–2 bandes · rotation haut → bas</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Planche frontale</div>
+        <div class="ex-tip">Sur les avant-bras, corps droit de la tête aux talons. Contracte les abdos et les fessiers simultanément, sans retenir ta respiration. Commence à 25 secondes et rajoute 5 secondes par semaine.</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">25 secondes</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Kick-back fessier (cheville strap)</div>
+        <div class="ex-tip">Cheville strap fixée à un pied, ancre porte basse. À 4 pattes ou debout légèrement penché, mains sur la barre pour support. Pousse la jambe vers l'arrière en extension complète, serre les fesses. Redescends lentement.</div>
+        <div class="ex-setup">⚙️ Cheville strap · ancre porte BASSE · 1 bande · extension arrière</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Cobra')">Cobra (stretch abdos) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Twist assis')">Twist assis <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Genou poitrine')">Genou poitrine allongé <span>30s × côté</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Core avec résistance constante</strong> Le crunch câble + woodchop créent une tension sur toute l'amplitude — exactement comme les câbles de salle à 3000€. La planche reste le roi du gainage. Le kick-back avec strap complète parfaitement les fessiers du J1.</div>
+  <button class="done-btn" onclick="markDayDone(3)">✅ Marquer J3 comme terminé</button>
 </div>
 
-<button class="done-btn" onclick="markAllDone()">✅ Séance terminée</button>
+<!-- ===== J4 — CIRCUIT ===== -->
+<div class="day-panel" id="day4">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0018;">⚡</div>
+    <div>
+      <h2>CIRCUIT FULL BODY</h2>
+      <p>Cardio · Force · Endurance · Full body</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a0018;color:#d946ef;">4 rounds</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Saut léger')">Saut léger sur place <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations complètes')">Rotations complètes <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air × 10</div>
+    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur × 10</div>
+  </div>
+  <div class="section-label">⚡ Le Circuit — 4 rounds</div>
+  <div class="circuit-box">
+    <div class="circuit-title">🔄 5 EXOS ENCHAÎNÉS SANS PAUSE · 90s REPOS ENTRE ROUNDS</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.7;padding:4px 0 10px;">
+      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squat à la barre — 12 reps</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Barre sur épaules, 2 bandes sous pieds. Descends lent, pousse dans les talons.</span><br><br>
+      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Pompes — 10 reps</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Corps en planche, coudes à 45°. Genoux au sol si besoin.</span><br><br>
+      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Rowing courbé à la barre — 10 reps</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Élastiques sous pieds, dos à 45°. Tire la barre vers le nombril, omoplates serrées.</span><br><br>
+      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Mountain Climbers — 10 reps × jambe</strong><br>
+      <span style="padding-left:16px;display:inline-block;">En position pompe, genoux vers la poitrine alternés lentement. Dos plat.</span><br><br>
+      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Développé militaire — 8 reps</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Élastiques sous pieds, barre des épaules vers le haut bras tendus. Core serré.</span>
+    </div>
+  </div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">⚡</div>
+      <div class="ex-content">
+        <div class="ex-name">Circuit complet (5 exos enchaînés)</div>
+        <div class="ex-tip">Squat barre → Pompes → Rowing courbé → Mountain Climbers → Développé militaire. Enchaîne sans pause, 90s de repos entre rounds. Si tu manques de souffle, marche 30s avant de reprendre.</div>
+        <div class="ex-setup">⚙️ Barre · 2 bandes sous pieds pour squat + rowing + développé</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> rounds</div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="tip-box"><strong>💡 Circuit barre</strong> Squat + rowing + développé militaire en circuit, c'est jambes, dos et épaules en une session cardio. Le rowing courbé remplace le glute bridge du circuit callisthénie — bien plus intense et utile pour le dos.</div>
+  <button class="done-btn" onclick="markDayDone(4)">✅ Marquer J4 comme terminé</button>
+</div>
 
-</div><!-- /container -->
+<!-- ===== J5 — DOS & TIRAGE ===== -->
+<div class="day-panel" id="day5">
+  <div class="day-header">
+    <div class="day-icon" style="background:#001a2a;">🏋️</div>
+    <div>
+      <h2>DOS & TIRAGE</h2>
+      <p>Dorsaux · Biceps · Trapèzes · Épaules arrière</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Rotations épaules')">Rotations épaules <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Rowing léger')">Rowing léger à vide (1 bande) <span>15 reps</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Rowing courbé à la barre</div>
+        <div class="ex-tip">Pieds écartés sur l'élastique, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates. Redescends lentement en 2 secondes.</div>
+        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 2–3 bandes (35–55 kg) · prise pronation</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Tirage vertical (Lat Pulldown)</div>
+        <div class="ex-tip">Ancre fixée en haut de la porte. Assis sur une chaise, dos droit. Tire la barre vers la poitrine en ramenant les coudes vers les hanches. Contrôle la remontée.</div>
+        <div class="ex-setup">⚙️ Ancre de porte EN HAUT · 2 bandes (30–40 kg) · prise pronation large</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Face pull</div>
+        <div class="ex-tip">Ancre à hauteur des yeux, poignées. Tire vers ton visage en écartant les coudes à 90°. Les mains finissent de chaque côté de la tête. Essentiel pour la santé des épaules et la posture.</div>
+        <div class="ex-setup">⚙️ Ancre de porte à hauteur YEUX · 1 bande légère (10–15 kg) · poignées</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Rowing menton (Upright row)</div>
+        <div class="ex-tip">Debout sur l'élastique, barre en prise pronation plus large que les épaules. Monte la barre le long du corps jusqu'au menton, coudes vers le haut. Ne hausse pas les épaules en fin de mouvement.</div>
+        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–25 kg) · prise large</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Curl biceps à la barre</div>
+        <div class="ex-tip">Debout sur l'élastique, prise supination (paumes vers le haut). Coudes plaqués contre les flancs — ils ne bougent pas. Monte la barre jusqu'aux épaules, redescends lentement en 3 secondes.</div>
+        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–30 kg) · prise supination</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Étirement biceps')">Étirement biceps &amp; avant-bras <span>30s × bras</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement pectoraux')">Ouverture pectoraux (porte) <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Résistance élastiques</strong> La résistance augmente au fur et à mesure que tu étires l'élastique. Commence léger pour maîtriser le mouvement, augmente quand tu gardes une forme parfaite sur toutes les séries.</div>
+  <button class="done-btn" onclick="markDayDone(5)">✅ Marquer J5 comme terminé</button>
+</div>
 
-<!-- GLOBAL TIMER -->
-<div class="global-timer" id="globalTimer">
-  <div class="global-time" id="globalDisplay">0:00</div>
-  <button class="global-stop" onclick="cancelGlobalTimer()">✕ Stop</button>
+<!-- STRETCH MODAL -->
+<div class="stretch-overlay" id="stretchOverlay" onclick="closeStretch(event)">
+  <div class="stretch-modal">
+    <div class="stretch-modal-header">
+      <div>
+        <div class="stretch-modal-title" id="stretchTitle"></div>
+        <div class="stretch-modal-duration" id="stretchDuration"></div>
+      </div>
+      <div class="stretch-close" onclick="closeStretchDirect()">✕</div>
+    </div>
+    <div class="stretch-modal-body" id="stretchBody"></div>
+  </div>
 </div>
 
 <!-- TIMER WIDGET -->
@@ -356,29 +719,21 @@
   <button class="timer-btn-stop" onclick="stopTimer()">✕ Annuler</button>
 </div>
 
-<!-- RECAP OVERLAY -->
+<!-- GLOBAL TIMER -->
+<div class="global-timer" id="globalTimer">
+  <div class="global-time" id="globalDisplay">0:00</div>
+  <button class="global-stop" onclick="cancelGlobalTimer()">✕ Stop</button>
+</div>
+
+<!-- RECAP -->
 <div class="recap-overlay" id="recapOverlay">
   <div class="recap-modal">
-    <div class="recap-emoji">🏋️</div>
+    <div class="recap-emoji">💪</div>
     <div class="recap-title">Séance terminée !</div>
-    <div class="recap-sub">Dos & Tirage — SmartWorkout Elite</div>
+    <div class="recap-sub">SmartWorkout Elite</div>
     <div class="recap-time" id="recapTime">0:00</div>
     <div class="recap-label">Temps total</div>
     <button class="recap-close" onclick="closeRecap()">Top, merci !</button>
-  </div>
-</div>
-
-<!-- STRETCH MODAL -->
-<div class="stretch-overlay" id="stretchOverlay" onclick="closeStretch(event)">
-  <div class="stretch-modal">
-    <div class="stretch-modal-header">
-      <div>
-        <div class="stretch-modal-title" id="stretchTitle"></div>
-        <div class="stretch-modal-duration" id="stretchDuration"></div>
-      </div>
-      <div class="stretch-close" onclick="closeStretchDirect()">✕</div>
-    </div>
-    <div class="stretch-modal-body" id="stretchBody"></div>
   </div>
 </div>
 
@@ -390,13 +745,12 @@
   function lsSet(k,v) { try { localStorage.setItem(k,v); } catch(e) {} }
   function lsRemove(k) { try { localStorage.removeItem(k); } catch(e) {} }
 
-  var SAVE_KEY   = 'sw_v1';
-  var HIST_KEY   = 'sw_v1_history';
-  var START_KEY  = 'sw_v1_start_week';
-  var sessionDone = false;
+  var SAVE_KEY  = 'sw_v2';
+  var HIST_KEY  = 'sw_v1_history';
+  var START_KEY = 'sw_v1_start_week';
+  var dayDone   = {1:false,2:false,3:false,4:false,5:false};
   var trainingWeek = 0;
 
-  /* ── Semaine ISO ── */
   function getWeekNumber() {
     var now = new Date();
     var d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
@@ -415,21 +769,22 @@
 
   function initWeekBadge() {
     trainingWeek = getTrainingWeek();
-    var badge = document.getElementById('weekBadge');
-    if (badge) badge.textContent = 'S' + (trainingWeek + 1);
+    var b = document.getElementById('weekBadge');
+    if (b) b.textContent = 'S' + (trainingWeek + 1);
   }
 
-  /* ── Historique ── */
   function saveHistory() {
     try {
       var raw = lsGet(HIST_KEY);
       var hist = raw ? JSON.parse(raw) : [];
       var wk = getWeekNumber();
+      var count = 0;
+      for (var k in dayDone) { if (dayDone[k]) count++; }
       var found = false;
       for (var i = 0; i < hist.length; i++) {
-        if (hist[i].wk === wk) { hist[i].done = sessionDone ? 1 : 0; hist[i].tw = trainingWeek + 1; found = true; break; }
+        if (hist[i].wk === wk) { hist[i].done = count; hist[i].tw = trainingWeek + 1; found = true; break; }
       }
-      if (!found) hist.push({ wk: wk, done: sessionDone ? 1 : 0, tw: trainingWeek + 1 });
+      if (!found) hist.push({wk:wk, done:count, tw:trainingWeek+1});
       if (hist.length > 12) hist = hist.slice(hist.length - 12);
       lsSet(HIST_KEY, JSON.stringify(hist));
     } catch(e) {}
@@ -441,17 +796,38 @@
     try {
       var raw = lsGet(HIST_KEY);
       var hist = raw ? JSON.parse(raw) : [];
-      if (hist.length === 0) { grid.innerHTML = '<div class="history-empty">Aucune séance complétée</div>'; return; }
+      if (hist.length === 0) { grid.innerHTML = '<div class="history-empty">Aucune semaine complétée</div>'; return; }
       var html = '';
       for (var i = 0; i < hist.length; i++) {
-        var perfect = hist[i].done >= 1 ? ' perfect' : '';
-        html += '<div class="history-chip' + perfect + '"><span class="hw">S' + hist[i].tw + '</span><span class="hscore">' + (hist[i].done >= 1 ? '✓' : '✗') + '</span></div>';
+        var perfect = hist[i].done >= 5 ? ' perfect' : '';
+        html += '<div class="history-chip'+perfect+'"><span class="hw">S'+hist[i].tw+'</span><span class="hscore">'+hist[i].done+'/5</span></div>';
       }
       grid.innerHTML = html;
     } catch(e) {}
   }
 
-  /* ── État ── */
+  function updateProgress() {
+    var count = 0;
+    for (var k in dayDone) { if (dayDone[k]) count++; }
+    var pl = document.getElementById('prog-label');
+    if (pl) pl.textContent = count + ' / 5';
+    for (var i = 1; i <= 5; i++) {
+      var s = document.getElementById('seg'+i);
+      if (s) { if (dayDone[i]) s.classList.add('done'); else s.classList.remove('done'); }
+    }
+  }
+
+  function recheckDayDone() {
+    for (var n = 1; n <= 5; n++) {
+      var panel = document.getElementById('day'+n);
+      if (!panel) continue;
+      var cards = panel.querySelectorAll('.exercise-card');
+      var all = true;
+      for (var i = 0; i < cards.length; i++) { if (!cards[i].classList.contains('done')) { all = false; break; } }
+      dayDone[n] = all;
+    }
+  }
+
   function saveState() {
     try {
       var cards = document.querySelectorAll('.exercise-card');
@@ -460,7 +836,7 @@
       var warmDone = [];
       var warms = document.querySelectorAll('.warm-item');
       for (var w = 0; w < warms.length; w++) { if (warms[w].classList.contains('checked')) warmDone.push(w); }
-      lsSet(SAVE_KEY, JSON.stringify({ doneCards: done, warmDone: warmDone, week: getWeekNumber(), sessionDone: sessionDone }));
+      lsSet(SAVE_KEY, JSON.stringify({dayDone:dayDone, doneCards:done, warmDone:warmDone, week:getWeekNumber()}));
       saveHistory();
       renderHistory();
       updateProgress();
@@ -472,8 +848,11 @@
       var raw = lsGet(SAVE_KEY);
       if (!raw) return;
       var state = JSON.parse(raw);
-      if (!state.week || state.week !== getWeekNumber()) { lsRemove(SAVE_KEY); return; }
-      sessionDone = !!state.sessionDone;
+      if (!state.week || state.week !== getWeekNumber()) { lsRemove(SAVE_KEY); lsRemove('sw_activeDay'); return; }
+      if (state.dayDone) {
+        var keys = Object.keys(state.dayDone);
+        for (var i = 0; i < keys.length; i++) dayDone[keys[i]] = state.dayDone[keys[i]];
+      }
       if (state.doneCards) {
         var cards = document.querySelectorAll('.exercise-card');
         for (var i = 0; i < state.doneCards.length; i++) {
@@ -490,44 +869,52 @@
     } catch(e) {}
   }
 
-  function updateProgress() {
-    var cards = document.querySelectorAll('.exercise-card');
-    var done = 0;
-    for (var i = 0; i < cards.length; i++) { if (cards[i].classList.contains('done')) done++; }
-    var pl = document.getElementById('prog-label');
-    if (pl) pl.textContent = done + '/' + cards.length;
-    var seg = document.getElementById('seg1');
-    if (seg) { if (done === cards.length) seg.classList.add('done'); else seg.classList.remove('done'); }
+  function markDayDone(n) {
+    var panel = document.getElementById('day'+n);
+    if (panel) {
+      var cards = panel.querySelectorAll('.exercise-card');
+      for (var c = 0; c < cards.length; c++) {
+        if (!cards[c].classList.contains('done')) cards[c].classList.add('done');
+      }
+    }
+    dayDone[n] = true;
+    updateProgress();
+    saveState();
+    if (n < 5) switchDay(n + 1);
   }
 
-  function markAllDone() {
-    sessionDone = true;
-    var cards = document.querySelectorAll('.exercise-card');
-    for (var i = 0; i < cards.length; i++) cards[i].classList.add('done');
-    saveState();
-    endGlobalTimer();
+  function switchDay(n) {
+    var panels = document.querySelectorAll('.day-panel');
+    for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+    var d = document.getElementById('day'+n);
+    if (d) d.classList.add('active');
+    var tabs = document.querySelectorAll('.tab');
+    for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+    var t = document.querySelector('.tab[data-day="'+n+'"]');
+    if (t) t.classList.add('active');
+    lsSet('sw_activeDay', String(n));
   }
 
   /* ── Global timer ── */
   var globalInterval = null, globalSecs = 0, globalStarted = false;
-  var elGlobalTimer = null, elGlobalDisplay = null;
+  var elGT = null, elGD = null;
 
   function startGlobalTimer() {
     if (globalStarted) return;
     globalStarted = true;
-    elGlobalTimer = elGlobalTimer || document.getElementById('globalTimer');
-    elGlobalDisplay = elGlobalDisplay || document.getElementById('globalDisplay');
-    if (elGlobalTimer) elGlobalTimer.classList.add('running');
+    elGT = elGT || document.getElementById('globalTimer');
+    elGD = elGD || document.getElementById('globalDisplay');
+    if (elGT) elGT.classList.add('running');
     globalInterval = setInterval(function() {
       globalSecs++;
-      if (elGlobalDisplay) elGlobalDisplay.textContent = Math.floor(globalSecs / 60) + ':' + ('0' + (globalSecs % 60)).slice(-2);
+      if (elGD) elGD.textContent = Math.floor(globalSecs/60)+':'+('0'+(globalSecs%60)).slice(-2);
     }, 1000);
   }
 
   function endGlobalTimer() {
     if (!globalInterval) return;
     clearInterval(globalInterval); globalInterval = null;
-    var t = Math.floor(globalSecs / 60) + ':' + ('0' + (globalSecs % 60)).slice(-2);
+    var t = Math.floor(globalSecs/60)+':'+('0'+(globalSecs%60)).slice(-2);
     var rt = document.getElementById('recapTime');
     if (rt) rt.textContent = t;
     var ro = document.getElementById('recapOverlay');
@@ -537,10 +924,10 @@
   function cancelGlobalTimer() {
     if (globalInterval) { clearInterval(globalInterval); globalInterval = null; }
     globalStarted = false; globalSecs = 0;
-    elGlobalTimer = elGlobalTimer || document.getElementById('globalTimer');
-    elGlobalDisplay = elGlobalDisplay || document.getElementById('globalDisplay');
-    if (elGlobalTimer) elGlobalTimer.classList.remove('running');
-    if (elGlobalDisplay) elGlobalDisplay.textContent = '0:00';
+    elGT = elGT || document.getElementById('globalTimer');
+    elGD = elGD || document.getElementById('globalDisplay');
+    if (elGT) elGT.classList.remove('running');
+    if (elGD) elGD.textContent = '0:00';
     stopTimer();
   }
 
@@ -554,15 +941,15 @@
   var timerSecs = 0, activeCard = null;
   var currentSerie = 0, totalSeries = 3, restSeconds = 90;
   var restInterval = null;
-  var elTimerDisplay = null, elTimerRing = null, elTimerStatus = null, elTimerWidget = null, elTimerExName = null;
+  var elTD = null, elTR = null, elTS = null, elTW = null, elTN = null;
 
   function getTimerEls() {
-    if (!elTimerDisplay) {
-      elTimerDisplay = document.getElementById('timerDisplay');
-      elTimerRing    = document.getElementById('timerRing');
-      elTimerStatus  = document.getElementById('timerStatus');
-      elTimerWidget  = document.getElementById('timerWidget');
-      elTimerExName  = document.getElementById('timerExName');
+    if (!elTD) {
+      elTD = document.getElementById('timerDisplay');
+      elTR = document.getElementById('timerRing');
+      elTS = document.getElementById('timerStatus');
+      elTW = document.getElementById('timerWidget');
+      elTN = document.getElementById('timerExName');
     }
   }
 
@@ -570,15 +957,19 @@
     if (restInterval) { clearInterval(restInterval); restInterval = null; }
     getTimerEls();
     var rem = seconds;
-    if (elTimerStatus) { elTimerStatus.textContent = 'REPOS'; elTimerStatus.className = 'timer-status'; }
-    if (elTimerDisplay) elTimerDisplay.textContent = rem + 's';
-    if (elTimerRing) { elTimerRing.style.strokeDashoffset = '0'; elTimerRing.style.stroke = 'var(--blue)'; }
+    if (elTS) { elTS.textContent = 'REPOS'; elTS.className = 'timer-status'; }
+    if (elTD) elTD.textContent = rem + 's';
+    if (elTR) { elTR.style.strokeDashoffset = '0'; elTR.style.stroke = 'var(--blue)'; }
     restInterval = setInterval(function() {
       rem--;
-      if (elTimerDisplay) elTimerDisplay.textContent = rem > 0 ? rem + 's' : 'GO!';
-      if (elTimerRing) elTimerRing.style.strokeDashoffset = String(CIRC * (1 - rem / seconds));
-      if (elTimerStatus && rem > 0) elTimerStatus.textContent = 'REPOS ' + rem + 's';
-      if (rem <= 0) { clearInterval(restInterval); restInterval = null; if (elTimerRing) elTimerRing.style.stroke = ''; setTimeout(onDone, 400); }
+      if (elTD) elTD.textContent = rem > 0 ? rem+'s' : 'GO!';
+      if (elTR) elTR.style.strokeDashoffset = String(CIRC * (1 - rem/seconds));
+      if (elTS && rem > 0) elTS.textContent = 'REPOS '+rem+'s';
+      if (rem <= 0) {
+        clearInterval(restInterval); restInterval = null;
+        if (elTR) elTR.style.stroke = '';
+        setTimeout(onDone, 400);
+      }
     }, 1000);
   }
 
@@ -602,7 +993,7 @@
     var btn = document.createElement('button');
     btn.id = 'serieDoneBtn';
     btn.className = 'serie-done-btn';
-    btn.textContent = '✓ Série 1/' + n + ' — Terminée';
+    btn.textContent = '✓ Série 1/'+n+' — Terminée';
     btn.onclick = function() { clickSerie(currentSerie + 1); };
     row.appendChild(btn);
   }
@@ -612,12 +1003,22 @@
     if (activeCard) {
       activeCard.classList.remove('timing');
       activeCard.classList.add('done');
+      var ac = activeCard;
       activeCard = null;
       saveState();
-      var cards = document.querySelectorAll('.exercise-card');
-      var allDone = true;
-      for (var i = 0; i < cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone = false; break; } }
-      if (allDone) { sessionDone = true; saveState(); endGlobalTimer(); }
+      var panel = ac.closest('.day-panel');
+      if (panel) {
+        var cards = panel.querySelectorAll('.exercise-card');
+        var allDone = true;
+        for (var i = 0; i < cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone = false; break; } }
+        if (allDone) {
+          endGlobalTimer();
+          var dayNum = parseInt((panel.id || '').replace('day', ''), 10);
+          if (dayNum >= 1 && dayNum <= 5) {
+            setTimeout(function() { markDayDone(dayNum); }, 600);
+          }
+        }
+      }
     }
   }
 
@@ -632,11 +1033,11 @@
         finishExercise();
       } else {
         var nextN = n + 1;
-        if (btn) { btn.disabled = false; btn.textContent = '✓ Série ' + nextN + '/' + totalSeries + ' — Terminée'; }
+        if (btn) { btn.disabled = false; btn.textContent = '✓ Série '+nextN+'/'+totalSeries+' — Terminée'; }
         getTimerEls();
-        if (elTimerStatus) { elTimerStatus.textContent = 'SÉRIE ' + nextN + '/' + totalSeries; elTimerStatus.className = 'timer-status active'; }
-        if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
-        if (elTimerRing) { elTimerRing.style.stroke = ''; elTimerRing.style.strokeDashoffset = String(CIRC); }
+        if (elTS) { elTS.textContent = 'SÉRIE '+nextN+'/'+totalSeries; elTS.className = 'timer-status active'; }
+        if (elTD) elTD.textContent = '0:00';
+        if (elTR) { elTR.style.stroke = ''; elTR.style.strokeDashoffset = String(CIRC); }
       }
     });
   }
@@ -644,10 +1045,10 @@
   function hideWidget() {
     if (restInterval) { clearInterval(restInterval); restInterval = null; }
     getTimerEls();
-    if (elTimerWidget) { elTimerWidget.classList.add('hidden'); elTimerWidget.classList.remove('running'); }
-    if (elTimerStatus) { elTimerStatus.textContent = 'EN ATTENTE'; elTimerStatus.className = 'timer-status'; }
-    if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
-    if (elTimerRing) { elTimerRing.style.strokeDashoffset = '0'; elTimerRing.style.stroke = ''; }
+    if (elTW) { elTW.classList.add('hidden'); elTW.classList.remove('running'); }
+    if (elTS) { elTS.textContent = 'EN ATTENTE'; elTS.className = 'timer-status'; }
+    if (elTD) elTD.textContent = '0:00';
+    if (elTR) { elTR.style.strokeDashoffset = '0'; elTR.style.stroke = ''; }
     timerSecs = 0;
   }
 
@@ -659,6 +1060,7 @@
   function handleCardClick(card) {
     if (card.classList.contains('done')) {
       card.classList.remove('done');
+      recheckDayDone();
       updateProgress();
       saveState();
       return;
@@ -675,23 +1077,42 @@
     buildSeries(totalSeries);
     getTimerEls();
     var name = card.querySelector('.ex-name');
-    if (elTimerExName) elTimerExName.textContent = name ? name.textContent : 'Exercice';
-    if (elTimerStatus) { elTimerStatus.textContent = 'SÉRIE 1/' + totalSeries; elTimerStatus.className = 'timer-status active'; }
-    if (elTimerDisplay) elTimerDisplay.textContent = '0:00';
-    if (elTimerRing) { elTimerRing.style.strokeDashoffset = String(CIRC); elTimerRing.style.stroke = ''; }
-    if (elTimerWidget) { elTimerWidget.classList.remove('hidden'); elTimerWidget.classList.add('running'); }
+    if (elTN) elTN.textContent = name ? name.textContent : 'Exercice';
+    if (elTS) { elTS.textContent = 'SÉRIE 1/'+totalSeries; elTS.className = 'timer-status active'; }
+    if (elTD) elTD.textContent = '0:00';
+    if (elTR) { elTR.style.strokeDashoffset = String(CIRC); elTR.style.stroke = ''; }
+    if (elTW) { elTW.classList.remove('hidden'); elTW.classList.add('running'); }
   }
 
-  /* ── Stretch modal ── */
+  /* ── Stretch dictionary ── */
   var stretches = {
-    'Rotations épaules':   { duration: '30 secondes', steps: ['Bras le long du corps.', 'Grands cercles vers l\'avant 15s, vers l\'arrière 15s.', 'Amplitude maximale.', ''], focus: 'Lubrifie l\'articulation d\'épaule.' },
-    'Cercles de bras':     { duration: '30 secondes', steps: ['Bras tendus à l\'horizontale.', 'Petits cercles vers l\'avant 15s, grands vers l\'arrière 15s.', 'Garde les bras à hauteur d\'épaule.', ''], focus: 'Réchauffe les deltoïdes.' },
-    'Rowing léger':        { duration: '15 répétitions', steps: ['Fixe 1 seule bande légère à la barre.', 'Pieds sur l\'élastique, dos à 45°.', 'Tire doucement vers le nombril, relâche lentement.', 'L\'objectif est d\'activer les dorsaux, pas de travailler.'], focus: 'Activation dorsaux et biceps avant la séance.' },
-    'Rotations du tronc':  { duration: '30 sec × côté', steps: ['Debout, mains sur les hanches.', 'Tourne le buste à droite, hanches fixes.', 'Pousse l\'amplitude, regarde derrière toi.', '30s à droite, 30s à gauche.'], focus: 'Mobilise la colonne thoracique.' },
-    'Étirement biceps':    { duration: '30 sec × bras', steps: ['Tends le bras à l\'horizontale, paume vers le haut.', 'Avec l\'autre main, appuie doucement sur les doigts vers le bas.', 'Sens l\'étirement à l\'intérieur du bras et de l\'avant-bras.', '30 secondes par bras.'], focus: 'Étire les biceps et les fléchisseurs des poignets.' },
-    'Étirement pectoraux': { duration: '30 sec × côté', steps: ['Avant-bras contre le mur, coude à 90°.', 'Tourne le buste dans le sens opposé.', 'Ne force pas — laisse la gravité travailler.', '30 secondes par côté.'], focus: 'Ouvre les pectoraux et l\'avant des épaules.' },
-    'Enfant (child pose)': { duration: '1 minute', steps: ['À genoux, assis sur les talons.', 'Tends les bras devant toi, paumes au sol.', 'Laisse le front se poser.', 'Relâche tout. Respire profondément.'], focus: 'Décompresse la colonne vertébrale et les dorsaux.' },
-    'Rotation cervicales': { duration: '30 secondes', steps: ['Assis ou debout, épaules relâchées.', 'Incline la tête sur le côté droit, oreille vers l\'épaule.', 'Maintiens 5 secondes. Change de côté.', 'Pas de rotations complètes.'], focus: 'Relâche les tensions cervicales.' }
+    'Rotations hanches':     {duration:'30 secondes',    steps:['Pieds écartés largeur épaules, mains sur les hanches.','Fais de grands cercles avec le bassin.','15 secondes dans chaque sens.','Amplitude maximale.'], focus:'Mobilise les hanches et le bas du dos.'},
+    'Rotations genoux':      {duration:'30 secondes',    steps:['Pieds joints, légèrement fléchis. Mains sur les genoux.','Petits cercles, 15s dans chaque sens.','Amplitude progressive.','Genoux restent ensemble.'], focus:'Lubrifie les articulations du genou.'},
+    'Leg swings':            {duration:'30 sec × jambe', steps:['Tiens-toi à un support fixe.','Balance la jambe d\'avant en arrière.','Amplitude progressive.','30 secondes par jambe.'], focus:'Active les fléchisseurs et extenseurs de hanche.'},
+    'Squats air lents':      {duration:'10 répétitions', steps:['Pieds écartés largeur épaules, orteils ouverts.','Descends lentement sur 3 secondes.','Genoux dans l\'axe des pieds, dos droit.','Remonte sur 2 secondes.'], focus:'Prépare genoux, hanches et chevilles.'},
+    'Étirement quadriceps':  {duration:'30 sec × jambe', steps:['Debout, attrape la cheville derrière toi.','Genoux collés — ne tire pas le genou en arrière.','Pousse les hanches vers l\'avant.','30 secondes par jambe.'], focus:'Étire le quadriceps.'},
+    'Étirement ischio':      {duration:'30 sec × jambe', steps:['Pose le talon sur une surface, jambe tendue.','Penche le buste en avant, dos droit.','Sens l\'étirement à l\'arrière de la cuisse.','30 secondes par jambe.'], focus:'Étire les ischio-jambiers.'},
+    'Pigeon yoga':           {duration:'30 sec × côté',  steps:['Pose la cheville droite sur le genou gauche.','Fléchis le genou gauche pour t\'asseoir en arrière.','Plus tu penches le buste, plus c\'est intense.','30 secondes par côté.'], focus:'Étire les fessiers.'},
+    'Respiration profonde':  {duration:'1 minute',       steps:['Assis ou allongé confortablement.','Inspire lentement par le nez en 4 temps.','Expire par la bouche en 6 temps.','Sens la fréquence cardiaque descendre.'], focus:'Active la récupération.'},
+    'Rotations épaules':     {duration:'30 secondes',    steps:['Bras le long du corps.','Grands cercles vers l\'avant 15s, vers l\'arrière 15s.','Amplitude maximale.',''], focus:'Lubrifie l\'articulation d\'épaule.'},
+    'Cercles de bras':       {duration:'30 secondes',    steps:['Bras tendus à l\'horizontale.','Petits cercles vers l\'avant 15s, grands vers l\'arrière 15s.','Garde les bras à hauteur d\'épaule.',''], focus:'Réchauffe les deltoïdes.'},
+    'Pompes mur lentes':     {duration:'10 répétitions', steps:['Face au mur, mains à hauteur d\'épaule.','Corps droit, ne creuse pas les reins.','Descends lentement sur 3 secondes.','Remonte sur 2 secondes.'], focus:'Active pectoraux et triceps en douceur.'},
+    'Ouverture thoracique':  {duration:'30 secondes',    steps:['Mains croisées derrière la nuque.','Ouvre les coudes en poussant la poitrine.','Regarde légèrement vers le haut.','Tiens 2-3 secondes, relâche, répète.'], focus:'Contre la fermeture thoracique.'},
+    'Étirement pectoraux':   {duration:'30 sec × côté',  steps:['Avant-bras contre le mur, coude à 90°.','Tourne le buste dans le sens opposé.','Ne force pas — laisse la gravité travailler.','30 secondes par côté.'], focus:'Ouvre les pectoraux.'},
+    'Étirement triceps':     {duration:'30 sec × bras',  steps:['Lève le bras, plie le coude, main dans le dos.','Avec l\'autre main, pousse le coude vers le bas.','Sens l\'étirement à l\'arrière du bras.','30 secondes par bras.'], focus:'Étire les triceps.'},
+    'Enfant (child pose)':   {duration:'1 minute',       steps:['À genoux, assis sur les talons.','Tends les bras devant toi, paumes au sol.','Laisse le front se poser.','Relâche tout. Respire profondément.'], focus:'Décompresse la colonne vertébrale.'},
+    'Rotation cervicales':   {duration:'30 secondes',    steps:['Assis ou debout, épaules relâchées.','Incline la tête sur le côté droit, oreille vers l\'épaule.','Maintiens 5 secondes. Change de côté.','Pas de rotations complètes.'], focus:'Relâche les tensions cervicales.'},
+    'Chat-vache':            {duration:'1 minute',       steps:['À 4 pattes, mains sous les épaules.','Inspiration : creuse le dos (vache).','Expiration : arrondi le dos (chat).','Enchaîne au rythme de ta respiration.'], focus:'Mobilise toute la colonne vertébrale.'},
+    'Rotations du tronc':    {duration:'30 sec × côté',  steps:['Debout, mains sur les hanches.','Tourne le buste à droite, hanches fixes.','Pousse l\'amplitude, regarde derrière toi.','30s à droite, 30s à gauche.'], focus:'Mobilise la colonne thoracique.'},
+    'Genoux hauts':          {duration:'1 minute',       steps:['Monte les genoux à hauteur des hanches, un à un.','Balance les bras en opposition.','Rythme modéré mais continu.','Reste bien droit.'], focus:'Active les fléchisseurs de hanche.'},
+    'Inclinaisons latérales':{duration:'30 secondes',    steps:['Debout, pieds joints.','Incline-toi latéralement, main vers le genou.','Sens l\'étirement sur le côté opposé.','Alterne gauche/droite lentement.'], focus:'Réveille les obliques.'},
+    'Cobra':                 {duration:'1 minute',       steps:['Allongé sur le ventre, mains sous les épaules.','Pousse sur les mains pour lever le buste.','Coudes légèrement fléchis.','Respire profondément.'], focus:'Contre-étirement après les abdos.'},
+    'Twist assis':           {duration:'30 sec × côté',  steps:['Assis, jambe droite tendue, genou gauche fléchi.','Tourne le buste vers la gauche.','Regarde derrière toi.','30 secondes par côté.'], focus:'Étire les obliques.'},
+    'Genou poitrine':        {duration:'30 sec × côté',  steps:['Allongé sur le dos, jambe gauche tendue.','Ramène le genou droit vers la poitrine.','Dos plat au sol.','30 secondes par côté.'], focus:'Étire le bas du dos.'},
+    'Saut léger':            {duration:'1 minute',       steps:['Petits sauts légers sur la pointe des pieds.','Genoux légèrement fléchis à l\'atterrissage.','Bras détendus.','L\'objectif c\'est la chaleur, pas l\'intensité.'], focus:'Monte la fréquence cardiaque.'},
+    'Rotations complètes':   {duration:'1 minute',       steps:['Rotations tête 10s, épaules 10s, hanches 10s, genoux 10s, chevilles 10s.','Toujours dans les deux sens.','Mouvements amples et lents.','Check-up de toutes les articulations.'], focus:'Mobilise l\'ensemble du corps.'},
+    'Rowing léger':          {duration:'15 répétitions', steps:['Fixe 1 seule bande légère à la barre.','Pieds sur l\'élastique, dos à 45°.','Tire doucement vers le nombril, relâche lentement.','L\'objectif est d\'activer les dorsaux, pas de travailler.'], focus:'Activation dorsaux et biceps avant la séance.'},
+    'Étirement biceps':      {duration:'30 sec × bras',  steps:['Tends le bras à l\'horizontale, paume vers le haut.','Avec l\'autre main, appuie doucement sur les doigts vers le bas.','Sens l\'étirement à l\'intérieur du bras.','30 secondes par bras.'], focus:'Étire les biceps et les fléchisseurs des poignets.'}
   };
 
   function showStretch(name) {
@@ -704,9 +1125,9 @@
     if (d) d.textContent = s.duration;
     var html = '';
     for (var i = 0; i < s.steps.length; i++) {
-      if (s.steps[i]) html += '<div class="stretch-step"><div class="stretch-step-num">' + (i + 1) + '</div><div class="stretch-step-text">' + s.steps[i] + '</div></div>';
+      if (s.steps[i]) html += '<div class="stretch-step"><div class="stretch-step-num">'+(i+1)+'</div><div class="stretch-step-text">'+s.steps[i]+'</div></div>';
     }
-    html += '<div class="stretch-focus">' + s.focus + '</div>';
+    html += '<div class="stretch-focus">'+s.focus+'</div>';
     if (b) b.innerHTML = html;
     var o = document.getElementById('stretchOverlay');
     if (o) o.classList.add('open');
@@ -723,11 +1144,14 @@
     if (o) o.classList.remove('open');
   }
 
-  /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function() {
     try { initWeekBadge(); } catch(e) {}
     try { loadState(); } catch(e) {}
     try { renderHistory(); } catch(e) {}
+    try {
+      var savedDay = lsGet('sw_activeDay');
+      if (savedDay) switchDay(parseInt(savedDay, 10));
+    } catch(e) {}
     var warms = document.querySelectorAll('.warm-item');
     for (var w = 0; w < warms.length; w++) {
       (function(item) {
@@ -736,16 +1160,18 @@
     }
   });
 
-  window.handleCardClick  = handleCardClick;
-  window.stopTimer        = stopTimer;
-  window.cancelGlobalTimer = cancelGlobalTimer;
-  window.markAllDone      = markAllDone;
-  window.closeRecap       = closeRecap;
-  window.showStretch      = showStretch;
-  window.closeStretch     = closeStretch;
+  window.handleCardClick    = handleCardClick;
+  window.stopTimer          = stopTimer;
+  window.cancelGlobalTimer  = cancelGlobalTimer;
+  window.markDayDone        = markDayDone;
+  window.switchDay          = switchDay;
+  window.closeRecap         = closeRecap;
+  window.showStretch        = showStretch;
+  window.closeStretch       = closeStretch;
   window.closeStretchDirect = closeStretchDirect;
-  window.clickSerie       = clickSerie;
+  window.clickSerie         = clickSerie;
 })();
 </script>
+</div>
 </body>
 </html>
