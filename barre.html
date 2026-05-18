@@ -188,6 +188,14 @@
     <div class="gear-chip"><span>🤝</span> Poignées incluses</div>
     <div class="gear-chip"><span>👟</span> Chevilles straps</div>
   </div>
+  <div class="gear-title" style="margin-top:12px;">🎨 Code couleur élastiques</div>
+  <div class="gear-grid">
+    <div class="gear-chip"><span>🟢</span> Vert = 5 kg</div>
+    <div class="gear-chip"><span>🔵</span> Bleu = 10 kg</div>
+    <div class="gear-chip"><span>🟡</span> Jaune = 15 kg</div>
+    <div class="gear-chip"><span>🟠</span> Orange = 20 kg</div>
+    <div class="gear-chip"><span>🔴</span> Rouge = 25 kg</div>
+  </div>
 </div>
 
 <div class="progress-bar-wrap">
@@ -214,9 +222,9 @@
 <div class="tabs">
   <div class="tab active" data-day="1" onclick="switchDay(1)"><span class="day-num">J1</span><span class="day-label">Bas corps</span></div>
   <div class="tab" data-day="2" onclick="switchDay(2)"><span class="day-num">J2</span><span class="day-label">Push</span></div>
-  <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Core</span></div>
-  <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Circuit</span></div>
-  <div class="tab" data-day="5" onclick="switchDay(5)"><span class="day-num">J5</span><span class="day-label">Dos</span></div>
+  <div class="tab" data-day="3" onclick="switchDay(3)"><span class="day-num">J3</span><span class="day-label">Pull</span></div>
+  <div class="tab" data-day="4" onclick="switchDay(4)"><span class="day-num">J4</span><span class="day-label">Core</span></div>
+  <div class="tab" data-day="5" onclick="switchDay(5)"><span class="day-num">J5</span><span class="day-label">Circuit</span></div>
 </div>
 
 <!-- ===== J1 — BAS DU CORPS ===== -->
@@ -228,8 +236,8 @@
       <p>Quadriceps · Fessiers · Ischio-jambiers · Mollets</p>
       <div class="meta-tags">
         <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Lundi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~50 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries · 90s repos</span>
       </div>
     </div>
   </div>
@@ -245,13 +253,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Squat à la barre SmartWorkout</div>
-        <div class="ex-tip">Barre posée sur les trapèzes (pas la nuque), élastiques sous les pieds. Pieds largeur épaules, descends lentement en 2 secondes, cuisses parallèles au sol. Pousse dans les talons pour remonter.</div>
-        <div class="ex-setup">⚙️ Barre sur épaules · 2 bandes sous les 2 pieds</div>
+        <div class="ex-name">Squat barre</div>
+        <div class="ex-tip">Pieds écartés largeur épaules, barre sur les élastiques bloqués sous les pieds. Descends jusqu'aux cuisses parallèles au sol, dos droit. Remonte en poussant sur les talons. Plus tu écartes les pieds, plus la résistance est forte.</div>
+        <div class="ex-setup">⚙️ Barre sur épaules · 2–3 bandes sous les 2 pieds · 🟡🟠 20–30 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -259,13 +267,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">Fentes avec résistance</div>
-        <div class="ex-tip">Élastique sous le pied avant, poignées tenues dans les mains bras le long du corps. Un pied en avant fixé, l'autre en arrière. Descends le genou arrière vers le sol sans le toucher.</div>
-        <div class="ex-setup">⚙️ 1–2 bandes sous le pied avant · poignées dans les mains</div>
+        <div class="ex-name">Soulevé de terre</div>
+        <div class="ex-tip">Élastiques enroulés en double autour de la barre, pieds à largeur de hanches. Barre au sol, dos plat, poitrine haute. Tire en gardant la barre proche du corps le long des tibias. La résistance augmente au fil du mouvement — c'est l'avantage des élastiques vs les poids.</div>
+        <div class="ex-setup">⚙️ Élastiques en double enroulés autour de la barre · sous les pieds · 🟠🔴🔴 40–50 kg · DOS PLAT impératif</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps × jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -273,13 +281,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">03</div>
       <div class="ex-content">
-        <div class="ex-name">Hip Thrust à la barre</div>
-        <div class="ex-tip">Dos contre le canapé (hauteur des omoplates), barre en travers des cuisses + élastique. Pousse les hanches vers le plafond, serre les fesses fort en haut et tiens 2 secondes. Meilleur exercice fessiers qui existe.</div>
-        <div class="ex-setup">⚙️ Barre + 1–2 bandes en travers des hanches · dos appuyé sur le canapé</div>
+        <div class="ex-name">Fentes avant avec barre</div>
+        <div class="ex-tip">Un pied sur l'élastique, barre en position haute (sur les épaules). Pas en avant, genou avant à 90°, genou arrière qui frôle le sol. Buste droit tout au long. Fais toutes les reps d'une jambe avant de changer.</div>
+        <div class="ex-setup">⚙️ 1 bande sous le pied avant · barre sur épaules · 🟡 15–20 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">8 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -287,13 +295,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Romanian Deadlift à la barre</div>
-        <div class="ex-tip">Debout, élastiques sous les pieds, barre tenue prise pronation devant les cuisses. Penche le buste (DOS DROIT, jambes quasi tendues), barre le long des jambes jusqu'au milieu des tibias. Sens l'étirement ischio, remonte.</div>
-        <div class="ex-setup">⚙️ 2–3 bandes sous les pieds · dos droit impératif · prise pronation</div>
+        <div class="ex-name">Hip Thrust</div>
+        <div class="ex-tip">Dos appuyé sur le canapé/banc (hauteur des omoplates), barre sur les hanches avec élastiques bloqués sous les pieds. Pousse les hanches vers le haut en contractant fort les fessiers, tiens 1 seconde en haut. Redescends lentement sans toucher le sol.</div>
+        <div class="ex-setup">⚙️ Barre + élastiques en travers des hanches · dos appuyé sur le canapé · 🟠🔴 30–40 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -302,11 +310,12 @@
       <div class="ex-number">05</div>
       <div class="ex-content">
         <div class="ex-name">Élévations de mollets</div>
-        <div class="ex-tip">Debout, tiens la barre horizontalement devant toi pour l'équilibre. Monte sur la pointe des pieds en serrant les mollets, redescends lentement sur 3 secondes. Amplitude maximale à chaque rep.</div>
+        <div class="ex-tip">Pieds sur les élastiques, barre sur les épaules pour ajouter de la résistance. Monte sur la pointe des pieds lentement en contractant les mollets, descends sans reposer les talons. Amplitude maximale à chaque rep.</div>
+        <div class="ex-setup">⚙️ Élastiques sous les pieds · barre sur épaules · 🟢🟡 10–15 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">25 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">20 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -319,7 +328,7 @@
     <div class="warm-item" onclick="showStretch('Pigeon yoga')">Pigeon yoga (fessier) <span>30s × côté</span></div>
     <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Résistance progressive</strong> Commence avec 2 bandes sur le squat. Dès que 12 reps passent facilement sur 3 séries consécutives, rajoute une bande. Le RDL est technique — maîtrise le mouvement avant d'augmenter.</div>
+  <div class="tip-box"><strong>💡 Résistance progressive</strong> Commence avec 2 bandes sur le squat. Le soulevé de terre est l'exercice roi — le dos PLAT est non négociable. Maîtrise la forme avant d'augmenter. Dès que 10 reps passent facilement sur 3 séries, rajoute une bande.</div>
   <button class="done-btn" onclick="markDayDone(1)">✅ Marquer J1 comme terminé</button>
 </div>
 
@@ -332,8 +341,8 @@
       <p>Pectoraux · Épaules · Triceps</p>
       <div class="meta-tags">
         <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mardi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries · 90s repos</span>
       </div>
     </div>
   </div>
@@ -349,12 +358,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Pompes classiques</div>
-        <div class="ex-tip">Corps droit de la tête aux talons, coudes à 45° du corps. Descends la poitrine à 5 cm du sol, remonte en soufflant. Genoux au sol si nécessaire. Fondamental du push — ne néglige pas.</div>
+        <div class="ex-name">Développé couché barre (sol)</div>
+        <div class="ex-tip">Allongé au sol, élastiques enroulés sous le bas du dos. Barre au niveau de la poitrine, coudes à 45°. Pousse vers le haut jusqu'à extension complète. L'élastique est plus résistant en haut = muscle sollicité là où il est le plus fort.</div>
+        <div class="ex-setup">⚙️ Allongé au sol · élastiques enroulés sous le bas du dos · 🟠🔴🔴 40–60 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -362,13 +372,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">Développé militaire à la barre</div>
-        <div class="ex-tip">Debout, élastiques sous les pieds, barre à hauteur des épaules prise légèrement + large que les épaules. Pousse la barre au-dessus de la tête bras tendus, redescends lentement. Core serré, ne cambre pas le dos.</div>
-        <div class="ex-setup">⚙️ Barre + 2 bandes sous les 2 pieds · debout · prise légèrement large</div>
+        <div class="ex-name">Développé militaire</div>
+        <div class="ex-tip">Debout, pieds écartés sur les élastiques. Barre au niveau des clavicules, prise légèrement + large que les épaules. Pousse vers le haut jusqu'à bras tendus. Contracte les abdos pour ne pas creuser le dos. Redescends lentement.</div>
+        <div class="ex-setup">⚙️ Debout · pieds sur élastiques écartés · 🟡🟠 20–30 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -377,12 +387,12 @@
       <div class="ex-number">03</div>
       <div class="ex-content">
         <div class="ex-name">Élévations latérales</div>
-        <div class="ex-tip">Debout, une poignée dans chaque main, élastiques sous les pieds. Lève les bras sur les côtés jusqu'à hauteur des épaules — pas plus haut. Redescends lentement en 2 secondes. C'est la descente qui sculpte.</div>
-        <div class="ex-setup">⚙️ Poignées · 1 bande légère sous chaque pied · bras légèrement fléchis</div>
+        <div class="ex-tip">Poignées dans les mains, pieds sur les élastiques. Bras légèrement fléchis, monte les bras à hauteur des épaules en formant un T — pas plus haut. Descends lentement en 3 secondes. C'est la descente contrôlée qui sculpte.</div>
+        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 🟢 5–10 kg · bras légèrement fléchis</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -390,13 +400,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Extension triceps (pushdown)</div>
-        <div class="ex-tip">Ancre porte haute, barre ou poignées tenues à hauteur de poitrine. Coudes collés aux flancs — ils ne bougent absolument pas. Pousse vers le bas jusqu'à extension complète, redescends lentement. Isolé triceps.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUTE · barre ou poignées · 1–2 bandes</div>
+        <div class="ex-name">Extension triceps overhead</div>
+        <div class="ex-tip">Ancrage de porte BAS, dos à la porte. Poignées dans les mains, bras levés. Plie les coudes pour amener les mains derrière la tête en étirement complet des triceps, puis étends en contractant fort. Coudes fixes, ils ne s'écartent pas.</div>
+        <div class="ex-setup">⚙️ Ancre porte BAS · dos à la porte · poignées · 🟢🟡 10–15 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -404,13 +414,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Fly debout (câble croisé)</div>
-        <div class="ex-tip">Ancre porte haute, une poignée par main. Bras légèrement fléchis, ramène les mains devant toi en arc de cercle comme pour enlacer quelqu'un. Sens le squeeze des pectoraux internes en fin de mouvement.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUTE · 1 poignée par côté · 1 bande chacune · arc vers l'avant</div>
+        <div class="ex-name">Fly pectoraux</div>
+        <div class="ex-tip">Ancrage de porte milieu, un élastique de chaque côté avec poignées. Bras légèrement fléchis, ouvre grand (étirement pectoraux) puis ramène les mains devant toi comme si tu enlacais quelqu'un. Sens le squeeze en fin de mouvement.</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU · 1 poignée par côté · 🟢 5–10 kg · arc vers l'avant</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -419,183 +429,25 @@
   <div class="section-label">🧘 Retour au calme — 5 min</div>
   <div class="cooldown-list">
     <div class="warm-item" onclick="showStretch('Étirement pectoraux')">Ouverture pectoraux (porte) <span>30s × côté</span></div>
-    <div class="warm-item" onclick="showStretch('Étirement triceps')">Étirement triceps <span>30s × bras</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement triceps')">Étirement triceps overhead <span>30s × bras</span></div>
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Les 3 angles épaules</strong> Développé militaire (épaule antérieure) + élévations latérales (épaule médiane) + fly (pectoraux internes) = couverture complète. Descente lente sur chaque mouvement — c'est là que le muscle se construit.</div>
+  <div class="tip-box"><strong>💡 Extension overhead vs pushdown</strong> L'extension overhead étire le triceps long dans sa position d'étirement maximum — beaucoup plus efficace que le pushdown classique. Le développé couché au sol protège les épaules car l'amplitude est limitée naturellement.</div>
   <button class="done-btn" onclick="markDayDone(2)">✅ Marquer J2 comme terminé</button>
 </div>
 
-<!-- ===== J3 — CORE ===== -->
+<!-- ===== J3 — PULL ===== -->
 <div class="day-panel" id="day3">
   <div class="day-header">
-    <div class="day-icon" style="background:#1a0a00;">🔥</div>
+    <div class="day-icon" style="background:#001a2a;">🔙</div>
     <div>
-      <h2>CORE & GAINAGE</h2>
-      <p>Abdominaux · Obliques · Stabilisateurs · Fessiers</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Mercredi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
-      </div>
-    </div>
-  </div>
-  <div class="section-label">🔥 Échauffement — 5 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Chat-vache')">Chat-vache (cat-cow) <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
-    <div class="warm-item" onclick="showStretch('Genoux hauts')">Genoux hauts sur place <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Inclinaisons latérales')">Inclinaisons latérales <span>30 sec</span></div>
-  </div>
-  <div class="section-label">💪 Exercices</div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">01</div>
-      <div class="ex-content">
-        <div class="ex-name">Dead Bug</div>
-        <div class="ex-tip">Sur le dos, bras vers le ciel, genoux à 90°. Descends UN bras et la jambe OPPOSÉE simultanément sans creuser le dos. Lent et contrôlé — si le bas du dos se décolle, tu vas trop loin.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps × côté</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">02</div>
-      <div class="ex-content">
-        <div class="ex-name">Crunch câble debout</div>
-        <div class="ex-tip">Ancre porte haute, tiens les poignées ou la barre derrière la nuque. Courbe le buste vers le bas en contractant fort les abdos — pense à ramener les côtes vers le bassin. Remonte lentement. Bien supérieur au crunch au sol.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUTE · poignées ou barre · 1–2 bandes</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">03</div>
-      <div class="ex-content">
-        <div class="ex-name">Woodchop (rotation diagonale)</div>
-        <div class="ex-tip">Ancre porte haute, une poignée. Tire en diagonale de haut en bas vers ta hanche opposée — rotation complète du tronc. Les hanches restent face à la porte, c'est le buste qui tourne. Alterne les côtés chaque série.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUTE · 1 poignée · 1–2 bandes · rotation haut → bas</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">04</div>
-      <div class="ex-content">
-        <div class="ex-name">Planche frontale</div>
-        <div class="ex-tip">Sur les avant-bras, corps droit de la tête aux talons. Contracte les abdos et les fessiers simultanément, sans retenir ta respiration. Commence à 25 secondes et rajoute 5 secondes par semaine.</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">25 secondes</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Kick-back fessier (cheville strap)</div>
-        <div class="ex-tip">Cheville strap fixée à un pied, ancre porte basse. À 4 pattes ou debout légèrement penché, mains sur la barre pour support. Pousse la jambe vers l'arrière en extension complète, serre les fesses. Redescends lentement.</div>
-        <div class="ex-setup">⚙️ Cheville strap · ancre porte BASSE · 1 bande · extension arrière</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">15 reps × jambe</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-  </div>
-  <div class="section-label">🧘 Retour au calme — 5 min</div>
-  <div class="cooldown-list">
-    <div class="warm-item" onclick="showStretch('Cobra')">Cobra (stretch abdos) <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Twist assis')">Twist assis <span>30s × côté</span></div>
-    <div class="warm-item" onclick="showStretch('Genou poitrine')">Genou poitrine allongé <span>30s × côté</span></div>
-  </div>
-  <div class="tip-box"><strong>💡 Core avec résistance constante</strong> Le crunch câble + woodchop créent une tension sur toute l'amplitude — exactement comme les câbles de salle à 3000€. La planche reste le roi du gainage. Le kick-back avec strap complète parfaitement les fessiers du J1.</div>
-  <button class="done-btn" onclick="markDayDone(3)">✅ Marquer J3 comme terminé</button>
-</div>
-
-<!-- ===== J4 — CIRCUIT ===== -->
-<div class="day-panel" id="day4">
-  <div class="day-header">
-    <div class="day-icon" style="background:#1a0018;">⚡</div>
-    <div>
-      <h2>CIRCUIT FULL BODY</h2>
-      <p>Cardio · Force · Endurance · Full body</p>
-      <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
-        <span class="meta-tag" style="background:#1a0018;color:#d946ef;">4 rounds</span>
-      </div>
-    </div>
-  </div>
-  <div class="section-label">🔥 Échauffement — 5 min</div>
-  <div class="warmup-list">
-    <div class="warm-item" onclick="showStretch('Saut léger')">Saut léger sur place <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Rotations complètes')">Rotations complètes <span>1 min</span></div>
-    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air × 10</div>
-    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur × 10</div>
-  </div>
-  <div class="section-label">⚡ Le Circuit — 4 rounds</div>
-  <div class="circuit-box">
-    <div class="circuit-title">🔄 5 EXOS ENCHAÎNÉS SANS PAUSE · 60s repos ENTRE ROUNDS</div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.7;padding:4px 0 10px;">
-      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squat à la barre — 12 reps</strong><br>
-      <span style="padding-left:16px;display:inline-block;">Barre sur épaules, 2 bandes sous pieds. Descends lent, pousse dans les talons.</span><br><br>
-      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Pompes — 10 reps</strong><br>
-      <span style="padding-left:16px;display:inline-block;">Corps en planche, coudes à 45°. Genoux au sol si besoin.</span><br><br>
-      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Rowing courbé à la barre — 10 reps</strong><br>
-      <span style="padding-left:16px;display:inline-block;">Élastiques sous pieds, dos à 45°. Tire la barre vers le nombril, omoplates serrées.</span><br><br>
-      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Mountain Climbers — 10 reps × jambe</strong><br>
-      <span style="padding-left:16px;display:inline-block;">En position pompe, genoux vers la poitrine alternés lentement. Dos plat.</span><br><br>
-      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Développé militaire — 8 reps</strong><br>
-      <span style="padding-left:16px;display:inline-block;">Élastiques sous pieds, barre des épaules vers le haut bras tendus. Core serré.</span>
-    </div>
-  </div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">⚡</div>
-      <div class="ex-content">
-        <div class="ex-name">Circuit complet (5 exos enchaînés)</div>
-        <div class="ex-tip">Squat barre → Pompes → Rowing courbé → Mountain Climbers → Développé militaire. Enchaîne sans pause, 60s de repos entre rounds. Si tu manques de souffle, marche 30s avant de reprendre.</div>
-        <div class="ex-setup">⚙️ Barre · 2 bandes sous pieds pour squat + rowing + développé</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">4</span> rounds</div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-  </div>
-  <div class="tip-box"><strong>💡 Circuit barre</strong> Squat + rowing + développé militaire en circuit, c'est jambes, dos et épaules en une session cardio. Le rowing courbé remplace le glute bridge du circuit callisthénie — bien plus intense et utile pour le dos.</div>
-  <button class="done-btn" onclick="markDayDone(4)">✅ Marquer J4 comme terminé</button>
-</div>
-
-<!-- ===== J5 — DOS & TIRAGE ===== -->
-<div class="day-panel" id="day5">
-  <div class="day-header">
-    <div class="day-icon" style="background:#001a2a;">🏋️</div>
-    <div>
-      <h2>DOS & TIRAGE</h2>
+      <h2>HAUT DU CORPS — PULL</h2>
       <p>Dorsaux · Biceps · Trapèzes · Épaules arrière</p>
       <div class="meta-tags">
-        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~40 min</span>
-        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries</span>
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Jeudi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries · 90s repos</span>
       </div>
     </div>
   </div>
@@ -611,13 +463,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Rowing courbé à la barre</div>
-        <div class="ex-tip">Pieds écartés sur l'élastique, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates. Redescends lentement en 2 secondes.</div>
-        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 2–3 bandes (35–55 kg) · prise pronation</div>
+        <div class="ex-name">Rowing barre</div>
+        <div class="ex-tip">Pieds sur les élastiques, barre dans les mains, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates l'une vers l'autre. Coudes le long du corps. Ne te redresse pas pendant le mouvement. Redescends en 2 secondes.</div>
+        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · dos à 45° · 🟠🔴 30–40 kg · prise pronation</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -626,12 +478,12 @@
       <div class="ex-number">02</div>
       <div class="ex-content">
         <div class="ex-name">Tirage vertical (Lat Pulldown)</div>
-        <div class="ex-tip">Ancre fixée en haut de la porte. Assis sur une chaise, dos droit. Tire la barre vers la poitrine en ramenant les coudes vers les hanches. Contrôle la remontée.</div>
-        <div class="ex-setup">⚙️ Ancre de porte EN HAUT · 2 bandes (30–40 kg) · prise pronation large</div>
+        <div class="ex-tip">Ancrage de porte HAUT. Assis sur une chaise ou agenouillé, dos droit. Tire la barre vers la poitrine en ouvrant les coudes vers le bas — pense à ramener tes coudes dans les poches. Contrôle la remontée en 3 secondes. Simule le tirage poulie haute de salle.</div>
+        <div class="ex-setup">⚙️ Ancre porte EN HAUT · barre ou poignées · 🟡🟠 20–30 kg · prise pronation large</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -640,12 +492,12 @@
       <div class="ex-number">03</div>
       <div class="ex-content">
         <div class="ex-name">Face pull</div>
-        <div class="ex-tip">Ancre à hauteur des yeux, poignées. Tire vers ton visage en écartant les coudes à 90°. Les mains finissent de chaque côté de la tête. Essentiel pour la santé des épaules et la posture.</div>
-        <div class="ex-setup">⚙️ Ancre de porte à hauteur YEUX · 1 bande légère (10–15 kg) · poignées</div>
+        <div class="ex-tip">Ancrage de porte milieu/haut, poignées. Tire vers ton visage en écartant les coudes à hauteur des épaules — les mains finissent de chaque côté de la tête. Excellent pour la santé des épaules, les trapèzes et la posture. Exercice à ne jamais négliger.</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU/HAUT · poignées · 🟢🟡 10–15 kg · coudes à hauteur épaules</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -653,13 +505,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Rowing menton (Upright row)</div>
-        <div class="ex-tip">Debout sur l'élastique, barre en prise pronation plus large que les épaules. Monte la barre le long du corps jusqu'au menton, coudes vers le haut. Ne hausse pas les épaules en fin de mouvement.</div>
-        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–25 kg) · prise large</div>
+        <div class="ex-name">Curl biceps barre</div>
+        <div class="ex-tip">Pieds écartés sur les élastiques, barre en prise supination (paumes vers le haut). Coudes plaqués contre les flancs — ils ne bougent absolument pas. Fléchis en remontant la barre jusqu'aux épaules. Redescends lentement en 3 secondes. Ne balance pas le dos.</div>
+        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · prise supination · 🟡🟠 20–25 kg · coudes fixes</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -667,13 +519,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Curl biceps à la barre</div>
-        <div class="ex-tip">Debout sur l'élastique, prise supination (paumes vers le haut). Coudes plaqués contre les flancs — ils ne bougent pas. Monte la barre jusqu'aux épaules, redescends lentement en 3 secondes.</div>
-        <div class="ex-setup">⚙️ Élastique sous les 2 pieds · 1–2 bandes (15–30 kg) · prise supination</div>
+        <div class="ex-name">Curl marteau (poignées)</div>
+        <div class="ex-tip">Poignées, pieds sur les élastiques, prise neutre (pouce vers le haut). Fléchis les coudes en gardant les poignets droits. Alterne gauche/droite ou les deux ensemble. Cible le long supinateur et le brachial en plus du biceps — renforce l'avant-bras.</div>
+        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 🟢🟡 10–15 kg · prise neutre (marteau)</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
         </div>
       </div>
       <div class="check-icon">✓</div>
@@ -686,7 +538,174 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Résistance élastiques</strong> La résistance augmente au fur et à mesure que tu étires l'élastique. Commence léger pour maîtriser le mouvement, augmente quand tu gardes une forme parfaite sur toutes les séries.</div>
+  <div class="tip-box"><strong>💡 Pull complet</strong> Rowing (dos horizontal) + tirage vertical (largeur dorsaux) + face pull (épaules arrière + trapèzes) + 2 variations biceps = couverture totale chaîne postérieure. Le face pull est le garant de la santé long terme de tes épaules.</div>
+  <button class="done-btn" onclick="markDayDone(3)">✅ Marquer J3 comme terminé</button>
+</div>
+
+<!-- ===== J4 — CORE ===== -->
+<div class="day-panel" id="day4">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0a00;">🔥</div>
+    <div>
+      <h2>CORE & GAINAGE</h2>
+      <p>Abdominaux · Obliques · Stabilisateurs · Anti-rotation</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~35 min</span>
+        <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries · 60s repos</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Chat-vache')">Chat-vache (cat-cow) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Genoux hauts')">Genoux hauts sur place <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Inclinaisons latérales')">Inclinaisons latérales <span>30 sec</span></div>
+  </div>
+  <div class="section-label">💪 Exercices</div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">01</div>
+      <div class="ex-content">
+        <div class="ex-name">Crunch élastique</div>
+        <div class="ex-tip">Ancrage de porte HAUT, allongé sur le dos face à la porte. Poignées ou barre derrière la nuque — ne tire pas dessus avec les mains. Contracte les abdos pour ramener les épaules vers les genoux en enroulant le dos. Plus intense que le crunch classique grâce à la résistance constante.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos face à la porte · 🟢 5–10 kg</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">02</div>
+      <div class="ex-content">
+        <div class="ex-name">Woodchop (bûcheron)</div>
+        <div class="ex-tip">Ancrage de porte HAUT, côté à la porte. Tire en diagonale de haut en bas comme si tu cognais une hache — rotation complète du buste. Les hanches restent face à la porte, c'est uniquement le tronc qui tourne. Change de côté entre chaque série.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · côté à la porte · 🟢🟡 10–15 kg · 1 poignée · rotation haut → bas</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">03</div>
+      <div class="ex-content">
+        <div class="ex-name">Planche avec row</div>
+        <div class="ex-tip">Ancrage de porte BAS, position planche sur les mains. Tire une poignée vers la hanche tout en maintenant la planche — ne tourne pas les hanches, ne les lève pas. Pose la main, alterne l'autre côté. Excellent pour le core anti-rotation.</div>
+        <div class="ex-setup">⚙️ Ancre porte BAS · position planche · 🟢 5–10 kg · 1 poignée</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × bras</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">04</div>
+      <div class="ex-content">
+        <div class="ex-name">Russian twist élastique</div>
+        <div class="ex-tip">Assis au sol, ancrage de porte sur le côté. Tourne le buste en tirant l'élastique de gauche à droite — amplitude maximale, regarde dans la direction du twist. Pieds décollés si tu peux pour plus d'intensité. Les épaules, pas les bras, qui font le mouvement.</div>
+        <div class="ex-setup">⚙️ Ancre porte CÔTÉ · assis au sol · 🟢 5–10 kg · 1 poignée</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">15 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">05</div>
+      <div class="ex-content">
+        <div class="ex-name">Dead bug élastique</div>
+        <div class="ex-tip">Ancrage de porte HAUT, allongé sur le dos. Bras tendus tenant l'élastique vers le plafond. Abaisse la jambe opposée vers le sol sans creuser le bas du dos — il doit rester plaqué. Remonte lentement. La résistance ajoute un challenge sur les bras tout en faisant travailler le core.</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos · 🟢 5 kg · bras tendus tenant l'élastique</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × côté</span></div>
+          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Cobra')">Cobra (stretch abdos) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Twist assis')">Twist assis <span>30s × côté</span></div>
+    <div class="warm-item" onclick="showStretch('Genou poitrine')">Genou poitrine allongé <span>30s × côté</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Core avec résistance</strong> Crunch + woodchop = abdos en tension sur toute l'amplitude. La planche avec row est le roi des exercices anti-rotation — plus fonctionnel que la planche statique. Le dead bug élastique force une stabilisation active pendant le mouvement.</div>
+  <button class="done-btn" onclick="markDayDone(4)">✅ Marquer J4 comme terminé</button>
+</div>
+
+<!-- ===== J5 — CIRCUIT FULL BODY ===== -->
+<div class="day-panel" id="day5">
+  <div class="day-header">
+    <div class="day-icon" style="background:#1a0018;">⚡</div>
+    <div>
+      <h2>CIRCUIT FULL BODY</h2>
+      <p>Cardio · Force · Endurance · Full body</p>
+      <div class="meta-tags">
+        <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Samedi</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
+        <span class="meta-tag" style="background:#1a0018;color:#d946ef;">4 rounds · 90s repos</span>
+      </div>
+    </div>
+  </div>
+  <div class="section-label">🔥 Échauffement — 5 min</div>
+  <div class="warmup-list">
+    <div class="warm-item" onclick="showStretch('Saut léger')">Saut léger sur place <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations complètes')">Rotations complètes (toutes articulations) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Squats air lents')">Squats air lents <span>10 reps</span></div>
+    <div class="warm-item" onclick="showStretch('Pompes mur lentes')">Pompes mur lentes <span>10 reps</span></div>
+  </div>
+  <div class="section-label">⚡ Le Circuit — 4 rounds</div>
+  <div class="circuit-box">
+    <div class="circuit-title">🔄 5 EXOS ENCHAÎNÉS SANS PAUSE · 90s REPOS ENTRE ROUNDS</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.7;padding:4px 0 10px;">
+      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squat + développé militaire — 10 reps · 🟡🟠 20–25 kg</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Descends en squat, remonte en poussant la barre au-dessus de la tête. Full body en un seul exo — jambes + épaules.</span><br><br>
+      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Soulevé de terre — 10 reps · 🟠🔴 30–40 kg</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Même technique que J1. Dos plat, barre proche du corps. Jambes + dos = 2 groupes majeurs en un.</span><br><br>
+      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Rowing barre — 10 reps · 🟠 25–30 kg</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Enchaîne directement après le SDT. Dos incliné, tire la barre vers le nombril, omoplates serrées.</span><br><br>
+      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Fentes alternées — 8 reps × jambe · 🟡 15–20 kg</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Un pied sur l'élastique, alterne les jambes en rythme soutenu. Genou arrière frôle le sol.</span><br><br>
+      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Curl + extension triceps — 10 reps · 🟢🟡 10–15 kg</strong><br>
+      <span style="padding-left:16px;display:inline-block;">Poignées, pieds sur élastiques. Curl biceps en montant, extension triceps en redescendant. Bras complets en un seul enchaînement.</span>
+    </div>
+  </div>
+  <div class="exercises">
+    <div class="exercise-card" onclick="handleCardClick(this)">
+      <div class="ex-number">⚡</div>
+      <div class="ex-content">
+        <div class="ex-name">Circuit complet (5 exos enchaînés)</div>
+        <div class="ex-tip">Squat+militaire → SDT → Rowing → Fentes → Curl+triceps. Enchaîne sans pause entre les exercices, 90s de repos entre rounds. Si tu manques de souffle, marche 30s sur place avant de reprendre. Ne sacrifie jamais la forme pour le rythme.</div>
+        <div class="ex-setup">⚙️ Barre · élastiques sous pieds · poignées pour le curl final</div>
+        <div class="ex-stats">
+          <div class="ex-stat"><span class="stat-accent">4</span> rounds</div>
+          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+        </div>
+      </div>
+      <div class="check-icon">✓</div>
+    </div>
+  </div>
+  <div class="section-label">🧘 Retour au calme — 5 min</div>
+  <div class="cooldown-list">
+    <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>2 min</span></div>
+    <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
+    <div class="warm-item" onclick="showStretch('Rotations épaules')">Rotations épaules douces <span>30 sec</span></div>
+    <div class="warm-item" onclick="showStretch('Étirement quadriceps')">Étirement quadriceps <span>30s × jambe</span></div>
+  </div>
+  <div class="tip-box"><strong>💡 Circuit intelligent</strong> Chaque exo cible un groupe différent — pas de récup musculaire nécessaire entre eux, mais l'intensité cardio monte vite. Commence à 60% de tes résistances habituelles le premier round, monte progressivement. Le curl+extension en fin de circuit brûle les avant-bras à fond.</div>
   <button class="done-btn" onclick="markDayDone(5)">✅ Marquer J5 comme terminé</button>
 </div>
 
