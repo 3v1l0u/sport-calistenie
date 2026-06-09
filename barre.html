@@ -264,6 +264,22 @@
   .mode-btn.noanchor .mode-dot { background: var(--orange); }
   .mode-hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; max-width: 480px; margin-left: auto; margin-right: auto; }
 
+  .wt-edit { background: transparent; border: none; color: var(--accent); font-size: 14px; cursor: pointer; padding: 0 4px; line-height: 1; vertical-align: middle; -webkit-tap-highlight-color: transparent; }
+  .wt-edit:active { opacity: 0.5; }
+
+  .weight-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2200; align-items: center; justify-content: center; padding: 16px; }
+  .weight-overlay.open { display: flex; }
+  .weight-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px 20px; width: 100%; max-width: 320px; text-align: center; }
+  .weight-modal .wm-ex { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .weight-modal .wm-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .wm-display { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-weight: 900; font-size: 44px; color: var(--text); line-height: 1; }
+  .wm-bands { font-size: 26px; margin-top: 8px; min-height: 30px; letter-spacing: 2px; }
+  .wm-stepper { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 18px 0; }
+  .wm-step { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--accent); font-size: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; }
+  .wm-step:active { background: #222a3a; }
+  .wm-save { width: 100%; padding: 13px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .wm-reset { width: 100%; padding: 10px; margin-top: 8px; background: transparent; border: none; color: var(--muted); font-size: 12px; cursor: pointer; text-decoration: underline; }
+
   /* PWA — safe areas iPhone (aucun effet sur PC : env() vaut 0) */
   @supports (padding: max(0px)) {
     body { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
@@ -312,7 +328,8 @@
 <div class="tip-box" style="margin-bottom: 16px; margin-top: 0;">
   <strong>🎒 Matériel &amp; code couleur officiel SmartWorkout</strong>
   🩶 Gris 5kg · 💚 Vert 10kg · 💙 Bleu foncé 15kg · 🖤 Noir 20kg · 🩵 Bleu clair 25kg<br>
-  Barre SmartWorkout 106cm · Poignées · Straps chevilles · Ancre porte XL
+  Barre SmartWorkout 106cm · Poignées · Straps chevilles · Ancre porte XL<br>
+  ✏️ Touche le crayon à côté d'un poids pour l'ajuster (les bandes se recalculent toutes seules).
 </div>
 
 <div class="mode-toggle">
@@ -874,6 +891,22 @@
   </div>
 </div>
 
+<!-- WEIGHT EDITOR -->
+<div class="weight-overlay" id="weightOverlay">
+  <div class="weight-modal">
+    <div class="wm-ex" id="wmEx">Exercice</div>
+    <div class="wm-title">Régler le poids</div>
+    <div class="wm-display"><span id="wmKg">20</span> kg</div>
+    <div class="wm-bands" id="wmBands">🖤</div>
+    <div class="wm-stepper">
+      <button class="wm-step" type="button" id="wmMinus">−</button>
+      <button class="wm-step" type="button" id="wmPlus">+</button>
+    </div>
+    <button class="wm-save" type="button" id="wmSave">Enregistrer</button>
+    <button class="wm-reset" type="button" id="wmReset">Remettre la valeur par défaut</button>
+  </div>
+</div>
+
 <script>
 (function() {
   'use strict';
@@ -1020,32 +1053,103 @@
     if (n < 5) switchDay(n + 1);
   }
 
-  /* ── Mode avec / sans ancrage de porte ── */
+  /* ── Mode ancrage + poids personnalisés ── */
   var MODE_KEY = 'sw_mode';
+  var WEIGHT_KEY = 'sw_weights';
   var modeNoAnchor = false;
+  var weightOverrides = {};
+  var WEIGHT_RE = /(?:🩶|💚|💙|🖤|🩵)*\s*\d+\s*kg/;
 
-  function applyMode() {
-    var cards = document.querySelectorAll('.exercise-card[data-alt-name]');
-    for (var i = 0; i < cards.length; i++) {
-      var card = cards[i];
-      var nameEl = card.querySelector('.ex-name');
-      var tipEl = card.querySelector('.ex-tip');
-      var setupEl = card.querySelector('.ex-setup');
-      if (!card.getAttribute('data-orig-name')) {
+  function loadWeights() {
+    try { var raw = lsGet(WEIGHT_KEY); weightOverrides = raw ? JSON.parse(raw) : {}; }
+    catch(e) { weightOverrides = {}; }
+  }
+  function saveWeights() { try { lsSet(WEIGHT_KEY, JSON.stringify(weightOverrides)); } catch(e) {} }
+
+  // Décompose un poids (multiple de 5) en bandes officielles : 5,10,15,20x2,25x2
+  function bandsFor(kg) {
+    var avail = {25:2, 20:2, 15:1, 10:1, 5:1};
+    var order = [25, 20, 15, 10, 5];
+    var picked = [], rem = kg;
+    for (var i = 0; i < order.length; i++) {
+      var v = order[i];
+      while (rem >= v && avail[v] > 0) { picked.push(v); avail[v]--; rem -= v; }
+    }
+    if (rem > 0) return null;
+    picked.sort(function(a,b){ return a-b; });
+    var map = {25:'🩵', 20:'🖤', 15:'💙', 10:'💚', 5:'🩶'};
+    var s = '';
+    for (var j = 0; j < picked.length; j++) s += map[picked[j]];
+    return s;
+  }
+
+  function parseKg(text) {
+    if (!text) return null;
+    var m = text.match(/(\d+)\s*kg/);
+    return m ? parseInt(m[1], 10) : null;
+  }
+
+  function baseSetupText(card) {
+    if (card.getAttribute('data-alt-name')) {
+      return modeNoAnchor ? card.getAttribute('data-alt-setup') : card.getAttribute('data-orig-setup');
+    }
+    return card.getAttribute('data-base-setup');
+  }
+
+  function ensureBase(card) {
+    var nameEl = card.querySelector('.ex-name');
+    var tipEl = card.querySelector('.ex-tip');
+    var setupEl = card.querySelector('.ex-setup');
+    if (card.getAttribute('data-alt-name')) {
+      if (card.getAttribute('data-orig-name') === null) {
         card.setAttribute('data-orig-name', nameEl ? nameEl.textContent : '');
         card.setAttribute('data-orig-tip', tipEl ? tipEl.textContent : '');
         card.setAttribute('data-orig-setup', setupEl ? setupEl.textContent : '');
       }
-      if (modeNoAnchor) {
-        if (nameEl) nameEl.textContent = card.getAttribute('data-alt-name');
-        if (tipEl) tipEl.textContent = card.getAttribute('data-alt-tip');
-        if (setupEl) setupEl.textContent = card.getAttribute('data-alt-setup');
-      } else {
-        if (nameEl) nameEl.textContent = card.getAttribute('data-orig-name');
-        if (tipEl) tipEl.textContent = card.getAttribute('data-orig-tip');
-        if (setupEl) setupEl.textContent = card.getAttribute('data-orig-setup');
+    } else if (setupEl && card.getAttribute('data-base-setup') === null) {
+      card.setAttribute('data-base-setup', setupEl.textContent);
+    }
+  }
+
+  function renderExercise(card) {
+    ensureBase(card);
+    var nameEl = card.querySelector('.ex-name');
+    var tipEl = card.querySelector('.ex-tip');
+    var setupEl = card.querySelector('.ex-setup');
+    if (card.getAttribute('data-alt-name')) {
+      if (nameEl) nameEl.textContent = modeNoAnchor ? card.getAttribute('data-alt-name') : card.getAttribute('data-orig-name');
+      if (tipEl) tipEl.textContent = modeNoAnchor ? card.getAttribute('data-alt-tip') : card.getAttribute('data-orig-tip');
+    }
+    if (!setupEl) return;
+    var base = baseSetupText(card);
+    if (base == null) return;
+    var defKg = parseKg(base);
+    var text = base;
+    if (defKg != null) {
+      var wid = card.getAttribute('data-wid');
+      var ov = weightOverrides[wid];
+      if (ov != null && ov !== defKg) {
+        var b = bandsFor(ov);
+        var token = (b ? b + ' ' : '') + ov + ' kg';
+        text = base.replace(WEIGHT_RE, token);
       }
     }
+    setupEl.textContent = text;
+    if (defKg != null) {
+      var btn = document.createElement('button');
+      btn.className = 'wt-edit';
+      btn.type = 'button';
+      btn.textContent = '✏️';
+      btn.setAttribute('aria-label', 'Modifier le poids');
+      btn.addEventListener('click', function(e) { e.stopPropagation(); openWeightEditor(card); });
+      setupEl.appendChild(document.createTextNode(' '));
+      setupEl.appendChild(btn);
+    }
+  }
+
+  function renderAll() {
+    var cards = document.querySelectorAll('.exercise-card');
+    for (var i = 0; i < cards.length; i++) renderExercise(cards[i]);
     var btn = document.getElementById('modeBtn');
     var lbl = document.getElementById('modeBtnLabel');
     if (btn) { if (modeNoAnchor) btn.classList.add('noanchor'); else btn.classList.remove('noanchor'); }
@@ -1055,7 +1159,57 @@
   function toggleMode() {
     modeNoAnchor = !modeNoAnchor;
     lsSet(MODE_KEY, modeNoAnchor ? '1' : '0');
-    applyMode();
+    renderAll();
+  }
+
+  /* ── Éditeur de poids ── */
+  var wmCard = null, wmKg = 0, wmBase = 0;
+
+  function updateWmDisplay() {
+    var kgEl = document.getElementById('wmKg');
+    var bEl = document.getElementById('wmBands');
+    if (kgEl) kgEl.textContent = wmKg;
+    if (bEl) bEl.textContent = bandsFor(wmKg) || '—';
+  }
+
+  function openWeightEditor(card) {
+    wmCard = card;
+    wmBase = parseKg(baseSetupText(card));
+    var wid = card.getAttribute('data-wid');
+    wmKg = (weightOverrides[wid] != null) ? weightOverrides[wid] : wmBase;
+    var nm = card.querySelector('.ex-name');
+    var exEl = document.getElementById('wmEx');
+    if (exEl) exEl.textContent = nm ? nm.textContent : 'Exercice';
+    updateWmDisplay();
+    var o = document.getElementById('weightOverlay');
+    if (o) o.classList.add('open');
+  }
+
+  function closeWeight() {
+    var o = document.getElementById('weightOverlay');
+    if (o) o.classList.remove('open');
+    wmCard = null;
+  }
+
+  function saveWeight() {
+    if (wmCard) {
+      var wid = wmCard.getAttribute('data-wid');
+      if (wmKg === wmBase) delete weightOverrides[wid];
+      else weightOverrides[wid] = wmKg;
+      saveWeights();
+      renderExercise(wmCard);
+    }
+    closeWeight();
+  }
+
+  function resetWeight() {
+    if (wmCard) {
+      var wid = wmCard.getAttribute('data-wid');
+      delete weightOverrides[wid];
+      saveWeights();
+      renderExercise(wmCard);
+    }
+    closeWeight();
   }
 
   function switchDay(n) {
@@ -1322,7 +1476,28 @@
     try { initWeekBadge(); } catch(e) {}
     try { loadState(); } catch(e) {}
     try { renderHistory(); } catch(e) {}
-    try { modeNoAnchor = (lsGet(MODE_KEY) === '1'); applyMode(); } catch(e) {}
+    try {
+      loadWeights();
+      modeNoAnchor = (lsGet(MODE_KEY) === '1');
+      var panels = document.querySelectorAll('.day-panel');
+      for (var p = 0; p < panels.length; p++) {
+        var pc = panels[p].querySelectorAll('.exercise-card');
+        for (var j = 0; j < pc.length; j++) pc[j].setAttribute('data-wid', panels[p].id + '-' + j);
+      }
+      renderAll();
+    } catch(e) {}
+    try {
+      var mMinus = document.getElementById('wmMinus');
+      var mPlus = document.getElementById('wmPlus');
+      var mSave = document.getElementById('wmSave');
+      var mReset = document.getElementById('wmReset');
+      var mOv = document.getElementById('weightOverlay');
+      if (mMinus) mMinus.addEventListener('click', function() { if (wmKg > 5) { wmKg -= 5; updateWmDisplay(); } });
+      if (mPlus) mPlus.addEventListener('click', function() { if (wmKg < 120) { wmKg += 5; updateWmDisplay(); } });
+      if (mSave) mSave.addEventListener('click', saveWeight);
+      if (mReset) mReset.addEventListener('click', resetWeight);
+      if (mOv) mOv.addEventListener('click', function(e) { if (e.target === mOv) closeWeight(); });
+    } catch(e) {}
     try {
       var savedDay = lsGet('sw_activeDay');
       if (savedDay) switchDay(parseInt(savedDay, 10));
