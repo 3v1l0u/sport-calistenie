@@ -1,177 +1,289 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Barre">
+<meta name="theme-color" content="#0d0f13">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
 <title>SmartWorkout Elite — 5 Jours</title>
+
 <style>
   :root {
-    --bg: #0d0f13; --surface: #161a22; --card: #1d2230; --border: #2a3045;
-    --accent: #47c8ff; --text: #e8eaf0; --muted: #6b7591;
-    --green: #4ade80; --blue: #60a5fa; --orange: #fb923c;
+    --bg: #0d0f13;
+    --surface: #161a22;
+    --card: #1d2230;
+    --border: #2a3045;
+    --accent: #47c8ff;
+    --text: #e8eaf0;
+    --muted: #6b7591;
+    --green: #4ade80;
+    --blue: #60a5fa;
+    --purple: #a78bfa;
+    --orange: #fb923c;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; min-height:100vh; padding:20px 16px 140px; }
-  .container { max-width:700px; margin:0 auto; width:100%; }
 
-  .nav-back { margin-bottom:20px; }
-  .nav-back a { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 16px; font-size:12px; font-weight:600; color:var(--muted); text-decoration:none; transition:all 0.2s; }
-  .nav-back a:hover { border-color:var(--accent); color:var(--text); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  header { text-align:center; margin-bottom:24px; }
-  h1 { font-weight:900; font-size:38px; letter-spacing:2px; line-height:0.9; color:var(--text); }
-  h1 span { color:var(--accent); }
-  .subtitle { margin-top:10px; color:var(--muted); font-size:13px; letter-spacing:0.5px; }
-  .profile-bar { display:flex; justify-content:center; gap:12px; margin-top:14px; flex-wrap:wrap; }
-  .profile-pill { background:var(--surface); border:1px solid var(--border); border-radius:100px; padding:5px 14px; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; }
-  .profile-pill strong { color:var(--text); font-weight:600; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+  }
 
-  .gear-box { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:20px; }
-  .gear-title { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-  .gear-grid { display:flex; gap:8px; flex-wrap:wrap; }
-  .gear-chip { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px 12px; font-size:11px; color:var(--text); display:flex; align-items:center; gap:6px; }
-  .gear-chip span { color:var(--accent); font-size:14px; }
+  .container { max-width: 700px; margin: 0 auto; width: 100%; }
 
-  .progress-bar-wrap { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:16px; }
-  .progress-top { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--muted); margin-bottom:10px; }
-  .progress-top strong { color:var(--accent); font-size:14px; }
-  .bar-track { display:flex; gap:3px; height:6px; }
-  .bar-seg { flex:1; background:var(--border); border-radius:3px; transition:background 0.3s; }
-  .bar-seg.done { background:var(--accent); }
-  .week-badge { display:inline-block; background:var(--accent); color:#000; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; }
+  .nav-back { margin-bottom: 20px; }
+  .nav-back a { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; transition: all 0.2s; }
+  .nav-back a:hover { border-color: var(--accent); color: var(--text); }
 
-  .history-section { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:20px; }
-  .history-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-  .history-grid { display:flex; gap:6px; flex-wrap:wrap; }
-  .history-chip { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:11px; color:var(--muted); text-align:center; min-width:60px; }
-  .history-chip .hw { font-weight:700; color:var(--text); font-size:12px; display:block; }
-  .history-chip .hscore { color:var(--accent); font-weight:600; }
-  .history-chip.perfect { border-color:var(--accent); }
-  .history-empty { font-size:11px; color:var(--muted); font-style:italic; }
+  header { text-align: center; margin-bottom: 28px; position: relative; }
 
-  .tabs { display:flex; gap:6px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; justify-content:center; }
-  .tabs::-webkit-scrollbar { display:none; }
-  .tab { flex-shrink:0; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px 14px; cursor:pointer; transition:all 0.2s; text-align:center; min-width:70px; }
-  .tab:hover { border-color:var(--accent); }
-  .tab.active { background:var(--accent); border-color:var(--accent); color:#000; }
-  .tab .day-num { font-weight:900; font-size:22px; line-height:1; display:block; }
-  .tab .day-label { font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; opacity:0.7; display:block; margin-top:2px; }
-  .tab.active .day-label { opacity:0.6; }
+  h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px;
+    font-size: 42px; letter-spacing: 2px; line-height: 0.9; color: var(--text);
+  }
+  h1 span { color: var(--accent); }
 
-  .day-panel { display:none; }
-  .day-panel.active { display:block; }
+  .subtitle { margin-top: 12px; color: var(--muted); font-size: 13px; font-weight: 400; letter-spacing: 0.5px; }
 
-  .day-header { display:flex; gap:14px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:18px; }
-  .day-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-  .day-header h2 { font-size:20px; font-weight:800; letter-spacing:1px; margin-bottom:3px; }
-  .day-header p { font-size:12px; color:var(--muted); }
-  .meta-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
-  .meta-tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:100px; }
+  .profile-bar { display: flex; justify-content: center; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
+  .profile-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .profile-pill strong { color: var(--text); font-weight: 600; }
 
-  .section-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:18px 0 10px; }
+  .intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .intro-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; text-align: center; }
+  .intro-card .emoji { font-size: 22px; margin-bottom: 6px; }
+  .intro-card .val { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 28px; color: var(--accent); line-height: 1; }
+  .intro-card .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
-  .warmup-list, .cooldown-list { display:flex; flex-direction:column; gap:4px; margin-bottom:6px; }
-  .warm-item { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:12px; color:var(--text); display:flex; justify-content:space-between; cursor:pointer; transition:opacity 0.2s; }
-  .warm-item span { color:var(--muted); font-size:11px; }
-  .warm-item.checked { opacity:0.4; text-decoration:line-through; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; justify-content: center; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; cursor: pointer; transition: all 0.2s; text-align: center; min-width: 70px; }
+  .tab:hover { border-color: var(--accent); }
+  .tab.active { background: var(--accent); border-color: var(--accent); color: #000; }
+  .tab .day-num { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 22px; line-height: 1; display: block; }
+  .tab .day-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; display: block; margin-top: 2px; }
+  .tab.active .day-label { opacity: 0.6; }
 
-  .exercises { display:flex; flex-direction:column; gap:10px; }
-  .exercise-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; gap:12px; align-items:flex-start; cursor:pointer; transition:all 0.2s; }
-  .exercise-card.timing { border-color:var(--accent); background:#0f1824; }
-  .exercise-card.done { opacity:0.55; }
-  .exercise-card.done .check-icon { background:var(--accent); border-color:var(--accent); color:#000; }
-  .ex-number { font-size:22px; font-weight:900; color:var(--border); min-width:28px; line-height:1.2; }
-  .exercise-card.timing .ex-number { color:var(--accent); }
-  .ex-content { flex:1; min-width:0; }
-  .ex-name { font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; }
-  .ex-tip { font-size:11px; color:var(--muted); line-height:1.5; }
-  .ex-setup { font-size:11px; color:var(--accent); margin-top:4px; font-weight:600; }
-  .ex-stats { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
-  .ex-stat { background:var(--surface); border-radius:6px; padding:4px 10px; font-size:11px; font-weight:600; display:flex; align-items:center; gap:4px; }
-  .stat-accent { color:var(--accent); }
-  .stat-blue { color:var(--blue); }
-  .stat-orange { color:var(--orange); }
-  .check-icon { width:26px; height:26px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; transition:all 0.2s; margin-top:2px; }
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+  .day-header { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+  .day-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .day-header h2 { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 26px; letter-spacing: 1px; line-height: 1; }
+  .day-header p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .meta-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .meta-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 100px; text-transform: uppercase; }
 
-  .circuit-box { background:var(--surface); border:2px solid var(--accent); border-radius:14px; padding:16px; margin-bottom:8px; }
-  .circuit-title { font-weight:900; font-size:15px; color:var(--accent); letter-spacing:1px; margin-bottom:12px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; padding-left: 4px; }
+  .warmup-list, .cooldown-list { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .warm-item { background: var(--card); border-radius: 8px; padding: 6px 12px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; cursor: pointer; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .warm-item:hover { border-color: var(--accent); background: #252c3a; }
+  .warm-item span { color: var(--muted); font-size: 11px; }
+  .warm-item::after { content: '›'; color: var(--muted); margin-left: auto; font-size: 14px; }
 
-  .tip-box { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:10px; padding:12px 14px; font-size:12px; color:var(--muted); margin-top:18px; line-height:1.6; }
-  .tip-box strong { color:var(--text); }
+  .stretch-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: flex-end; justify-content: center; padding: 16px; }
+  .stretch-overlay.open { display: flex; }
+  .stretch-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px 20px; width: 100%; max-width: 500px; animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .stretch-modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .stretch-modal-title { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 24px; letter-spacing: 1px; color: var(--accent); line-height: 1; }
+  .stretch-modal-duration { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .stretch-close { background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 16px; flex-shrink: 0; }
+  .stretch-modal-body { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .stretch-step { display: flex; gap: 10px; margin-bottom: 10px; padding: 10px 12px; background: var(--card); border-radius: 10px; }
+  .stretch-step-num { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 20px; color: var(--accent); line-height: 1; min-width: 20px; }
+  .stretch-step-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .stretch-focus { background: rgba(71,200,255,0.08); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 11px; color: var(--accent); margin-top: 10px; }
 
-  .done-btn { width:100%; margin-top:14px; padding:14px; background:var(--accent); color:#000; border:none; border-radius:12px; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; letter-spacing:0.5px; }
+  .exercises { display: flex; flex-direction: column; gap: 8px; }
+  .exercise-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.2s; cursor: pointer; }
+  .exercise-card:hover { border-color: var(--accent); }
+  .exercise-card.done { opacity: 0.45; }
+  .exercise-card.done .ex-name { text-decoration: line-through; }
+  .ex-number { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 28px; color: var(--muted); line-height: 1; min-width: 32px; flex-shrink: 0; }
+  .ex-content { flex: 1; min-width: 0; }
+  .ex-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .ex-tip { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .ex-setup { font-size: 11px; color: var(--accent); margin-top: 4px; font-weight: 600; opacity: 0.85; }
+  .ex-stats { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .ex-stat { background: var(--surface); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+  .stat-accent { color: var(--accent); }
+  .stat-blue { color: var(--blue); }
+  .stat-orange { color: var(--orange); }
+  .check-icon { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; transition: all 0.2s; margin-top: 2px; }
+  .exercise-card.done .check-icon { background: var(--accent); border-color: var(--accent); color: #000; }
 
-  .global-timer { position:fixed; top:12px; left:50%; transform:translateX(-50%); background:var(--card); border:1px solid var(--border); border-radius:100px; padding:8px 20px; display:flex; align-items:center; gap:10px; z-index:100; transition:all 0.3s; opacity:0; pointer-events:none; }
-  .global-timer.running { opacity:1; pointer-events:auto; }
-  .global-time { font-size:32px; font-weight:900; color:var(--text); min-width:80px; text-align:center; }
-  .global-stop { background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:5px 10px; font-size:11px; font-weight:600; cursor:pointer; }
+  .circuit-box { background: var(--surface); border: 2px solid var(--accent); border-radius: 14px; padding: 16px; margin-bottom: 8px; }
+  .circuit-title { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 18px; color: var(--accent); letter-spacing: 1px; margin-bottom: 12px; }
 
-  .timer-widget { position:fixed; bottom:20px; right:20px; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:16px; display:flex; flex-direction:column; align-items:center; gap:6px; width:160px; z-index:200; transition:all 0.25s; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
-  .timer-widget.hidden { opacity:0; pointer-events:none; transform:scale(0.9); }
-  .timer-ex-name { font-size:11px; color:var(--muted); text-align:center; min-height:28px; line-height:1.4; font-weight:500; }
-  .timer-svg-wrap { position:relative; width:80px; height:80px; margin:4px 0; }
-  .timer-svg { width:80px; height:80px; transform:rotate(-90deg); }
-  .timer-ring-bg { fill:none; stroke:var(--border); stroke-width:6; }
-  .timer-ring-fill { fill:none; stroke:var(--accent); stroke-width:6; stroke-linecap:round; stroke-dasharray:213.6; stroke-dashoffset:213.6; transition:stroke-dashoffset 0.9s linear, stroke 0.3s; }
-  .timer-time { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:20px; font-weight:900; color:var(--text); letter-spacing:-0.5px; }
-  .timer-status { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
-  .timer-status.active { color:var(--accent); }
-  .series-row { display:flex; flex-direction:column; gap:6px; width:100%; }
-  .serie-done-btn { width:100%; padding:10px; background:var(--accent); color:#000; border:none; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
-  .serie-done-btn:disabled { opacity:0.35; cursor:default; }
-  .timer-btn-stop { width:100%; padding:7px; background:none; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:11px; font-weight:600; cursor:pointer; }
+  .tip-box { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .tip-box strong { color: var(--accent); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
 
-  .recap-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:500; opacity:0; pointer-events:none; transition:opacity 0.3s; }
-  .recap-overlay.open { opacity:1; pointer-events:auto; }
-  .recap-modal { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:36px 28px; text-align:center; max-width:320px; width:90%; }
-  .recap-emoji { font-size:52px; margin-bottom:12px; }
-  .recap-title { font-size:22px; font-weight:900; margin-bottom:6px; }
-  .recap-sub { font-size:13px; color:var(--muted); margin-bottom:20px; }
-  .recap-time { font-size:58px; font-weight:900; color:var(--accent); letter-spacing:-2px; }
-  .recap-label { font-size:12px; color:var(--muted); margin-top:4px; }
-  .recap-close { margin-top:20px; background:var(--accent); color:#000; border:none; border-radius:10px; padding:12px 28px; font-weight:700; font-size:14px; cursor:pointer; }
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 28px; }
+  .week-cell { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px; text-align: center; }
+  .week-cell .wday { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .week-cell .wtype { font-size: 18px; margin: 4px 0; }
+  .week-cell .wlbl { font-size: 9px; color: var(--muted); }
+  .week-cell.rest-day { opacity: 0.5; }
+  .week-cell.active-day { border-color: var(--accent); }
 
-  .stretch-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.82); display:flex; align-items:flex-end; justify-content:center; z-index:400; opacity:0; pointer-events:none; transition:opacity 0.25s; }
-  .stretch-overlay.open { opacity:1; pointer-events:auto; }
-  .stretch-modal { background:var(--card); border-radius:24px 24px 0 0; padding:24px 20px 36px; width:100%; max-width:700px; max-height:70vh; overflow-y:auto; }
-  .stretch-modal-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
-  .stretch-modal-title { font-size:18px; font-weight:800; }
-  .stretch-modal-duration { font-size:12px; color:var(--accent); margin-top:3px; }
-  .stretch-close { width:28px; height:28px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px; color:var(--muted); flex-shrink:0; }
-  .stretch-step { display:flex; gap:10px; margin-bottom:12px; }
-  .stretch-step-num { width:22px; height:22px; border-radius:50%; background:var(--accent); color:#000; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
-  .stretch-step-text { font-size:13px; line-height:1.5; }
-  .stretch-focus { margin-top:14px; font-size:11px; color:var(--accent); font-weight:600; background:rgba(71,200,255,0.08); border-radius:8px; padding:8px 12px; }
+  .progress-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .progress-top span { font-size: 12px; color: var(--muted); }
+  .progress-top strong { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 20px; color: var(--accent); }
+  .bar-track { height: 8px; background: var(--card); border-radius: 100px; overflow: hidden; display: flex; gap: 3px; }
+  .bar-seg { height: 100%; border-radius: 100px; flex: 1; background: var(--border); transition: background 0.3s; }
+  .bar-seg.done { background: var(--accent); }
 
-  @media (max-width:600px) {
-    body { padding:12px 10px 140px; }
-    h1 { font-size:30px; }
-    .tab { min-width:54px; padding:8px 8px; }
-    .tab .day-num { font-size:18px; }
-    .tab .day-label { font-size:8px; }
-    .timer-widget { position:fixed !important; right:auto !important; top:auto !important; bottom:10px; left:50%; transform:translateX(-50%); width:calc(100vw - 20px); max-width:420px; flex-direction:row !important; align-items:center; gap:10px; padding:10px 14px !important; border-radius:20px !important; }
-    .timer-widget.hidden { transform:translateX(-50%) scale(0.92) !important; opacity:0; }
-    .timer-ex-name { font-size:10px; min-height:auto !important; margin-bottom:0 !important; text-align:left; flex:1; }
-    .timer-svg-wrap { width:50px !important; height:50px !important; margin:0 !important; }
-    .timer-svg { width:50px !important; height:50px !important; }
-    .timer-time { font-size:16px !important; }
-    .timer-status { font-size:9px; margin-bottom:4px !important; }
-    .serie-done-btn { font-size:11px; padding:8px; }
-    .timer-btn-stop { font-size:10px; padding:5px; }
-    .series-row { gap:4px; }
+  .timer-widget { position: fixed; right: calc((100vw - 700px) / 2 - 220px); top: 50%; transform: translateY(-50%); background: var(--surface); border: 2px solid var(--border); border-radius: 24px; padding: 28px 22px; width: 190px; text-align: center; z-index: 500; transition: all 0.3s ease; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
+  .timer-widget.hidden { opacity: 0; pointer-events: none; transform: translateY(-50%) scale(0.85); }
+  .timer-widget.running { border-color: var(--accent); box-shadow: 0 0 40px rgba(71,200,255,0.15); }
+  .timer-ex-name { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; line-height: 1.4; min-height: 0; word-break: break-word; }
+  .timer-svg-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 16px; }
+  .timer-svg { width: 130px; height: 130px; display: block; }
+  .timer-ring-bg { fill: none; stroke: var(--border); stroke-width: 7; }
+  .timer-ring-fill { fill: none; stroke: var(--muted); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 339.3; stroke-dashoffset: 0; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+  .timer-time { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; font-size: 40px; color: var(--text); line-height: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .timer-status { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+  .timer-status.active { color: var(--accent); }
+  .timer-btn-stop { background: #2a1a1a; border: 1px solid #4a2020; border-radius: 10px; padding: 9px 12px; font-size: 12px; font-weight: 700; color: #f87171; cursor: pointer; width: 100%; letter-spacing: 0.5px; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; transition: background 0.2s; }
+  .timer-btn-stop:hover { background: #3a2020; }
+  .timer-hint { font-size: 10px; color: var(--muted); margin-top: 10px; line-height: 1.4; opacity: 0.7; }
+
+  @media (max-width: 1000px) {
+    .timer-widget { right: 12px; width: 160px; padding: 20px 16px; }
+    .timer-svg-wrap { width: 100px; height: 100px; }
+    .timer-svg { width: 100px; height: 100px; }
+    .timer-time { font-size: 32px; }
+    .timer-ring-bg { stroke-width: 6; }
+    .timer-ring-fill { stroke-width: 6; }
+  }
+
+  @media (max-width: 760px) {
+    .timer-widget { position: fixed; right: auto; top: auto; bottom: 16px; left: 50%; transform: translateX(-50%); width: auto; min-width: 240px; display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 100px; flex-direction: row; }
+    .timer-widget.hidden { transform: translateX(-50%) scale(0.9); opacity: 0; }
+    .timer-ex-name { margin-bottom: 0; min-height: 0; font-size: 11px; text-align: left; flex: 1; min-width: 0; }
+    .timer-svg-wrap { width: 52px; height: 52px; flex-shrink: 0; margin: 0; }
+    .timer-svg { width: 52px; height: 52px; }
+    .timer-time { font-size: 17px; }
+    .timer-status { margin-bottom: 0; font-size: 10px; }
+    .timer-btn-stop { width: auto; padding: 7px 14px; white-space: nowrap; }
+    .timer-hint { display: none; }
+  }
+
+  .exercise-card.timing { border-color: var(--accent) !important; background: #0f1824; }
+  .exercise-card.timing .ex-number { color: var(--accent); }
+
+  .global-timer { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 10px 28px; display: none; align-items: center; gap: 14px; z-index: 800; box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+  .global-timer.running { border-color: var(--accent); display: flex !important; }
+  .global-lbl { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .global-time { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-weight: 900; font-size: 48px; color: var(--accent); line-height: 1; min-width: 90px; text-align: center; }
+  .global-stop { background: none; border: 1px solid #4a2020; border-radius: 50%; width: 32px; height: 32px; color: #f87171; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  .recap-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
+  .recap-overlay.open { display: flex; }
+  .recap-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; width: 90%; max-width: 360px; text-align: center; }
+  .recap-title { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+  .recap-time { font-size: 72px; font-weight: 900; color: var(--text); line-height: 1; margin: 8px 0 16px; }
+  .recap-msg { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .recap-close { margin-top: 20px; background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 12px 28px; font-weight: 700; font-size: 14px; cursor: pointer; }
+
+  .series-row { display: flex; gap: 7px; margin-top: 14px; justify-content: center; flex-wrap: wrap; }
+  .serie-done-btn { width: 100%; padding: 13px; margin-top: 8px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .serie-done-btn:disabled { opacity: 0.35; cursor: default; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px 10px 120px; }
+    h1 { font-size: 36px; }
+    .profile-bar { gap: 8px; }
+    .profile-pill { font-size: 11px; padding: 5px 10px; }
+    .week-grid { gap: 3px; }
+    .week-cell { padding: 5px 2px; }
+    .week-cell .wtype { font-size: 14px; }
+    .week-cell .wday, .week-cell .wlbl { font-size: 8px; }
+    .intro-grid { grid-template-columns: repeat(2, 1fr); }
+    .intro-card .val { font-size: 22px; }
+    .tab { min-width: 54px; padding: 8px 8px; }
+    .tab .day-num { font-size: 18px; }
+    .tab .day-label { font-size: 8px; }
+    .day-header { padding: 12px; gap: 10px; }
+    .day-icon { width: 38px; height: 38px; font-size: 18px; }
+    .day-header h2 { font-size: 18px; }
+    .day-header p { font-size: 11px; }
+    .exercise-card { padding: 12px; gap: 10px; }
+    .ex-number { font-size: 20px; min-width: 24px; }
+    .ex-name { font-size: 13px; }
+    .ex-tip { font-size: 10px; }
+    .ex-stat { font-size: 10px; padding: 3px 7px; }
+    .warm-item { font-size: 11px; padding: 5px 10px; }
+    .global-timer { padding: 7px 16px; top: 8px; }
+    .global-time { font-size: 30px; min-width: 70px; }
+    .timer-widget { position: fixed !important; right: auto !important; top: auto !important; bottom: 10px; left: 50%; transform: translateX(-50%); width: calc(100vw - 20px); max-width: 420px; flex-direction: row !important; align-items: center; gap: 10px; padding: 10px 14px !important; border-radius: 20px !important; }
+    .timer-widget.hidden { transform: translateX(-50%) scale(0.92) !important; opacity: 0; }
+    .timer-ex-name { font-size: 10px; min-height: auto !important; margin-bottom: 0 !important; text-align: left; flex: 1; }
+    .timer-svg-wrap { width: 50px !important; height: 50px !important; margin: 0 !important; }
+    .timer-svg { width: 50px !important; height: 50px !important; }
+    .timer-time { font-size: 16px !important; }
+    .timer-status { font-size: 9px; margin-bottom: 4px !important; }
+    .timer-btn-stop { width: auto !important; padding: 6px 10px !important; font-size: 11px; white-space: nowrap; }
+    .timer-hint { display: none; }
+    .series-row { gap: 5px; margin-top: 6px; }
+    .stretch-modal { padding: 16px; }
+    .recap-modal { padding: 24px 16px; }
+    .recap-time { font-size: 52px; }
+    .section-label { font-size: 9px; }
+    .circuit-box { padding: 12px; }
+  }
+
+  .week-badge { display: inline-block; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+
+  .history-section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
+  .history-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .history-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .history-chip { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: var(--muted); text-align: center; min-width: 70px; }
+  .history-chip .hw { font-weight: 700; color: var(--text); font-size: 12px; display: block; }
+  .history-chip .hscore { color: var(--accent); font-weight: 600; }
+  .history-chip.perfect { border-color: var(--accent); }
+  .history-empty { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  .warm-item.checked { opacity: 0.4; text-decoration: line-through; }
+
+  .mode-toggle { text-align: center; margin-bottom: 20px; }
+  .mode-btn { background: var(--surface); border: 1.5px solid var(--accent); color: var(--accent); border-radius: 100px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; font-family: inherit; letter-spacing: 0.3px; }
+  .mode-btn:hover { background: rgba(71,200,255,0.1); }
+  .mode-btn.noanchor { border-color: var(--orange); color: var(--orange); }
+  .mode-btn.noanchor:hover { background: rgba(251,146,60,0.1); }
+  .mode-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .mode-btn.noanchor .mode-dot { background: var(--orange); }
+  .mode-hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  /* PWA — safe areas iPhone (aucun effet sur PC : env() vaut 0) */
+  @supports (padding: max(0px)) {
+    body { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  }
+  @media (max-width: 600px) {
+    @supports (padding: max(0px)) {
+      body { padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); padding-bottom: calc(120px + env(safe-area-inset-bottom)); }
+      .timer-widget { bottom: calc(10px + env(safe-area-inset-bottom)) !important; }
+      .global-timer { top: calc(8px + env(safe-area-inset-top)); }
+    }
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="nav-back"><a href="index.html">← Programme Callisthénie</a></div>
+<div class="nav-back"><a href="accueil.html">← Accueil</a></div>
 
 <header>
-  <h1>SMART<span>WORKOUT</span></h1>
-  <p class="subtitle">Programme Complet · Élastiques + Barre · 5 Jours</p>
+  <h1>SMART<span>WORKOUT</span><br>ELITE</h1>
+  <p class="subtitle">Élastiques + Barre · Programme complet · 5 jours</p>
   <div class="profile-bar">
     <div class="profile-pill">⚖️ <strong>113 kg</strong> poids</div>
     <div class="profile-pill">🏋️ <strong>SmartWorkout Elite</strong></div>
@@ -179,28 +291,39 @@
   </div>
 </header>
 
-<div class="gear-box">
-  <div class="gear-title">🎒 Matériel nécessaire pour toutes les séances</div>
-  <div class="gear-grid">
-    <div class="gear-chip"><span>🔵</span> Barre SmartWorkout (106 cm)</div>
-    <div class="gear-chip"><span>🟠</span> Élastiques 1–4 bandes</div>
-    <div class="gear-chip"><span>🚪</span> Ancre de porte XL</div>
-    <div class="gear-chip"><span>🤝</span> Poignées incluses</div>
-    <div class="gear-chip"><span>👟</span> Chevilles straps</div>
-  </div>
-  <div class="gear-title" style="margin-top:12px;">🎨 Code couleur élastiques</div>
-  <div class="gear-grid">
-    <div class="gear-chip"><span>🟢</span> Vert = 5 kg</div>
-    <div class="gear-chip"><span>🔵</span> Bleu = 10 kg</div>
-    <div class="gear-chip"><span>🟡</span> Jaune = 15 kg</div>
-    <div class="gear-chip"><span>🟠</span> Orange = 20 kg</div>
-    <div class="gear-chip"><span>🔴</span> Rouge = 25 kg</div>
-  </div>
+<div class="week-grid">
+  <div class="week-cell active-day"><div class="wday">Lun</div><div class="wtype">🦵</div><div class="wlbl">Bas corps</div></div>
+  <div class="week-cell active-day"><div class="wday">Mar</div><div class="wtype">💪</div><div class="wlbl">Push</div></div>
+  <div class="week-cell rest-day"><div class="wday">Mer</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
+  <div class="week-cell active-day"><div class="wday">Jeu</div><div class="wtype">🔙</div><div class="wlbl">Pull</div></div>
+  <div class="week-cell active-day"><div class="wday">Ven</div><div class="wtype">🔥</div><div class="wlbl">Core</div></div>
+  <div class="week-cell active-day"><div class="wday">Sam</div><div class="wtype">⚡</div><div class="wlbl">Circuit</div></div>
+  <div class="week-cell rest-day"><div class="wday">Dim</div><div class="wtype">😴</div><div class="wlbl">Repos</div></div>
+</div>
+
+<div class="intro-grid">
+  <div class="intro-card"><div class="emoji">📅</div><div class="val">5</div><div class="lbl">Séances / sem</div></div>
+  <div class="intro-card"><div class="emoji">⏱️</div><div class="val">35–50</div><div class="lbl">Min / séance</div></div>
+  <div class="intro-card"><div class="emoji">🏋️</div><div class="val">Barre</div><div class="lbl">+ Élastiques</div></div>
+  <div class="intro-card"><div class="emoji">🔥</div><div class="val">~500</div><div class="lbl">Kcal / séance</div></div>
+</div>
+
+<div class="tip-box" style="margin-bottom: 16px; margin-top: 0;">
+  <strong>🎒 Matériel &amp; code couleur officiel SmartWorkout</strong>
+  🩶 Gris 5kg · 💚 Vert 10kg · 💙 Bleu foncé 15kg · 🖤 Noir 20kg · 🩵 Bleu clair 25kg<br>
+  Barre SmartWorkout 106cm · Poignées · Straps chevilles · Ancre porte XL
+</div>
+
+<div class="mode-toggle">
+  <button id="modeBtn" class="mode-btn" onclick="toggleMode()">
+    <span class="mode-dot"></span><span id="modeBtnLabel">Mode : avec ancrage de porte</span>
+  </button>
+  <div class="mode-hint">9 exos utilisent l'ancre de porte (2 Push · 2 Pull · 5 Core). Bascule pour les remplacer par des équivalents poignées + straps chevilles, sans porte.</div>
 </div>
 
 <div class="progress-bar-wrap">
   <div class="progress-top">
-    <span>Semaine <span class="week-badge" id="weekBadge">S1</span></span>
+    <span>Progression de la semaine <span class="week-badge" id="weekBadge">S1</span></span>
     <strong id="prog-label">0 / 5</strong>
   </div>
   <div class="bar-track">
@@ -212,7 +335,7 @@
   </div>
 </div>
 
-<div class="history-section">
+<div class="history-section" id="historySection">
   <div class="history-title">Historique</div>
   <div class="history-grid" id="historyGrid">
     <div class="history-empty">Aucune semaine complétée</div>
@@ -255,7 +378,7 @@
       <div class="ex-content">
         <div class="ex-name">Squat barre</div>
         <div class="ex-tip">Pieds écartés largeur épaules, barre sur les élastiques bloqués sous les pieds. Descends jusqu'aux cuisses parallèles au sol, dos droit. Remonte en poussant sur les talons. Plus tu écartes les pieds, plus la résistance est forte.</div>
-        <div class="ex-setup">⚙️ Barre sur épaules · 2–3 bandes sous les 2 pieds · 🟡🟠 20–30 kg</div>
+        <div class="ex-setup">⚙️ Barre sur épaules · élastiques sous les 2 pieds · 💚💙 25 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -269,7 +392,7 @@
       <div class="ex-content">
         <div class="ex-name">Soulevé de terre</div>
         <div class="ex-tip">Élastiques enroulés en double autour de la barre, pieds à largeur de hanches. Barre au sol, dos plat, poitrine haute. Tire en gardant la barre proche du corps le long des tibias. La résistance augmente au fil du mouvement — c'est l'avantage des élastiques vs les poids.</div>
-        <div class="ex-setup">⚙️ Élastiques en double enroulés autour de la barre · sous les pieds · 🟠🔴🔴 40–50 kg · DOS PLAT impératif</div>
+        <div class="ex-setup">⚙️ Élastiques enroulés en double autour de la barre · sous les pieds · 🖤🩵 45 kg · DOS PLAT impératif</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -283,7 +406,7 @@
       <div class="ex-content">
         <div class="ex-name">Fentes avant avec barre</div>
         <div class="ex-tip">Un pied sur l'élastique, barre en position haute (sur les épaules). Pas en avant, genou avant à 90°, genou arrière qui frôle le sol. Buste droit tout au long. Fais toutes les reps d'une jambe avant de changer.</div>
-        <div class="ex-setup">⚙️ 1 bande sous le pied avant · barre sur épaules · 🟡 15–20 kg</div>
+        <div class="ex-setup">⚙️ 1 bande sous le pied avant · barre sur épaules · 💙 15 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">8 reps × jambe</span></div>
@@ -295,9 +418,9 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Hip Thrust</div>
-        <div class="ex-tip">Dos appuyé sur le canapé/banc (hauteur des omoplates), barre sur les hanches avec élastiques bloqués sous les pieds. Pousse les hanches vers le haut en contractant fort les fessiers, tiens 1 seconde en haut. Redescends lentement sans toucher le sol.</div>
-        <div class="ex-setup">⚙️ Barre + élastiques en travers des hanches · dos appuyé sur le canapé · 🟠🔴 30–40 kg</div>
+        <div class="ex-name">Glute Bridge élastique</div>
+        <div class="ex-tip">Allongé sur le dos, genoux fléchis, pieds à plat au sol. Place la barre avec les élastiques bloqués sous les pieds, positionnée sur tes hanches. Contracte les abdos, pousse les hanches vers le haut en serrant fort les fessiers. Tiens 1 seconde en haut — corps droit comme une planche. Redescends lentement sans poser les fesses entre les reps.</div>
+        <div class="ex-setup">⚙️ Barre + élastiques bloqués sous les pieds · barre sur les hanches · 💙🩵 40 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -311,7 +434,7 @@
       <div class="ex-content">
         <div class="ex-name">Élévations de mollets</div>
         <div class="ex-tip">Pieds sur les élastiques, barre sur les épaules pour ajouter de la résistance. Monte sur la pointe des pieds lentement en contractant les mollets, descends sans reposer les talons. Amplitude maximale à chaque rep.</div>
-        <div class="ex-setup">⚙️ Élastiques sous les pieds · barre sur épaules · 🟢🟡 10–15 kg</div>
+        <div class="ex-setup">⚙️ Élastiques sous les pieds · barre sur épaules · 💙 15 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">20 reps</span></div>
@@ -329,7 +452,7 @@
     <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
   </div>
   <div class="tip-box"><strong>💡 Résistance progressive</strong> Commence avec 2 bandes sur le squat. Le soulevé de terre est l'exercice roi — le dos PLAT est non négociable. Maîtrise la forme avant d'augmenter. Dès que 10 reps passent facilement sur 3 séries, rajoute une bande.</div>
-  <button class="done-btn" onclick="markDayDone(1)">✅ Marquer J1 comme terminé</button>
+  <button onclick="markDayDone(1)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J1 comme terminé</button>
 </div>
 
 <!-- ===== J2 — PUSH ===== -->
@@ -360,7 +483,7 @@
       <div class="ex-content">
         <div class="ex-name">Développé couché barre (sol)</div>
         <div class="ex-tip">Allongé au sol, élastiques enroulés sous le bas du dos. Barre au niveau de la poitrine, coudes à 45°. Pousse vers le haut jusqu'à extension complète. L'élastique est plus résistant en haut = muscle sollicité là où il est le plus fort.</div>
-        <div class="ex-setup">⚙️ Allongé au sol · élastiques enroulés sous le bas du dos · 🟠🔴🔴 40–60 kg</div>
+        <div class="ex-setup">⚙️ Allongé au sol · élastiques sous le haut du dos · 🩵🩵 50 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -374,7 +497,7 @@
       <div class="ex-content">
         <div class="ex-name">Développé militaire</div>
         <div class="ex-tip">Debout, pieds écartés sur les élastiques. Barre au niveau des clavicules, prise légèrement + large que les épaules. Pousse vers le haut jusqu'à bras tendus. Contracte les abdos pour ne pas creuser le dos. Redescends lentement.</div>
-        <div class="ex-setup">⚙️ Debout · pieds sur élastiques écartés · 🟡🟠 20–30 kg</div>
+        <div class="ex-setup">⚙️ Debout · pieds sur élastiques · 💚💙 25 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -388,7 +511,7 @@
       <div class="ex-content">
         <div class="ex-name">Élévations latérales</div>
         <div class="ex-tip">Poignées dans les mains, pieds sur les élastiques. Bras légèrement fléchis, monte les bras à hauteur des épaules en formant un T — pas plus haut. Descends lentement en 3 secondes. C'est la descente contrôlée qui sculpte.</div>
-        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 🟢 5–10 kg · bras légèrement fléchis</div>
+        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 💚 10 kg · bras légèrement fléchis</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -397,12 +520,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Extension triceps nuque (debout)"
+      data-alt-tip="Debout, un pied sur l'élastique, poignée tenue à deux mains derrière la nuque, coudes pointés vers le plafond. Étends les bras vers le haut en contractant les triceps, coudes fixes qui ne s'écartent pas. Redescends lentement la poignée derrière la tête. Même étirement maximal du triceps long, sans porte."
+      data-alt-setup="⚙️ Élastique sous un pied · poignée derrière la nuque · 💙 15 kg · coudes fixes">
       <div class="ex-number">04</div>
       <div class="ex-content">
         <div class="ex-name">Extension triceps overhead</div>
         <div class="ex-tip">Ancrage de porte BAS, dos à la porte. Poignées dans les mains, bras levés. Plie les coudes pour amener les mains derrière la tête en étirement complet des triceps, puis étends en contractant fort. Coudes fixes, ils ne s'écartent pas.</div>
-        <div class="ex-setup">⚙️ Ancre porte BAS · dos à la porte · poignées · 🟢🟡 10–15 kg</div>
+        <div class="ex-setup">⚙️ Ancre porte BAS · dos à la porte · poignées · 💙 15 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -411,12 +537,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Écarté pectoraux au sol"
+      data-alt-tip="Allongé sur le dos, élastique passé sous le haut du dos, une poignée dans chaque main, bras tendus vers le plafond légèrement fléchis. Ouvre les bras en arc de cercle vers le sol (étirement pectoraux), puis ramène les mains au-dessus de la poitrine en serrant. Le sol limite l'amplitude et protège l'épaule."
+      data-alt-setup="⚙️ Allongé au sol · élastique sous le haut du dos · 1 poignée/main · 💚 10 kg · arc vers le plafond">
       <div class="ex-number">05</div>
       <div class="ex-content">
         <div class="ex-name">Fly pectoraux</div>
         <div class="ex-tip">Ancrage de porte milieu, un élastique de chaque côté avec poignées. Bras légèrement fléchis, ouvre grand (étirement pectoraux) puis ramène les mains devant toi comme si tu enlacais quelqu'un. Sens le squeeze en fin de mouvement.</div>
-        <div class="ex-setup">⚙️ Ancre porte MILIEU · 1 poignée par côté · 🟢 5–10 kg · arc vers l'avant</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU · 1 poignée par côté · 💚 10 kg · arc vers l'avant</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -434,7 +563,7 @@
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
   <div class="tip-box"><strong>💡 Extension overhead vs pushdown</strong> L'extension overhead étire le triceps long dans sa position d'étirement maximum — beaucoup plus efficace que le pushdown classique. Le développé couché au sol protège les épaules car l'amplitude est limitée naturellement.</div>
-  <button class="done-btn" onclick="markDayDone(2)">✅ Marquer J2 comme terminé</button>
+  <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J2 comme terminé</button>
 </div>
 
 <!-- ===== J3 — PULL ===== -->
@@ -465,7 +594,7 @@
       <div class="ex-content">
         <div class="ex-name">Rowing barre</div>
         <div class="ex-tip">Pieds sur les élastiques, barre dans les mains, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates l'une vers l'autre. Coudes le long du corps. Ne te redresse pas pendant le mouvement. Redescends en 2 secondes.</div>
-        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · dos à 45° · 🟠🔴 30–40 kg · prise pronation</div>
+        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · dos à 45° · 💙🖤 35 kg · prise pronation</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -474,12 +603,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Tirage horizontal assis (dorsaux)"
+      data-alt-tip="Assis au sol, jambes tendues, élastique autour des plantes de pieds (ou straps chevilles). Barre ou poignées dans les mains, dos droit et poitrine haute. Tire vers le bas-ventre en ouvrant bien les coudes vers l'extérieur pour cibler la largeur des dorsaux. Serre les omoplates, contrôle le retour sur 3 secondes."
+      data-alt-setup="⚙️ Assis au sol · élastique autour des pieds (ou straps) · 💚💙 25 kg · coudes larges">
       <div class="ex-number">02</div>
       <div class="ex-content">
         <div class="ex-name">Tirage vertical (Lat Pulldown)</div>
         <div class="ex-tip">Ancrage de porte HAUT. Assis sur une chaise ou agenouillé, dos droit. Tire la barre vers la poitrine en ouvrant les coudes vers le bas — pense à ramener tes coudes dans les poches. Contrôle la remontée en 3 secondes. Simule le tirage poulie haute de salle.</div>
-        <div class="ex-setup">⚙️ Ancre porte EN HAUT · barre ou poignées · 🟡🟠 20–30 kg · prise pronation large</div>
+        <div class="ex-setup">⚙️ Ancre porte EN HAUT · barre ou poignées · 💚💙 25 kg · prise pronation large</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -488,12 +620,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Oiseau penché (rear delts)"
+      data-alt-tip="Debout, pieds sur l'élastique, buste penché à ~45° dos plat. Une poignée dans chaque main, bras légèrement fléchis. Écarte les bras vers l'extérieur jusqu'à hauteur des épaules en serrant les omoplates — comme pour ouvrir des ailes. Cible les épaules arrière et les trapèzes, même bénéfice postural que le face pull sans porte."
+      data-alt-setup="⚙️ Pieds sur élastique · buste penché 45° · poignées · 💙 15 kg · serre les omoplates">
       <div class="ex-number">03</div>
       <div class="ex-content">
         <div class="ex-name">Face pull</div>
         <div class="ex-tip">Ancrage de porte milieu/haut, poignées. Tire vers ton visage en écartant les coudes à hauteur des épaules — les mains finissent de chaque côté de la tête. Excellent pour la santé des épaules, les trapèzes et la posture. Exercice à ne jamais négliger.</div>
-        <div class="ex-setup">⚙️ Ancre porte MILIEU/HAUT · poignées · 🟢🟡 10–15 kg · coudes à hauteur épaules</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU/HAUT · poignées · 💙 15 kg · coudes à hauteur épaules</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
@@ -507,7 +642,7 @@
       <div class="ex-content">
         <div class="ex-name">Curl biceps barre</div>
         <div class="ex-tip">Pieds écartés sur les élastiques, barre en prise supination (paumes vers le haut). Coudes plaqués contre les flancs — ils ne bougent absolument pas. Fléchis en remontant la barre jusqu'aux épaules. Redescends lentement en 3 secondes. Ne balance pas le dos.</div>
-        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · prise supination · 🟡🟠 20–25 kg · coudes fixes</div>
+        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · prise supination · 💚💙 25 kg · coudes fixes</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -521,7 +656,7 @@
       <div class="ex-content">
         <div class="ex-name">Curl marteau (poignées)</div>
         <div class="ex-tip">Poignées, pieds sur les élastiques, prise neutre (pouce vers le haut). Fléchis les coudes en gardant les poignets droits. Alterne gauche/droite ou les deux ensemble. Cible le long supinateur et le brachial en plus du biceps — renforce l'avant-bras.</div>
-        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 🟢🟡 10–15 kg · prise neutre (marteau)</div>
+        <div class="ex-setup">⚙️ Poignées · pieds sur élastiques · 💙 15 kg · prise neutre (marteau)</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -539,7 +674,7 @@
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
   <div class="tip-box"><strong>💡 Pull complet</strong> Rowing (dos horizontal) + tirage vertical (largeur dorsaux) + face pull (épaules arrière + trapèzes) + 2 variations biceps = couverture totale chaîne postérieure. Le face pull est le garant de la santé long terme de tes épaules.</div>
-  <button class="done-btn" onclick="markDayDone(3)">✅ Marquer J3 comme terminé</button>
+  <button onclick="markDayDone(3)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J3 comme terminé</button>
 </div>
 
 <!-- ===== J4 — CORE ===== -->
@@ -547,7 +682,7 @@
   <div class="day-header">
     <div class="day-icon" style="background:#1a0a00;">🔥</div>
     <div>
-      <h2>CORE & GAINAGE</h2>
+      <h2>CORE &amp; GAINAGE</h2>
       <p>Abdominaux · Obliques · Stabilisateurs · Anti-rotation</p>
       <div class="meta-tags">
         <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Vendredi</span>
@@ -565,12 +700,15 @@
   </div>
   <div class="section-label">💪 Exercices</div>
   <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Crunch lesté (barre)"
+      data-alt-tip="Allongé sur le dos, genoux fléchis, pieds à plat. Tiens la barre (ou une poignée chargée) contre la poitrine, bras croisés dessus. Enroule le buste en ramenant les côtes vers le bassin, décolle les omoplates du sol sans tirer sur la nuque. Expire fort en montant. Le poids sur la poitrine remplace la résistance de l'ancrage."
+      data-alt-setup="⚙️ Allongé au sol · barre tenue contre la poitrine · 💙 15 kg · enroule le buste">
       <div class="ex-number">01</div>
       <div class="ex-content">
         <div class="ex-name">Crunch élastique</div>
         <div class="ex-tip">Ancrage de porte HAUT, allongé sur le dos face à la porte. Poignées ou barre derrière la nuque — ne tire pas dessus avec les mains. Contracte les abdos pour ramener les épaules vers les genoux en enroulant le dos. Plus intense que le crunch classique grâce à la résistance constante.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos face à la porte · 🟢 5–10 kg</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos face à la porte · 💚 10 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
@@ -579,12 +717,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Woodchop sous le pied"
+      data-alt-tip="Debout, élastique sous le pied opposé au mouvement. Saisis une poignée à deux mains près de la hanche basse, puis tire en diagonale vers le haut à l'opposé, bras tendus — comme un coup de hache inversé. Les hanches restent fixes, c'est le tronc qui tourne. Change de côté entre les séries."
+      data-alt-setup="⚙️ Élastique sous le pied opposé · 1 poignée à 2 mains · 💙 15 kg · diagonale bas → haut">
       <div class="ex-number">02</div>
       <div class="ex-content">
         <div class="ex-name">Woodchop (bûcheron)</div>
         <div class="ex-tip">Ancrage de porte HAUT, côté à la porte. Tire en diagonale de haut en bas comme si tu cognais une hache — rotation complète du buste. Les hanches restent face à la porte, c'est uniquement le tronc qui tourne. Change de côté entre chaque série.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUT · côté à la porte · 🟢🟡 10–15 kg · 1 poignée · rotation haut → bas</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · côté à la porte · 💙 15 kg · 1 poignée · rotation haut → bas</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps × côté</span></div>
@@ -593,12 +734,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Planche avec tap d'épaule"
+      data-alt-tip="Position planche sur les mains, corps gainé en ligne droite, pieds un peu écartés pour la stabilité. Touche l'épaule opposée avec une main, repose-la, alterne — sans laisser les hanches tourner ni monter. Le défi anti-rotation est identique à la planche row, en poids du corps et sans porte. Ralentis si les hanches bougent."
+      data-alt-setup="⚙️ Position planche sur les mains · tap épaule alterné · poids du corps · gainage anti-rotation">
       <div class="ex-number">03</div>
       <div class="ex-content">
         <div class="ex-name">Planche avec row</div>
         <div class="ex-tip">Ancrage de porte BAS, position planche sur les mains. Tire une poignée vers la hanche tout en maintenant la planche — ne tourne pas les hanches, ne les lève pas. Pose la main, alterne l'autre côté. Excellent pour le core anti-rotation.</div>
-        <div class="ex-setup">⚙️ Ancre porte BAS · position planche · 🟢 5–10 kg · 1 poignée</div>
+        <div class="ex-setup">⚙️ Ancre porte BAS · position planche · 💚 10 kg · 1 poignée</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps × bras</span></div>
@@ -607,12 +751,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Russian twist lesté"
+      data-alt-tip="Assis au sol, buste incliné à ~45° en arrière, pieds décollés si tu peux. Tiens la barre ou une poignée à deux mains devant toi. Tourne le buste de gauche à droite en amplitude maximale, en regardant dans la direction du twist. Ce sont les obliques qui travaillent, garde les abdos gainés en continu."
+      data-alt-setup="⚙️ Assis au sol · barre/poignée tenue à 2 mains · 💙 15 kg · pieds décollés en option">
       <div class="ex-number">04</div>
       <div class="ex-content">
         <div class="ex-name">Russian twist élastique</div>
         <div class="ex-tip">Assis au sol, ancrage de porte sur le côté. Tourne le buste en tirant l'élastique de gauche à droite — amplitude maximale, regarde dans la direction du twist. Pieds décollés si tu peux pour plus d'intensité. Les épaules, pas les bras, qui font le mouvement.</div>
-        <div class="ex-setup">⚙️ Ancre porte CÔTÉ · assis au sol · 🟢 5–10 kg · 1 poignée</div>
+        <div class="ex-setup">⚙️ Ancre porte CÔTÉ · assis au sol · 💚 10 kg · 1 poignée</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">15 reps × côté</span></div>
@@ -621,12 +768,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Dead bug (poids du corps)"
+      data-alt-tip="Allongé sur le dos, bras tendus vers le plafond, genoux levés à 90°. Option : tiens une petite bande tendue entre les mains pour activer le haut du corps. Descends simultanément un bras vers l'arrière et la jambe opposée vers l'avant, sans creuser le bas du dos — il reste plaqué au sol. Remonte lentement, alterne."
+      data-alt-setup="⚙️ Allongé au sol · bras tendus (option bande entre les mains) · 🩶 5 kg · dos plaqué">
       <div class="ex-number">05</div>
       <div class="ex-content">
         <div class="ex-name">Dead bug élastique</div>
         <div class="ex-tip">Ancrage de porte HAUT, allongé sur le dos. Bras tendus tenant l'élastique vers le plafond. Abaisse la jambe opposée vers le sol sans creuser le bas du dos — il doit rester plaqué. Remonte lentement. La résistance ajoute un challenge sur les bras tout en faisant travailler le core.</div>
-        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos · 🟢 5 kg · bras tendus tenant l'élastique</div>
+        <div class="ex-setup">⚙️ Ancre porte HAUT · allongé sur le dos · 🩶 5 kg · bras tendus tenant l'élastique</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps × côté</span></div>
@@ -643,7 +793,7 @@
     <div class="warm-item" onclick="showStretch('Genou poitrine')">Genou poitrine allongé <span>30s × côté</span></div>
   </div>
   <div class="tip-box"><strong>💡 Core avec résistance</strong> Crunch + woodchop = abdos en tension sur toute l'amplitude. La planche avec row est le roi des exercices anti-rotation — plus fonctionnel que la planche statique. Le dead bug élastique force une stabilisation active pendant le mouvement.</div>
-  <button class="done-btn" onclick="markDayDone(4)">✅ Marquer J4 comme terminé</button>
+  <button onclick="markDayDone(4)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J4 comme terminé</button>
 </div>
 
 <!-- ===== J5 — CIRCUIT FULL BODY ===== -->
@@ -669,33 +819,33 @@
   </div>
   <div class="section-label">⚡ Le Circuit — 4 rounds</div>
   <div class="circuit-box">
-    <div class="circuit-title">🔄 5 EXOS ENCHAÎNÉS SANS PAUSE · 90s REPOS ENTRE ROUNDS</div>
+    <div class="circuit-title">🔄 5 EXOS ENCHAÎNÉS SANS PAUSE · MÊME BANDE 💙 15 KG · 90s REPOS ENTRE ROUNDS</div>
     <div style="font-size:12px;color:var(--muted);line-height:1.7;padding:4px 0 10px;">
-      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squat + développé militaire — 10 reps · 🟡🟠 20–25 kg</strong><br>
+      <strong style="color:var(--accent);">A.</strong> <strong style="color:var(--text);">Squat + développé militaire — 10 reps · 💙 15 kg</strong><br>
       <span style="padding-left:16px;display:inline-block;">Descends en squat, remonte en poussant la barre au-dessus de la tête. Full body en un seul exo — jambes + épaules.</span><br><br>
-      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Soulevé de terre — 10 reps · 🟠🔴 30–40 kg</strong><br>
+      <strong style="color:var(--accent);">B.</strong> <strong style="color:var(--text);">Soulevé de terre — 10 reps · 💙 15 kg</strong><br>
       <span style="padding-left:16px;display:inline-block;">Même technique que J1. Dos plat, barre proche du corps. Jambes + dos = 2 groupes majeurs en un.</span><br><br>
-      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Rowing barre — 10 reps · 🟠 25–30 kg</strong><br>
+      <strong style="color:var(--accent);">C.</strong> <strong style="color:var(--text);">Rowing barre — 10 reps · 💙 15 kg</strong><br>
       <span style="padding-left:16px;display:inline-block;">Enchaîne directement après le SDT. Dos incliné, tire la barre vers le nombril, omoplates serrées.</span><br><br>
-      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Fentes alternées — 8 reps × jambe · 🟡 15–20 kg</strong><br>
+      <strong style="color:var(--accent);">D.</strong> <strong style="color:var(--text);">Fentes alternées — 8 reps × jambe · 💙 15 kg</strong><br>
       <span style="padding-left:16px;display:inline-block;">Un pied sur l'élastique, alterne les jambes en rythme soutenu. Genou arrière frôle le sol.</span><br><br>
-      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Curl + extension triceps — 10 reps · 🟢🟡 10–15 kg</strong><br>
+      <strong style="color:var(--accent);">E.</strong> <strong style="color:var(--text);">Curl + extension triceps — 10 reps · 💙 15 kg</strong><br>
       <span style="padding-left:16px;display:inline-block;">Poignées, pieds sur élastiques. Curl biceps en montant, extension triceps en redescendant. Bras complets en un seul enchaînement.</span>
     </div>
-  </div>
-  <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">⚡</div>
-      <div class="ex-content">
-        <div class="ex-name">Circuit complet (5 exos enchaînés)</div>
-        <div class="ex-tip">Squat+militaire → SDT → Rowing → Fentes → Curl+triceps. Enchaîne sans pause entre les exercices, 90s de repos entre rounds. Si tu manques de souffle, marche 30s sur place avant de reprendre. Ne sacrifie jamais la forme pour le rythme.</div>
-        <div class="ex-setup">⚙️ Barre · élastiques sous pieds · poignées pour le curl final</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">4</span> rounds</div>
-          <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+    <div class="exercises">
+      <div class="exercise-card" onclick="handleCardClick(this)">
+        <div class="ex-number">⚡</div>
+        <div class="ex-content">
+          <div class="ex-name">Circuit complet (5 exos enchaînés)</div>
+          <div class="ex-tip">Squat+militaire → SDT → Rowing → Fentes → Curl+triceps. Enchaîne sans pause entre les exercices, 90s de repos entre rounds. Si tu manques de souffle, marche 30s sur place avant de reprendre. Ne sacrifie jamais la forme pour le rythme.</div>
+          <div class="ex-setup">⚙️ 1 seule bande 💙 15 kg sous les pieds, gardée tout le circuit · barre puis poignées pour le curl final</div>
+          <div class="ex-stats">
+            <div class="ex-stat"><span class="stat-accent">4</span> rounds</div>
+            <div class="ex-stat"><span class="stat-orange">90s repos</span></div>
+          </div>
         </div>
+        <div class="check-icon">✓</div>
       </div>
-      <div class="check-icon">✓</div>
     </div>
   </div>
   <div class="section-label">🧘 Retour au calme — 5 min</div>
@@ -706,7 +856,7 @@
     <div class="warm-item" onclick="showStretch('Étirement quadriceps')">Étirement quadriceps <span>30s × jambe</span></div>
   </div>
   <div class="tip-box"><strong>💡 Circuit intelligent</strong> Chaque exo cible un groupe différent — pas de récup musculaire nécessaire entre eux, mais l'intensité cardio monte vite. Commence à 60% de tes résistances habituelles le premier round, monte progressivement. Le curl+extension en fin de circuit brûle les avant-bras à fond.</div>
-  <button class="done-btn" onclick="markDayDone(5)">✅ Marquer J5 comme terminé</button>
+  <button onclick="markDayDone(5)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J5 comme terminé</button>
 </div>
 
 <!-- STRETCH MODAL -->
@@ -723,39 +873,6 @@
   </div>
 </div>
 
-<!-- TIMER WIDGET -->
-<div class="timer-widget hidden" id="timerWidget">
-  <div class="timer-ex-name" id="timerExName">Aucun exercice</div>
-  <div class="timer-svg-wrap">
-    <svg class="timer-svg" viewBox="0 0 80 80">
-      <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-      <circle class="timer-ring-fill" id="timerRing" cx="40" cy="40" r="34"/>
-    </svg>
-    <div class="timer-time" id="timerDisplay">0:00</div>
-  </div>
-  <div class="timer-status" id="timerStatus">EN ATTENTE</div>
-  <div class="series-row" id="seriesRow"></div>
-  <button class="timer-btn-stop" onclick="stopTimer()">✕ Annuler</button>
-</div>
-
-<!-- GLOBAL TIMER -->
-<div class="global-timer" id="globalTimer">
-  <div class="global-time" id="globalDisplay">0:00</div>
-  <button class="global-stop" onclick="cancelGlobalTimer()">✕ Stop</button>
-</div>
-
-<!-- RECAP -->
-<div class="recap-overlay" id="recapOverlay">
-  <div class="recap-modal">
-    <div class="recap-emoji">💪</div>
-    <div class="recap-title">Séance terminée !</div>
-    <div class="recap-sub">SmartWorkout Elite</div>
-    <div class="recap-time" id="recapTime">0:00</div>
-    <div class="recap-label">Temps total</div>
-    <button class="recap-close" onclick="closeRecap()">Top, merci !</button>
-  </div>
-</div>
-
 <script>
 (function() {
   'use strict';
@@ -764,9 +881,9 @@
   function lsSet(k,v) { try { localStorage.setItem(k,v); } catch(e) {} }
   function lsRemove(k) { try { localStorage.removeItem(k); } catch(e) {} }
 
-  var SAVE_KEY  = 'sw_v2';
-  var HIST_KEY  = 'sw_v1_history';
-  var START_KEY = 'sw_v1_start_week';
+  var SAVE_KEY  = 'sw_v3';
+  var HIST_KEY  = 'sw_v2_history';
+  var START_KEY = 'sw_v2_start';
   var dayDone   = {1:false,2:false,3:false,4:false,5:false};
   var trainingWeek = 0;
 
@@ -902,6 +1019,44 @@
     if (n < 5) switchDay(n + 1);
   }
 
+  /* ── Mode avec / sans ancrage de porte ── */
+  var MODE_KEY = 'sw_mode';
+  var modeNoAnchor = false;
+
+  function applyMode() {
+    var cards = document.querySelectorAll('.exercise-card[data-alt-name]');
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var nameEl = card.querySelector('.ex-name');
+      var tipEl = card.querySelector('.ex-tip');
+      var setupEl = card.querySelector('.ex-setup');
+      if (!card.getAttribute('data-orig-name')) {
+        card.setAttribute('data-orig-name', nameEl ? nameEl.textContent : '');
+        card.setAttribute('data-orig-tip', tipEl ? tipEl.textContent : '');
+        card.setAttribute('data-orig-setup', setupEl ? setupEl.textContent : '');
+      }
+      if (modeNoAnchor) {
+        if (nameEl) nameEl.textContent = card.getAttribute('data-alt-name');
+        if (tipEl) tipEl.textContent = card.getAttribute('data-alt-tip');
+        if (setupEl) setupEl.textContent = card.getAttribute('data-alt-setup');
+      } else {
+        if (nameEl) nameEl.textContent = card.getAttribute('data-orig-name');
+        if (tipEl) tipEl.textContent = card.getAttribute('data-orig-tip');
+        if (setupEl) setupEl.textContent = card.getAttribute('data-orig-setup');
+      }
+    }
+    var btn = document.getElementById('modeBtn');
+    var lbl = document.getElementById('modeBtnLabel');
+    if (btn) { if (modeNoAnchor) btn.classList.add('noanchor'); else btn.classList.remove('noanchor'); }
+    if (lbl) lbl.textContent = modeNoAnchor ? 'Mode : sans ancrage (poignées + straps)' : 'Mode : avec ancrage de porte';
+  }
+
+  function toggleMode() {
+    modeNoAnchor = !modeNoAnchor;
+    lsSet(MODE_KEY, modeNoAnchor ? '1' : '0');
+    applyMode();
+  }
+
   function switchDay(n) {
     var panels = document.querySelectorAll('.day-panel');
     for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
@@ -956,7 +1111,7 @@
   }
 
   /* ── Timer widget ── */
-  var CIRC = 2 * Math.PI * 34;
+  var CIRC = 2 * Math.PI * 54;
   var timerSecs = 0, activeCard = null;
   var currentSerie = 0, totalSeries = 3, restSeconds = 90;
   var restInterval = null;
@@ -1097,7 +1252,7 @@
     getTimerEls();
     var name = card.querySelector('.ex-name');
     if (elTN) elTN.textContent = name ? name.textContent : 'Exercice';
-    if (elTS) { elTS.textContent = 'SÉRIE 1/'+totalSeries; elTS.className = 'timer-status active'; }
+    if (elTS) { elTS.textContent = 'PRÊT'; elTS.className = 'timer-status active'; }
     if (elTD) elTD.textContent = '0:00';
     if (elTR) { elTR.style.strokeDashoffset = String(CIRC); elTR.style.stroke = ''; }
     if (elTW) { elTW.classList.remove('hidden'); elTW.classList.add('running'); }
@@ -1153,9 +1308,8 @@
   }
 
   function closeStretch(e) {
-    if (e && e.target !== document.getElementById('stretchOverlay')) return;
     var o = document.getElementById('stretchOverlay');
-    if (o) o.classList.remove('open');
+    if (e.target === o) o.classList.remove('open');
   }
 
   function closeStretchDirect() {
@@ -1167,6 +1321,7 @@
     try { initWeekBadge(); } catch(e) {}
     try { loadState(); } catch(e) {}
     try { renderHistory(); } catch(e) {}
+    try { modeNoAnchor = (lsGet(MODE_KEY) === '1'); applyMode(); } catch(e) {}
     try {
       var savedDay = lsGet('sw_activeDay');
       if (savedDay) switchDay(parseInt(savedDay, 10));
@@ -1177,12 +1332,18 @@
         item.addEventListener('click', function() { item.classList.toggle('checked'); saveState(); });
       })(warms[w]);
     }
+    try {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      }
+    } catch(e) {}
   });
 
   window.handleCardClick    = handleCardClick;
   window.stopTimer          = stopTimer;
   window.cancelGlobalTimer  = cancelGlobalTimer;
   window.markDayDone        = markDayDone;
+  window.toggleMode         = toggleMode;
   window.switchDay          = switchDay;
   window.closeRecap         = closeRecap;
   window.showStretch        = showStretch;
@@ -1191,7 +1352,40 @@
   window.clickSerie         = clickSerie;
 })();
 </script>
+
+<!-- TIMER WIDGET -->
+<div class="timer-widget hidden" id="timerWidget">
+  <div class="timer-ex-name" id="timerExName">Aucun exercice</div>
+  <div class="timer-svg-wrap">
+    <svg class="timer-svg" viewBox="0 0 130 130">
+      <circle class="timer-ring-bg" cx="65" cy="65" r="54"/>
+      <circle class="timer-ring-fill" id="timerRing" cx="65" cy="65" r="54"/>
+    </svg>
+    <div class="timer-time" id="timerDisplay">0:00</div>
+  </div>
+  <div>
+    <div class="timer-status" id="timerStatus">EN ATTENTE</div>
+    <button class="timer-btn-stop" onclick="stopTimer()">✕ Annuler</button>
+    <div class="timer-hint">Clique sur une série pour lancer le repos</div>
+  </div>
+  <div class="series-row" id="seriesRow"></div>
+</div>
+
+<div class="global-timer" id="globalTimer">
+  <span class="global-lbl">Séance</span>
+  <span class="global-time" id="globalDisplay">0:00</span>
+  <button class="global-stop" onclick="cancelGlobalTimer()">✕</button>
+</div>
+
+<div class="recap-overlay" id="recapOverlay">
+  <div class="recap-modal">
+    <div class="recap-title">Séance terminée !</div>
+    <div class="recap-time" id="recapTime">0:00</div>
+    <div class="recap-msg">SmartWorkout Elite — tous les exercices validés. 💪</div>
+    <button class="recap-close" onclick="closeRecap()">Top, merci !</button>
+  </div>
+</div>
+
 </div>
 </body>
 </html>
-

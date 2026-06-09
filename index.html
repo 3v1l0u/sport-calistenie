@@ -2,9 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Callisthénie">
+<meta name="theme-color" content="#0d0f13">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
 <title>Programme Callisthénie — 4 Jours</title>
 
 <style>
@@ -249,10 +253,28 @@
 
   .warm-item.checked { opacity: 0.4; text-decoration: line-through; }
 
+  .nav-home { margin-bottom: 16px; }
+  .nav-home a { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .nav-home a:hover { border-color: var(--accent); color: var(--text); }
+
+  /* PWA — safe areas iPhone (aucun effet sur PC : env() vaut 0) */
+  @supports (padding: max(0px)) {
+    body { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+  }
+  @media (max-width: 600px) {
+    @supports (padding: max(0px)) {
+      body { padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); padding-bottom: calc(120px + env(safe-area-inset-bottom)); }
+      .timer-widget { bottom: calc(10px + env(safe-area-inset-bottom)) !important; }
+      .global-timer { top: calc(8px + env(safe-area-inset-top)); }
+    }
+  }
+
 </style>
 </head>
 <body>
 <div class="container">
+
+<div class="nav-home"><a href="accueil.html">← Accueil</a></div>
 
 <header>
   <h1>CALLIS<span>THÉNIE</span><br>4 JOURS</h1>
@@ -349,11 +371,11 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">Fentes statiques (split squat)</div>
-        <div class="ex-tip">Pied avant à ~70 cm du pied arrière, buste droit. Descends verticalement — le genou avant ne dépasse pas la pointe du pied. Genou arrière à 3–5 cm du sol sans le toucher. Pousse dans le talon avant pour remonter. Fais toutes les reps d'un côté avant de changer — c'est plus efficace qu'alterner.</div>
+        <div class="ex-name">Glute Bridge (pont fessier)</div>
+        <div class="ex-tip">Allongé sur le dos, pieds à plat au sol à 30 cm des fesses, genoux à 90°. Pousse les hanches vers le plafond en partant du bas du dos. Serre fort les fessiers en haut et tiens 2 secondes — pense à « écraser » les deux fessiers l'un vers l'autre. Redescends lentement sans reposer les hanches entre les reps.</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">10 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -362,11 +384,11 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">03</div>
       <div class="ex-content">
-        <div class="ex-name">Glute Bridge (pont fessier)</div>
-        <div class="ex-tip">Allongé sur le dos, pieds à plat au sol à 30 cm des fesses, genoux à 90°. Pousse les hanches vers le plafond en partant du bas du dos. Serre fort les fessiers en haut et tiens 2 secondes — pense à « écraser » les deux fessiers l'un vers l'autre. Redescends lentement sans reposer les hanches entre les reps.</div>
+        <div class="ex-name">Fentes statiques (split squat)</div>
+        <div class="ex-tip">Pied avant à ~70 cm du pied arrière, buste droit. Descends verticalement — le genou avant ne dépasse pas la pointe du pied. Genou arrière à 3–5 cm du sol sans le toucher. Pousse dans le talon avant pour remonter. Fais toutes les reps d'un côté avant de changer — c'est plus efficace qu'alterner.</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">15 reps</span></div>
+          <div class="ex-stat"><span class="stat-blue">10 reps × jambe</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -1236,10 +1258,8 @@
       })(warms[w]);
     }
     try {
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.getRegistrations().then(function(r) {
-          for (var i = 0; i < r.length; i++) r[i].unregister();
-        });
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(function(){});
       }
     } catch(e) {}
   });

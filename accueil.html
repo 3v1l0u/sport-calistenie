@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sport">
+<meta name="theme-color" content="#0d0f13">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Mes Programmes</title>
+<style>
+  :root {
+    --bg: #0d0f13;
+    --surface: #161a22;
+    --card: #1d2230;
+    --border: #2a3045;
+    --cali: #e8ff47;
+    --barre: #47c8ff;
+    --text: #e8eaf0;
+    --muted: #6b7591;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+    -webkit-user-select: none; user-select: none;
+    overscroll-behavior: none;
+  }
+  .wrap { max-width: 460px; width: 100%; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 34px; }
+  .logo { width: 76px; height: 76px; border-radius: 20px; margin: 0 auto 16px; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  h1 { font-weight: 900; font-size: 30px; letter-spacing: 2px; line-height: 1; }
+  h1 span { color: var(--barre); }
+  .subtitle { margin-top: 10px; color: var(--muted); font-size: 13px; letter-spacing: 0.5px; }
+
+  .menu { display: flex; flex-direction: column; gap: 14px; }
+  .prog-btn {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 20px 18px;
+    text-decoration: none; color: var(--text);
+    transition: transform 0.12s ease, border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .prog-btn:active { transform: scale(0.975); }
+  .prog-icon { width: 58px; height: 58px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; }
+  .prog-text { flex: 1; min-width: 0; }
+  .prog-name { font-size: 19px; font-weight: 800; letter-spacing: 0.3px; line-height: 1.1; }
+  .prog-meta { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.4; }
+  .prog-arrow { font-size: 22px; color: var(--muted); flex-shrink: 0; }
+
+  .cali-btn { }
+  .cali-btn:hover { border-color: var(--cali); }
+  .cali-btn .prog-icon { background: #1a2800; color: var(--cali); }
+  .cali-btn .prog-name { color: var(--cali); }
+
+  .barre-btn:hover { border-color: var(--barre); }
+  .barre-btn .prog-icon { background: #001a2a; color: var(--barre); }
+  .barre-btn .prog-name { color: var(--barre); }
+
+  footer { text-align: center; margin-top: 30px; font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="icon-192.png" alt="" class="logo">
+    <h1>MES <span>PROGRAMMES</span></h1>
+    <p class="subtitle">Choisis ta séance du jour</p>
+  </header>
+
+  <nav class="menu">
+    <a class="prog-btn cali-btn" href="index.html">
+      <div class="prog-icon">🤸</div>
+      <div class="prog-text">
+        <div class="prog-name">Callisthénie</div>
+        <div class="prog-meta">4 jours · Sans matériel · ~400 kcal</div>
+      </div>
+      <div class="prog-arrow">›</div>
+    </a>
+
+    <a class="prog-btn barre-btn" href="barre.html">
+      <div class="prog-icon">🏋️</div>
+      <div class="prog-text">
+        <div class="prog-name">Barre SmartWorkout</div>
+        <div class="prog-meta">5 jours · Élastiques + barre · ~500 kcal</div>
+      </div>
+      <div class="prog-arrow">›</div>
+    </a>
+  </nav>
+
+  <footer>
+    <span class="pill">⚖️ 113 kg · 🚶 marche 6×/sem</span>
+  </footer>
+
+</div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      try { navigator.serviceWorker.register('sw.js').catch(function(){}); } catch(e) {}
+    });
+  }
+</script>
+</body>
+</html>
