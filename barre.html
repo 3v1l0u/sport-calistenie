@@ -327,9 +327,8 @@
 
 <div class="tip-box" style="margin-bottom: 16px; margin-top: 0;">
   <strong>🎒 Matériel &amp; code couleur officiel SmartWorkout</strong>
-  Kit Elite : 🩶 Gris 5kg · 💚 Vert 10kg · 💙 Bleu foncé 15kg · 🖤 Noir 20kg · 🩵 Bleu clair 25kg<br>
-  SmartPress : ⚪ Blanc 8kg · ⚫ Noir 14kg · 🔵 Bleu 18kg (paire = ×2, ex : ⚫⚫ 28 kg)<br>
-  Barre SmartWorkout 106cm · SmartPress · Poignées · Straps chevilles · Ancre porte XL<br>
+  🩶 Gris 5kg · 💚 Vert 10kg · 💙 Bleu foncé 15kg · 🖤 Noir 20kg · 🩵 Bleu clair 25kg<br>
+  Barre SmartWorkout 106cm · Poignées · Straps chevilles · Ancre porte XL<br>
   ✏️ Touche le crayon à côté d'un poids pour l'ajuster (les élastiques se recalculent tout seuls).
 </div>
 
@@ -337,7 +336,7 @@
   <button id="modeBtn" class="mode-btn" onclick="toggleMode()">
     <span class="mode-dot"></span><span id="modeBtnLabel">Mode : avec ancrage de porte</span>
   </button>
-  <div class="mode-hint">8 exos utilisent l'ancre de porte (1 Push · 2 Pull · 5 Core). Bascule pour les remplacer par des équivalents poignées + straps chevilles, sans porte. Les pecs passent au SmartPress : plus besoin de porte pour eux.</div>
+  <div class="mode-hint">9 exos utilisent l'ancre de porte (2 Push · 2 Pull · 5 Core). Bascule pour les remplacer par des équivalents poignées + straps chevilles, sans porte.</div>
 </div>
 
 <div class="progress-bar-wrap">
@@ -434,12 +433,12 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
+    <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">04</div>
       <div class="ex-content">
-        <div class="ex-name">Glute Bridge (SmartPress)</div>
-        <div class="ex-tip">Allongé sur le dos, genoux fléchis, pieds à plat. Pose l'armature mousse du SmartPress en travers des hanches, les élastiques bloqués sous tes pieds. Pousse les hanches vers le plafond en serrant fort les fessiers, tiens 1 seconde en haut — corps droit comme une planche. Redescends sans poser les fesses entre les reps. La mousse répartit la charge sans te scier les hanches et garde la tension dès le départ.</div>
-        <div class="ex-setup">⚙️ SmartPress sur les hanches · élastiques sous les pieds · ⚫⚫ 28 kg · serre les fessiers</div>
+        <div class="ex-name">Glute Bridge élastique</div>
+        <div class="ex-tip">Allongé sur le dos, genoux fléchis, pieds à plat au sol. Place la barre avec les élastiques bloqués sous les pieds, positionnée sur tes hanches. Contracte les abdos, pousse les hanches vers le haut en serrant fort les fessiers. Tiens 1 seconde en haut — corps droit comme une planche. Redescends lentement sans poser les fesses entre les reps.</div>
+        <div class="ex-setup">⚙️ Barre + élastiques bloqués sous les pieds · barre sur les hanches · 💙🩵 40 kg</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -497,12 +496,15 @@
   </div>
   <div class="section-label">💪 Exercices</div>
   <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Pompes (prise large)"
+      data-alt-tip="Mains nettement plus larges que les épaules pour cibler les pectoraux. Corps gainé en ligne droite, coudes à ~45°. Descends la poitrine jusqu'à ~5 cm du sol, pousse en soufflant. Régler la difficulté par l'inclinaison : mains sur une table (facile) → au sol → pieds surélevés (dur). Genoux au sol si besoin."
+      data-alt-setup="⚙️ Poids du corps · mains larges · corps gainé · régler via inclinaison">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Développé poitrine (SmartPress)</div>
-        <div class="ex-tip">Passe l'armature mousse du SmartPress dans ton dos au niveau des omoplates, une poignée dans chaque main au niveau de la poitrine. Debout, un pied légèrement avancé pour l'équilibre. Pousse droit devant jusqu'à extension complète des bras, mains qui se rapprochent un peu. La mousse bloque les élastiques dans le dos sans frotter : tension franche dès le premier centimètre, maximale en fin de poussée. Reviens en 3 secondes en contrôlant.</div>
-        <div class="ex-setup">⚙️ SmartPress dans le dos (omoplates) · 1 poignée/main · ⚫⚫ 28 kg · pousse droit devant</div>
+        <div class="ex-name">Développé poitrine debout (ancre porte)</div>
+        <div class="ex-tip">Ancre la porte à hauteur de poitrine, dos à la porte, un pied légèrement avancé pour l'équilibre. Barre tenue à largeur d'épaules au niveau de la poitrine (l'élastique part de l'ancre, passe derrière toi et se clipse à la barre). Pousse droit devant jusqu'à extension complète des bras — la tension est forte et constante sur toute l'amplitude, maximale en fin de poussée. Reviens en 3 secondes en contrôlant.</div>
+        <div class="ex-setup">⚙️ Ancre porte hauteur poitrine (dos à la porte) · barre · 🩵🩵 50 kg · pousse droit devant</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -556,12 +558,15 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Pompes inclinées (mains surélevées)"
+      data-alt-tip="Mains posées sur un plan stable (table, plan de travail, bord du canapé), plus larges que les épaules. Corps gainé en ligne droite, descends la poitrine vers le bord, pousse. Plus le support est haut, plus c'est facile : commence haut, puis descends le support au fil des semaines (table → chaise → marche → sol). Idéal pour construire la force des pecs en partant de zéro."
+      data-alt-setup="⚙️ Poids du corps · mains surélevées sur un support · plus le support est haut, plus c'est facile">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Écarté pectoraux (SmartPress)</div>
-        <div class="ex-tip">SmartPress dans le dos au niveau des omoplates, une poignée dans chaque main, bras ouverts en croix à hauteur de poitrine, coudes légèrement fléchis. Ramène les mains devant toi en arc de cercle, comme pour enlacer un arbre — la tension monte et culmine quand les mains se rejoignent. La mousse maintient les élastiques tendus tout du long, plus de bande molle. Reviens lentement en contrôlant l'ouverture.</div>
-        <div class="ex-setup">⚙️ SmartPress dans le dos · 1 poignée/main · ⚪⚪ 16 kg · arc devant la poitrine</div>
+        <div class="ex-name">Fly pectoraux</div>
+        <div class="ex-tip">Ancrage de porte milieu, un élastique de chaque côté avec poignées. Bras légèrement fléchis, ouvre grand (étirement pectoraux) puis ramène les mains devant toi comme si tu enlacais quelqu'un. Sens le squeeze en fin de mouvement.</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU · 1 poignée par côté · 💚 10 kg · arc vers l'avant</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -578,7 +583,7 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Le SmartPress pour les pecs</strong> Développé et écartés se font avec le SmartPress : l'armature cale les élastiques dans ton dos, tension franche dès le premier centimètre et zéro besoin de porte. Commence léger (1 paire blanche ⚪⚪ ≈ 16 kg) et monte quand 10 reps passent facile. L'extension triceps overhead, elle, étire le triceps long à fond — bien plus efficace que le pushdown classique.</div>
+  <div class="tip-box"><strong>💡 Tension constante</strong> Pour le développé poitrine, l'ancre de porte derrière toi garde l'élastique tendu sur toute la poussée — bien plus efficace qu'allongé au sol où l'élastique ne s'étire presque pas. L'extension triceps overhead, elle, étire le triceps long à fond : bien plus efficace que le pushdown classique.</div>
   <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J2 comme terminé</button>
 </div>
 
@@ -605,12 +610,12 @@
   </div>
   <div class="section-label">💪 Exercices</div>
   <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
+    <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Tirage horizontal assis (SmartPress)</div>
-        <div class="ex-tip">Assis au sol, jambes tendues, l'armature mousse du SmartPress calée contre les plantes de pieds, une poignée dans chaque main. Dos droit, poitrine haute. Tire les poignées vers le bas-ventre en serrant les omoplates, coudes le long du corps. Contrôle le retour en 3 secondes. La mousse empêche les élastiques de glisser vers toi : tension stable du début à la fin.</div>
-        <div class="ex-setup">⚙️ SmartPress contre les pieds · assis dos droit · ⚫⚫ 28 kg · serre les omoplates</div>
+        <div class="ex-name">Rowing barre</div>
+        <div class="ex-tip">Pieds sur les élastiques, barre dans les mains, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates l'une vers l'autre. Coudes le long du corps. Ne te redresse pas pendant le mouvement. Redescends en 2 secondes.</div>
+        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · dos à 45° · 💚🩵 35 kg · prise pronation</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -1056,7 +1061,7 @@
   var WEIGHT_KEY = 'sw_weights';
   var modeNoAnchor = false;
   var weightOverrides = {};
-  var WEIGHT_RE = /(?:🩶|💚|💙|🖤|🩵|⚪|⚫|🔵)*\s*\d+\s*kg/;
+  var WEIGHT_RE = /(?:🩶|💚|💙|🖤|🩵)*\s*\d+\s*kg/;
 
   function loadWeights() {
     try { var raw = lsGet(WEIGHT_KEY); weightOverrides = raw ? JSON.parse(raw) : {}; }
@@ -1079,34 +1084,6 @@
     var s = '';
     for (var j = 0; j < picked.length; j++) s += map[picked[j]];
     return s;
-  }
-
-  // SmartPress : 6 élastiques courts (blanc 8 ×2, noir 14 ×2, bleu 18 ×2)
-  var SP_COMBOS = {};
-  var SP_SUMS = [];
-  (function() {
-    for (var w = 0; w <= 2; w++) for (var b = 0; b <= 2; b++) for (var u = 0; u <= 2; u++) {
-      if (w + b + u === 0) continue;
-      var sum = 8*w + 14*b + 18*u, c = w + b + u;
-      if (!SP_COMBOS[sum] || c < SP_COMBOS[sum].c) SP_COMBOS[sum] = {w:w, b:b, u:u, c:c};
-    }
-    for (var k in SP_COMBOS) SP_SUMS.push(parseInt(k, 10));
-    SP_SUMS.sort(function(a,b){ return a-b; });
-  })();
-  function spBands(kg) {
-    var c = SP_COMBOS[kg];
-    if (!c) return null;
-    var s = '';
-    for (var i = 0; i < c.w; i++) s += '⚪';
-    for (var j = 0; j < c.b; j++) s += '⚫';
-    for (var m = 0; m < c.u; m++) s += '🔵';
-    return s;
-  }
-  function bandsForKit(kg, kit) { return kit === 'sp' ? spBands(kg) : bandsFor(kg); }
-  function nearestSpIndex(kg) {
-    var bi = 0, bd = 1e9;
-    for (var i = 0; i < SP_SUMS.length; i++) { var d = Math.abs(SP_SUMS[i] - kg); if (d < bd) { bd = d; bi = i; } }
-    return bi;
   }
 
   function parseKg(text) {
@@ -1149,15 +1126,13 @@
     if (!setupEl) return;
     var base = baseSetupText(card);
     if (base == null) return;
-    var kit = card.getAttribute('data-kit') || 'elite';
     var defKg = parseKg(base);
     var text = base;
     if (defKg != null) {
       var wid = card.getAttribute('data-wid');
       var ov = weightOverrides[wid];
-      var okOv = (ov != null) && (kit === 'sp' ? (SP_COMBOS[ov] != null) : (ov % 5 === 0));
-      if (okOv && ov !== defKg) {
-        var b = bandsForKit(ov, kit);
+      if (ov != null && ov !== defKg) {
+        var b = bandsFor(ov);
         var token = (b ? b + ' ' : '') + ov + ' kg';
         text = base.replace(WEIGHT_RE, token);
       }
@@ -1191,37 +1166,20 @@
   }
 
   /* ── Éditeur de poids ── */
-  var wmCard = null, wmKg = 0, wmBase = 0, wmKit = 'elite';
+  var wmCard = null, wmKg = 0, wmBase = 0;
 
   function updateWmDisplay() {
     var kgEl = document.getElementById('wmKg');
     var bEl = document.getElementById('wmBands');
     if (kgEl) kgEl.textContent = wmKg;
-    if (bEl) bEl.textContent = bandsForKit(wmKg, wmKit) || '—';
-  }
-
-  function stepWeight(dir) {
-    if (wmKit === 'sp') {
-      var i = nearestSpIndex(wmKg) + dir;
-      if (i < 0) i = 0;
-      if (i >= SP_SUMS.length) i = SP_SUMS.length - 1;
-      wmKg = SP_SUMS[i];
-    } else {
-      wmKg += dir * 5;
-      if (wmKg < 5) wmKg = 5;
-      if (wmKg > 120) wmKg = 120;
-    }
-    updateWmDisplay();
+    if (bEl) bEl.textContent = bandsFor(wmKg) || '—';
   }
 
   function openWeightEditor(card) {
     wmCard = card;
-    wmKit = card.getAttribute('data-kit') || 'elite';
     wmBase = parseKg(baseSetupText(card));
     var wid = card.getAttribute('data-wid');
-    var ov0 = weightOverrides[wid];
-    var okOv0 = (ov0 != null) && (wmKit === 'sp' ? (SP_COMBOS[ov0] != null) : (ov0 % 5 === 0));
-    wmKg = okOv0 ? ov0 : wmBase;
+    wmKg = (weightOverrides[wid] != null) ? weightOverrides[wid] : wmBase;
     var nm = card.querySelector('.ex-name');
     var exEl = document.getElementById('wmEx');
     if (exEl) exEl.textContent = nm ? nm.textContent : 'Exercice';
@@ -1537,8 +1495,8 @@
       var mSave = document.getElementById('wmSave');
       var mReset = document.getElementById('wmReset');
       var mOv = document.getElementById('weightOverlay');
-      if (mMinus) mMinus.addEventListener('click', function() { stepWeight(-1); });
-      if (mPlus) mPlus.addEventListener('click', function() { stepWeight(1); });
+      if (mMinus) mMinus.addEventListener('click', function() { if (wmKg > 5) { wmKg -= 5; updateWmDisplay(); } });
+      if (mPlus) mPlus.addEventListener('click', function() { if (wmKg < 120) { wmKg += 5; updateWmDisplay(); } });
       if (mSave) mSave.addEventListener('click', saveWeight);
       if (mReset) mReset.addEventListener('click', resetWeight);
       if (mOv) mOv.addEventListener('click', function(e) { if (e.target === mOv) closeWeight(); });
