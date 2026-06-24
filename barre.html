@@ -144,6 +144,8 @@
   .timer-widget { position: fixed; right: calc((100vw - 700px) / 2 - 220px); top: 50%; transform: translateY(-50%); background: var(--surface); border: 2px solid var(--border); border-radius: 24px; padding: 28px 22px; width: 190px; text-align: center; z-index: 500; transition: all 0.3s ease; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
   .timer-widget.hidden { opacity: 0; pointer-events: none; transform: translateY(-50%) scale(0.85); }
   .timer-widget.running { border-color: var(--accent); box-shadow: 0 0 40px rgba(71,200,255,0.15); }
+  @keyframes timerNudge { 0% { box-shadow: 0 0 0 0 rgba(251,146,60,0.55); } 100% { box-shadow: 0 0 0 16px rgba(251,146,60,0); } }
+  .timer-widget.nudge { animation: timerNudge 0.5s ease-out; border-color: var(--orange) !important; }
   .timer-ex-name { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; line-height: 1.4; min-height: 0; word-break: normal; overflow-wrap: break-word; }
   .timer-svg-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 16px; }
   .timer-svg { width: 130px; height: 130px; display: block; }
@@ -1513,7 +1515,18 @@
     exStart = 0;
   }
 
+  function nudgeWidget() {
+    getTimerEls();
+    if (!elTW) return;
+    elTW.classList.remove('nudge');
+    void elTW.offsetWidth;
+    elTW.classList.add('nudge');
+    setTimeout(function(){ if (elTW) elTW.classList.remove('nudge'); }, 550);
+  }
+
   function handleCardClick(card) {
+    if (card === activeCard) return;
+    if (activeCard) { nudgeWidget(); return; }
     if (card.classList.contains('done')) {
       card.classList.remove('done');
       recheckDayDone();
@@ -1521,8 +1534,6 @@
       saveState();
       return;
     }
-    if (card === activeCard) return;
-    if (activeCard) { logExTime(activeCard); activeCard.classList.remove('timing'); activeCard.classList.add('done'); }
     hideWidget();
     activeCard = card;
     card.classList.add('timing');
