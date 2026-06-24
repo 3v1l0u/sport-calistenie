@@ -187,13 +187,23 @@
   .global-time { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; font-weight: 900; font-size: 48px; color: var(--accent); line-height: 1; min-width: 90px; text-align: center; }
   .global-stop { background: none; border: 1px solid #4a2020; border-radius: 50%; width: 32px; height: 32px; color: #f87171; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-  .recap-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
+  .recap-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 16px; }
   .recap-overlay.open { display: flex; }
-  .recap-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; width: 90%; max-width: 360px; text-align: center; }
-  .recap-title { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
-  .recap-time { font-size: 72px; font-weight: 900; color: var(--text); line-height: 1; margin: 8px 0 16px; }
-  .recap-msg { font-size: 13px; color: var(--muted); line-height: 1.6; }
-  .recap-close { margin-top: 20px; background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 12px 28px; font-weight: 700; font-size: 14px; cursor: pointer; }
+  .recap-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px 22px; width: 100%; max-width: 380px; max-height: 88vh; overflow-y: auto; text-align: center; }
+  .recap-title { font-size: 24px; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+  .recap-day { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .recap-time { font-size: 56px; font-weight: 900; color: var(--text); line-height: 1; margin: 4px 0 2px; }
+  .recap-total-delta { font-size: 13px; font-weight: 700; margin-bottom: 14px; min-height: 16px; }
+  .recap-list { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+  .recap-row { display: flex; align-items: center; gap: 8px; background: var(--card); border-radius: 8px; padding: 7px 10px; }
+  .recap-row .rr-name { font-size: 12px; color: var(--text); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .recap-row .rr-time { font-size: 12px; font-weight: 700; color: var(--text); }
+  .recap-row .rr-delta { font-size: 11px; font-weight: 700; min-width: 56px; text-align: right; }
+  .rr-faster { color: var(--green); }
+  .rr-slower { color: var(--orange); }
+  .rr-same { color: var(--muted); }
+  .rr-new { color: var(--accent); }
+  .recap-close { margin-top: 18px; background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 12px 28px; font-weight: 700; font-size: 14px; cursor: pointer; }
 
   .series-row { display: flex; gap: 7px; margin-top: 14px; justify-content: center; flex-wrap: wrap; }
   .serie-done-btn { width: 100%; padding: 13px; margin-top: 8px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
@@ -237,7 +247,7 @@
     .series-row { gap: 6px; margin-top: 8px; }
     .stretch-modal { padding: 16px; }
     .recap-modal { padding: 24px 16px; }
-    .recap-time { font-size: 52px; }
+    .recap-time { font-size: 46px; }
     .section-label { font-size: 9px; }
     .circuit-box { padding: 12px; }
   }
@@ -1280,6 +1290,19 @@
   var globalInterval = null, globalSecs = 0, globalStarted = false;
   var elGT = null, elGD = null;
 
+  /* ── Chrono par exercice (pour le récap) ── */
+  var exStart = 0, exTimes = {};
+  var TIMELOG_KEY = 'sw_timelog';
+  function fmt(s) { return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+  function escapeHtml(s) { return String(s).replace(/[&<>]/g, function(c){ return c==='&'?'&amp;':(c==='<'?'&lt;':'&gt;'); }); }
+  function logExTime(card) {
+    if (!exStart || !card) { exStart = 0; return; }
+    var wid = card.getAttribute('data-wid');
+    var secs = Math.round((Date.now() - exStart) / 1000);
+    if (wid && secs > 0) exTimes[wid] = secs;
+    exStart = 0;
+  }
+
   function startGlobalTimer() {
     if (globalStarted) return;
     globalStarted = true;
@@ -1292,19 +1315,69 @@
     }, 1000);
   }
 
-  function endGlobalTimer() {
+  function endGlobalTimer(panel) {
     if (!globalInterval) return;
     clearInterval(globalInterval); globalInterval = null;
-    var t = Math.floor(globalSecs/60)+':'+('0'+(globalSecs%60)).slice(-2);
+    var total = globalSecs;
     var rt = document.getElementById('recapTime');
-    if (rt) rt.textContent = t;
+    if (rt) rt.textContent = fmt(total);
+    buildRecap(panel, total);
     var ro = document.getElementById('recapOverlay');
     if (ro) ro.classList.add('open');
+    globalStarted = false; globalSecs = 0;
+    if (elGT) elGT.classList.remove('running');
+    if (elGD) elGD.textContent = '0:00';
+  }
+
+  function buildRecap(panel, total) {
+    var dayEl = document.getElementById('recapDay');
+    var listEl = document.getElementById('recapList');
+    var tdEl = document.getElementById('recapTotalDelta');
+    if (!panel) { if (listEl) listEl.innerHTML = ''; if (tdEl) tdEl.textContent = ''; if (dayEl) dayEl.textContent = ''; exTimes = {}; return; }
+    var dayNum = parseInt((panel.id || '').replace('day', ''), 10);
+    var h2 = panel.querySelector('.day-header h2');
+    if (dayEl) dayEl.textContent = 'J' + dayNum + (h2 ? ' · ' + h2.textContent : '');
+    var prevEx = {}, prevTotal = null;
+    try { var raw = lsGet(TIMELOG_KEY); var all = raw ? JSON.parse(raw) : {}; var p = all[panel.id]; if (p) { prevEx = p.ex || {}; prevTotal = (p.total != null ? p.total : null); } } catch(e) {}
+    if (tdEl) {
+      if (prevTotal != null) {
+        var d = total - prevTotal;
+        if (d < 0) { tdEl.className = 'recap-total-delta rr-faster'; tdEl.textContent = '↓ ' + fmt(Math.abs(d)) + ' plus rapide qu\'avant'; }
+        else if (d > 0) { tdEl.className = 'recap-total-delta rr-slower'; tdEl.textContent = '↑ ' + fmt(d) + ' plus lent qu\'avant'; }
+        else { tdEl.className = 'recap-total-delta rr-same'; tdEl.textContent = '= même temps qu\'avant'; }
+      } else { tdEl.className = 'recap-total-delta rr-new'; tdEl.textContent = '✨ Première fois — référence enregistrée'; }
+    }
+    var html = '', curEx = {};
+    var cards = panel.querySelectorAll('.exercise-card');
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var wid = card.getAttribute('data-wid');
+      var nmEl = card.querySelector('.ex-name');
+      var name = nmEl ? nmEl.textContent : 'Exercice';
+      var cur = exTimes[wid];
+      var timeStr, dCls, dStr;
+      if (cur == null) { timeStr = '—'; dCls = 'rr-same'; dStr = ''; }
+      else {
+        curEx[wid] = cur;
+        timeStr = fmt(cur);
+        var pv = prevEx[wid];
+        if (pv == null) { dCls = 'rr-new'; dStr = '✨ 1ʳᵉ fois'; }
+        else { var dd = cur - pv; if (dd < 0) { dCls = 'rr-faster'; dStr = '↓ ' + Math.abs(dd) + 's'; } else if (dd > 0) { dCls = 'rr-slower'; dStr = '↑ ' + dd + 's'; } else { dCls = 'rr-same'; dStr = '='; } }
+      }
+      html += '<div class="recap-row"><span class="rr-name">' + escapeHtml(name) + '</span><span class="rr-time">' + timeStr + '</span><span class="rr-delta ' + dCls + '">' + dStr + '</span></div>';
+    }
+    if (listEl) listEl.innerHTML = html;
+    var merged = {};
+    for (var k in prevEx) merged[k] = prevEx[k];
+    for (var k2 in curEx) merged[k2] = curEx[k2];
+    try { var raw2 = lsGet(TIMELOG_KEY); var all2 = raw2 ? JSON.parse(raw2) : {}; all2[panel.id] = { total: total, ex: merged }; lsSet(TIMELOG_KEY, JSON.stringify(all2)); } catch(e) {}
+    exTimes = {};
   }
 
   function cancelGlobalTimer() {
     if (globalInterval) { clearInterval(globalInterval); globalInterval = null; }
     globalStarted = false; globalSecs = 0;
+    exTimes = {}; exStart = 0;
     elGT = elGT || document.getElementById('globalTimer');
     elGD = elGD || document.getElementById('globalDisplay');
     if (elGT) elGT.classList.remove('running');
@@ -1385,6 +1458,7 @@
       activeCard.classList.remove('timing');
       activeCard.classList.add('done');
       var ac = activeCard;
+      logExTime(ac);
       activeCard = null;
       saveState();
       var panel = ac.closest('.day-panel');
@@ -1393,7 +1467,7 @@
         var allDone = true;
         for (var i = 0; i < cards.length; i++) { if (!cards[i].classList.contains('done')) { allDone = false; break; } }
         if (allDone) {
-          endGlobalTimer();
+          endGlobalTimer(panel);
           var dayNum = parseInt((panel.id || '').replace('day', ''), 10);
           if (dayNum >= 1 && dayNum <= 5) {
             setTimeout(function() { markDayDone(dayNum); }, 600);
@@ -1436,6 +1510,7 @@
   function stopTimer() {
     hideWidget();
     if (activeCard) { activeCard.classList.remove('timing'); activeCard = null; }
+    exStart = 0;
   }
 
   function handleCardClick(card) {
@@ -1447,11 +1522,12 @@
       return;
     }
     if (card === activeCard) return;
-    if (activeCard) { activeCard.classList.remove('timing'); activeCard.classList.add('done'); }
+    if (activeCard) { logExTime(activeCard); activeCard.classList.remove('timing'); activeCard.classList.add('done'); }
     hideWidget();
     activeCard = card;
     card.classList.add('timing');
     startGlobalTimer();
+    exStart = Date.now();
     currentSerie = 0;
     totalSeries = getCardSeries(card);
     restSeconds = getCardRest(card);
@@ -1608,8 +1684,10 @@
 <div class="recap-overlay" id="recapOverlay">
   <div class="recap-modal">
     <div class="recap-title">Séance terminée !</div>
+    <div class="recap-day" id="recapDay"></div>
     <div class="recap-time" id="recapTime">0:00</div>
-    <div class="recap-msg">SmartWorkout Elite — tous les exercices validés. 💪</div>
+    <div class="recap-total-delta" id="recapTotalDelta"></div>
+    <div class="recap-list" id="recapList"></div>
     <button class="recap-close" onclick="closeRecap()">Top, merci !</button>
   </div>
 </div>
