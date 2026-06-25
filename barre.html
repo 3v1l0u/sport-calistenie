@@ -340,7 +340,7 @@
 <div class="tip-box" style="margin-bottom: 16px; margin-top: 0;">
   <strong>🎒 Matériel &amp; code couleur officiel SmartWorkout</strong>
   Kit Elite : 🩶 Gris 5kg · 💚 Vert 10kg · 💙 Bleu foncé 15kg · 🖤 Noir 20kg · 🩵 Bleu clair 25kg<br>
-  SmartPress : ⚪ Blanc 8kg · ⚫ Noir 14kg · 🔵 Bleu 18kg (paire = ×2, ex : ⚫⚫ 28 kg)<br>
+  SmartPress (par bras · 1 élastique par main) : ⚪ Blanc 8 · ⚫ Noir 14 · 🔵 Bleu 18 kg/bras<br>
   Barre 106cm · SmartPress · Poignées · Straps chevilles · Ancre porte XL<br>
   ✏️ Touche le crayon à côté d'un poids pour l'ajuster (les élastiques se recalculent tout seuls).
 </div>
@@ -514,7 +514,7 @@
       <div class="ex-content">
         <div class="ex-name">Développé poitrine (SmartPress)</div>
         <div class="ex-tip">Passe l'armature mousse du SmartPress dans ton dos au niveau des omoplates, une poignée dans chaque main au niveau de la poitrine. Debout, un pied légèrement avancé pour l'équilibre. Pousse droit devant jusqu'à extension complète des bras, mains qui se rapprochent un peu. La mousse bloque les élastiques dans le dos sans frotter : tension franche dès le premier centimètre, maximale en fin de poussée. Reviens en 3 secondes en contrôlant.</div>
-        <div class="ex-setup">⚙️ SmartPress dans le dos (omoplates) · 1 poignée/main · ⚫⚫ 28 kg · pousse droit devant</div>
+        <div class="ex-setup">⚙️ SmartPress dans le dos (omoplates) · 1 poignée/main · ⚫ 14 kg/bras · pousse droit devant</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -573,7 +573,7 @@
       <div class="ex-content">
         <div class="ex-name">Écarté pectoraux (SmartPress)</div>
         <div class="ex-tip">SmartPress dans le dos au niveau des omoplates, une poignée dans chaque main, bras ouverts en croix à hauteur de poitrine, coudes légèrement fléchis. Ramène les mains devant toi en arc de cercle, comme pour enlacer un arbre — la tension monte et culmine quand les mains se rejoignent. La mousse maintient les élastiques tendus tout du long, plus de bande molle. Reviens lentement en contrôlant l'ouverture.</div>
-        <div class="ex-setup">⚙️ SmartPress dans le dos · 1 poignée/main · ⚪⚪ 16 kg · arc devant la poitrine</div>
+        <div class="ex-setup">⚙️ SmartPress dans le dos · 1 poignée/main · ⚪ 8 kg/bras · arc devant la poitrine</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -590,7 +590,7 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Le SmartPress pour les pecs</strong> Développé et écartés se font avec le SmartPress : l'armature cale les élastiques dans ton dos, tension franche dès le premier centimètre et zéro besoin de porte. Commence léger (1 paire blanche ⚪⚪ ≈ 16 kg) et monte quand 10 reps passent facile. L'extension triceps overhead, elle, étire le triceps long à fond — bien plus efficace que le pushdown classique.</div>
+  <div class="tip-box"><strong>💡 Le SmartPress pour les pecs</strong> Développé et écartés se font avec le SmartPress : l'armature cale les élastiques dans ton dos, tension franche dès le premier centimètre et zéro besoin de porte. Commence léger (⚪ 8 kg/bras) et monte quand 10 reps passent facile. L'extension triceps overhead, elle, étire le triceps long à fond — bien plus efficace que le pushdown classique.</div>
   <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J2 comme terminé</button>
 </div>
 
@@ -634,7 +634,7 @@
     <div class="exercise-card" onclick="handleCardClick(this)"
       data-alt-name="Tirage horizontal assis (SmartPress)"
       data-alt-tip="Assis au sol, jambes tendues, l'armature mousse du SmartPress calée contre les plantes de pieds, une poignée dans chaque main. Dos droit, poitrine haute. Tire les poignées vers le bas-ventre en serrant les omoplates, coudes le long du corps. Contrôle le retour en 3 secondes. La mousse empêche les élastiques de glisser vers toi : tension stable du début à la fin."
-      data-alt-setup="⚙️ SmartPress contre les pieds · assis dos droit · ⚫⚫ 28 kg · serre les omoplates"
+      data-alt-setup="⚙️ SmartPress contre les pieds · assis dos droit · ⚫ 14 kg/bras · serre les omoplates"
       data-alt-kit="sp">
       <div class="ex-number">02</div>
       <div class="ex-content">
@@ -907,7 +907,7 @@
   <div class="weight-modal">
     <div class="wm-ex" id="wmEx">Exercice</div>
     <div class="wm-title">Régler le poids</div>
-    <div class="wm-display"><span id="wmKg">20</span> kg</div>
+    <div class="wm-display"><span id="wmKg">20</span> <span id="wmUnit">kg</span></div>
     <div class="wm-bands" id="wmBands">🖤</div>
     <div class="wm-stepper">
       <button class="wm-step" type="button" id="wmMinus">−</button>
@@ -1094,14 +1094,14 @@
     return s;
   }
 
-  // SmartPress : 6 élastiques courts (blanc 8 ×2, noir 14 ×2, bleu 18 ×2)
+  // SmartPress : résistance PAR BRAS (1 élastique par main, mirroir de l'autre côté
+  // → toujours symétrique). blanc 8 · noir 14 · bleu 18. Paliers : 8,14,18,22,26,32,40.
   var SP_COMBOS = {};
   var SP_SUMS = [];
   (function() {
-    for (var w = 0; w <= 2; w++) for (var b = 0; b <= 2; b++) for (var u = 0; u <= 2; u++) {
+    for (var w = 0; w <= 1; w++) for (var b = 0; b <= 1; b++) for (var u = 0; u <= 1; u++) {
       if (w + b + u === 0) continue;
-      var sm = 8*w + 14*b + 18*u, c = w + b + u;
-      if (!SP_COMBOS[sm] || c < SP_COMBOS[sm].c) SP_COMBOS[sm] = {w:w, b:b, u:u, c:c};
+      SP_COMBOS[8*w + 14*b + 18*u] = { w:w, b:b, u:u };
     }
     for (var k in SP_COMBOS) SP_SUMS.push(parseInt(k, 10));
     SP_SUMS.sort(function(a,b){ return a-b; });
@@ -1109,11 +1109,7 @@
   function spBands(kg) {
     var c = SP_COMBOS[kg];
     if (!c) return null;
-    var s = '';
-    for (var i = 0; i < c.w; i++) s += '⚪';
-    for (var j = 0; j < c.b; j++) s += '⚫';
-    for (var m = 0; m < c.u; m++) s += '🔵';
-    return s;
+    return (c.w ? '⚪' : '') + (c.b ? '⚫' : '') + (c.u ? '🔵' : '');
   }
   function bandsForKit(kg, kit) { return kit === 'sp' ? spBands(kg) : bandsFor(kg); }
   function nearestSpIndex(kg) {
@@ -1126,6 +1122,11 @@
       return card.getAttribute('data-alt-kit');
     }
     return card.getAttribute('data-kit') || 'elite';
+  }
+  // Un override est valide s'il correspond à un palier réel du kit (Elite = multiple de 5, SmartPress = combo par bras)
+  function validOverride(ov, kit) {
+    if (ov == null) return false;
+    return kit === 'sp' ? (SP_COMBOS[ov] != null) : (ov % 5 === 0);
   }
 
   function parseKg(text) {
@@ -1174,7 +1175,7 @@
     if (defKg != null) {
       var wid = card.getAttribute('data-wid');
       var ov = weightOverrides[wid];
-      var okOv = (ov != null) && (kit === 'sp' ? (SP_COMBOS[ov] != null) : (ov % 5 === 0));
+      var okOv = validOverride(ov, kit);
       if (okOv && ov !== defKg) {
         var b = bandsForKit(ov, kit);
         var token = (b ? b + ' ' : '') + ov + ' kg';
@@ -1215,7 +1216,9 @@
   function updateWmDisplay() {
     var kgEl = document.getElementById('wmKg');
     var bEl = document.getElementById('wmBands');
+    var uEl = document.getElementById('wmUnit');
     if (kgEl) kgEl.textContent = wmKg;
+    if (uEl) uEl.textContent = (wmKit === 'sp') ? 'kg/bras' : 'kg';
     if (bEl) bEl.textContent = bandsForKit(wmKg, wmKit) || '—';
   }
 
@@ -1239,8 +1242,7 @@
     wmBase = parseKg(baseSetupText(card));
     var wid = card.getAttribute('data-wid');
     var ov0 = weightOverrides[wid];
-    var okOv0 = (ov0 != null) && (wmKit === 'sp' ? (SP_COMBOS[ov0] != null) : (ov0 % 5 === 0));
-    wmKg = okOv0 ? ov0 : wmBase;
+    wmKg = validOverride(ov0, wmKit) ? ov0 : wmBase;
     var nm = card.querySelector('.ex-name');
     var exEl = document.getElementById('wmEx');
     if (exEl) exEl.textContent = nm ? nm.textContent : 'Exercice';
