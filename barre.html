@@ -349,7 +349,7 @@
   <button id="modeBtn" class="mode-btn" onclick="toggleMode()">
     <span class="mode-dot"></span><span id="modeBtnLabel">Mode : avec ancrage de porte</span>
   </button>
-  <div class="mode-hint">8 exos utilisent l'ancre de porte (1 Push · 2 Pull · 5 Core). Bascule pour les remplacer par des équivalents sans porte (SmartPress, poignées, poids du corps). Les pecs sont déjà au SmartPress : pas besoin de porte pour eux.</div>
+  <div class="mode-hint">9 exos utilisent l'ancre de porte (2 Push · 2 Pull · 5 Core). Bascule pour les remplacer par des équivalents sans porte (SmartPress, poignées, poids du corps). Le développé reste au SmartPress dans les deux modes.</div>
 </div>
 
 <div class="progress-bar-wrap">
@@ -568,15 +568,18 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
+    <div class="exercise-card" onclick="handleCardClick(this)"
+      data-alt-name="Pompes larges (pecs)"
+      data-alt-tip="Mains nettement plus larges que les épaules, doigts légèrement tournés vers l'extérieur, corps gainé en ligne droite. Descends la poitrine vers le sol en écartant les coudes — c'est cette position large qui étire et cible les pectoraux. Pousse en soufflant. Régler par l'inclinaison : mains sur une table (facile) → au sol → pieds surélevés (dur)."
+      data-alt-setup="⚙️ Poids du corps · mains larges · descends en écartant les coudes · régler via inclinaison">
       <div class="ex-number">05</div>
       <div class="ex-content">
-        <div class="ex-name">Écarté pectoraux (SmartPress)</div>
-        <div class="ex-tip">SmartPress dans le dos au niveau des omoplates, une poignée dans chaque main, bras ouverts en croix à hauteur de poitrine, coudes légèrement fléchis. Ramène les mains devant toi en arc de cercle, comme pour enlacer un arbre — la tension monte et culmine quand les mains se rejoignent. La mousse maintient les élastiques tendus tout du long, plus de bande molle. Reviens lentement en contrôlant l'ouverture.</div>
-        <div class="ex-setup">⚙️ SmartPress dans le dos · 1 poignée/main · ⚪ 8 kg/bras · arc devant la poitrine</div>
+        <div class="ex-name">Écarté un bras à la poulie</div>
+        <div class="ex-tip">Ancre de porte à hauteur de poitrine. Tiens-toi de profil, poignée dans la main la plus éloignée de la porte, bras ouvert vers la porte, coude légèrement fléchi et fixe pendant tout le mouvement. Ramène la main en travers de ta poitrine en arc de cercle (comme un crochet lent) — l'élastique tire latéralement, la tension culmine quand ta main arrive au centre devant le sternum. Reviens lentement en contrôlant l'ouverture. Toutes les reps d'un côté, puis retourne-toi.</div>
+        <div class="ex-setup">⚙️ Ancre porte MILIEU (hauteur poitrine) · 1 poignée · de profil · 💚 10 kg · un bras à la fois</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
+          <div class="ex-stat"><span class="stat-blue">12 reps × bras</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -590,7 +593,7 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Le SmartPress pour les pecs</strong> Développé et écartés se font avec le SmartPress : l'armature cale les élastiques dans ton dos, tension franche dès le premier centimètre et zéro besoin de porte. Commence léger (⚪ 8 kg/bras) et monte quand 10 reps passent facile. L'extension triceps overhead, elle, étire le triceps long à fond — bien plus efficace que le pushdown classique.</div>
+  <div class="tip-box"><strong>💡 Pecs : pousser + isoler</strong> Le développé se fait au SmartPress (tension dès le départ, sans porte). L'écarté, lui, passe à la poulie de porte : c'est la seule façon d'avoir une traction latérale qui charge vraiment le pec au moment du serrage — ancré dans le dos, le SmartPress ne bosse pas l'écarté. Va lentement, cherche le squeeze au centre plutôt que la charge.</div>
   <button onclick="markDayDone(2)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J2 comme terminé</button>
 </div>
 
