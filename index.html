@@ -1259,7 +1259,14 @@
     }
     try {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(function(){});
+        var hadCtrl = !!navigator.serviceWorker.controller;
+        var swReload = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (swReload || !hadCtrl) return;
+          swReload = true;
+          window.location.reload();
+        });
+        navigator.serviceWorker.register('sw.js').then(function(reg){ if (reg && reg.update) reg.update(); }).catch(function(){});
       }
     } catch(e) {}
   });
