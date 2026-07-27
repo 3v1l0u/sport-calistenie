@@ -110,6 +110,13 @@
   .ex-content { flex: 1; min-width: 0; }
   .ex-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
   .ex-muscles { font-size: 11px; font-weight: 600; color: #a78bfa; margin-bottom: 5px; letter-spacing: 0.2px; }
+
+  .exercise-card.locked { opacity: 0.42; }
+  .exercise-card.locked:hover { border-color: var(--border); }
+  .exercise-card.locked .check-icon { font-size: 0; border-color: var(--border); }
+  .exercise-card.locked .check-icon::after { content: '🔒'; font-size: 11px; }
+  @keyframes cardShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .exercise-card.shake { animation: cardShake 0.3s ease; }
   .ex-tip { font-size: 11px; color: var(--muted); line-height: 1.5; }
   .ex-setup { font-size: 11px; color: var(--accent); margin-top: 4px; font-weight: 600; opacity: 0.85; }
   .ex-stats { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
@@ -1046,6 +1053,7 @@
       saveHistory();
       renderHistory();
       updateProgress();
+      updateLocks();
     } catch(e) {}
   }
 
@@ -1546,6 +1554,38 @@
     if (window.confirm('Annuler l\'exercice en cours ? Son chrono sera perdu.')) stopTimer();
   }
 
+  /* ── Ordre impose : on ne peut lancer que le premier exo non termine ── */
+  function isNextInOrder(card) {
+    var panel = card.closest('.day-panel');
+    if (!panel) return true;
+    var cards = panel.querySelectorAll('.exercise-card');
+    for (var i = 0; i < cards.length; i++) {
+      if (!cards[i].classList.contains('done')) return cards[i] === card;
+    }
+    return true;
+  }
+
+  function updateLocks() {
+    var panels = document.querySelectorAll('.day-panel');
+    for (var p = 0; p < panels.length; p++) {
+      var cards = panels[p].querySelectorAll('.exercise-card');
+      var found = false;
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i];
+        if (c.classList.contains('done')) { c.classList.remove('locked'); continue; }
+        if (!found) { found = true; c.classList.remove('locked'); }
+        else c.classList.add('locked');
+      }
+    }
+  }
+
+  function shakeCard(card) {
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+    setTimeout(function(){ card.classList.remove('shake'); }, 350);
+  }
+
   function nudgeWidget() {
     getTimerEls();
     if (!elTW) return;
@@ -1565,6 +1605,7 @@
       saveState();
       return;
     }
+    if (!isNextInOrder(card)) { shakeCard(card); return; }
     hideWidget();
     activeCard = card;
     card.classList.add('timing');
@@ -1655,6 +1696,7 @@
         for (var j = 0; j < pc.length; j++) pc[j].setAttribute('data-wid', panels[p].id + '-' + j);
       }
       renderAll();
+      updateLocks();
     } catch(e) {}
     try {
       var mMinus = document.getElementById('wmMinus');
