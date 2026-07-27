@@ -1,7 +1,7 @@
 /* Service worker — Sport PWA
    Stratégie : réseau d'abord (pour avoir les mises à jour quand tu es en ligne),
    repli sur le cache quand hors-ligne. */
-var CACHE = 'sport-v24';
+var CACHE = 'sport-v25';
 var ASSETS = [
   './',
   'accueil.html',
