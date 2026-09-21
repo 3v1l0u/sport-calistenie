@@ -423,13 +423,13 @@
       </div>
       <div class="check-icon">✓</div>
     </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
       <div class="ex-number">02</div>
       <div class="ex-content">
-        <div class="ex-name">Soulevé de terre roumain (RDL)</div>
+        <div class="ex-name">Soulevé de terre roumain (SmartPress)</div>
         <div class="ex-muscles">🎯 Ischio-jambiers · Fessiers · Bas du dos</div>
-        <div class="ex-tip">Charnière de hanches, PAS un squat. Départ DEBOUT, barre contre les cuisses, élastique déjà tendu. Pousse les fesses loin en arrière (comme pour fermer une portière de voiture avec) : la barre descend en glissant le long des cuisses. Genoux légèrement fléchis et FIXES — ils ne se plient pas plus pendant la descente. Descends jusqu'à mi-tibia max, ou dès que tu sens l'étirement à l'arrière des cuisses. Remonte en poussant le bassin vers l'avant et serre les fessiers en haut. Dos plat du début à la fin, jamais arrondi.</div>
-        <div class="ex-setup">⚙️ Élastiques enroulés en TRIPLE autour de la barre (pré-tension) · pieds larges sur l'élastique · 🖤🩵 45 kg · l'élastique doit rester tendu même en bas</div>
+        <div class="ex-tip">Charnière de hanches, PAS un squat. Debout sur l'armature mousse du SmartPress (sous le milieu des pieds), pieds largeur bassin, une poignée dans chaque main devant les cuisses : les élastiques courts sont déjà tendus, rien à enrouler. Pousse les fesses loin en arrière (comme pour fermer une portière de voiture avec) : les poignées descendent en glissant le long des cuisses. Genoux légèrement fléchis et FIXES — ils ne se plient pas plus pendant la descente. Descends jusqu'à mi-tibia max, ou dès que tu sens l'étirement à l'arrière des cuisses. Remonte en poussant le bassin vers l'avant et serre les fessiers en haut. Dos plat du début à la fin, jamais arrondi. Élastiques mous en bas ? Arrête la descente juste sous les genoux.</div>
+        <div class="ex-setup">⚙️ SmartPress sous les pieds · 1 poignée/main · ⚪⚫ 22 kg/bras · élastiques tendus même en bas</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -491,7 +491,7 @@
     <div class="warm-item" onclick="showStretch('Pigeon yoga')">Pigeon yoga (fessier) <span>30s × côté</span></div>
     <div class="warm-item" onclick="showStretch('Respiration profonde')">Respiration profonde <span>1 min</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Pré-tension : la clé avec les élastiques</strong> Un élastique ne résiste que s'il est déjà étiré : s'il est mou en position basse, tu travailles dans le vide. Enroule-le plus de fois autour de la barre (ou écarte les pieds) jusqu'à sentir de la tension DÈS le départ. C'est pour ça que le soulevé se fait en version roumaine : l'amplitude reste dans la zone tendue. Le dos PLAT est non négociable. Dès que 10 reps passent facilement sur 3 séries, passe à l'élastique supérieur (ou ajoutes-en un via ✏️).</div>
+  <div class="tip-box"><strong>💡 Pré-tension : la clé avec les élastiques</strong> Un élastique ne résiste que s'il est déjà étiré : s'il est mou en position basse, tu travailles dans le vide. À la barre, écarte les pieds sur l'élastique jusqu'à sentir de la tension DÈS le départ. Le soulevé, lui, passe au SmartPress : ses élastiques courts sont tendus dès le bas, sans rien enrouler — et la version roumaine garde l'amplitude dans la zone tendue. Le dos PLAT est non négociable. Dès que 10 reps passent facilement sur 3 séries, passe à l'élastique supérieur (ou ajoutes-en un via ✏️).</div>
   <button onclick="markDayDone(1)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J1 comme terminé</button>
 </div>
 
@@ -629,18 +629,18 @@
   <div class="warmup-list">
     <div class="warm-item" onclick="showStretch('Rotations épaules')">Rotations épaules <span>30 sec</span></div>
     <div class="warm-item" onclick="showStretch('Cercles de bras')">Cercles de bras <span>30 sec</span></div>
-    <div class="warm-item" onclick="showStretch('Rowing léger')">Rowing léger à vide (1 élastique) <span>15 reps</span></div>
+    <div class="warm-item" onclick="showStretch('Rowing léger')">Rowing léger (SmartPress ⚪) <span>15 reps</span></div>
     <div class="warm-item" onclick="showStretch('Rotations du tronc')">Rotations du tronc <span>30 sec × côté</span></div>
   </div>
   <div class="section-label">💪 Exercices</div>
   <div class="exercises">
-    <div class="exercise-card" onclick="handleCardClick(this)">
+    <div class="exercise-card" onclick="handleCardClick(this)" data-kit="sp">
       <div class="ex-number">01</div>
       <div class="ex-content">
-        <div class="ex-name">Rowing barre</div>
-        <div class="ex-muscles">🎯 Dorsaux · Trapèzes · Biceps</div>
-        <div class="ex-tip">Pieds sur les élastiques, barre dans les mains, dos incliné à 45° — ne creuse pas les reins. Tire la barre vers le nombril en serrant les omoplates l'une vers l'autre. Coudes le long du corps. Ne te redresse pas pendant le mouvement. Redescends en 2 secondes.</div>
-        <div class="ex-setup">⚙️ Élastiques sous les 2 pieds · dos à 45° · 💚🩵 35 kg · prise pronation</div>
+        <div class="ex-name">Rowing buste penché (SmartPress)</div>
+        <div class="ex-muscles">🎯 Haut du dos · Rhomboïdes · Trapèzes · Arrière d'épaules</div>
+        <div class="ex-tip">Debout sur l'armature mousse du SmartPress, pieds largeur bassin, une poignée dans chaque main. Genoux légèrement fléchis, buste penché à 45°, dos plat — ne creuse pas les reins. Tire les poignées vers le bas des côtes en OUVRANT les coudes (environ 45° du corps) et serre fort les omoplates l'une vers l'autre en haut. Les mains passent de chaque côté du buste : va chercher toute l'amplitude. Ne te redresse pas pendant le mouvement. Redescends en 2 secondes.</div>
+        <div class="ex-setup">⚙️ SmartPress sous les pieds · buste à 45° · 🔵 18 kg/bras · coudes ouverts</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">10 reps</span></div>
@@ -651,8 +651,8 @@
     </div>
     <div class="exercise-card" onclick="handleCardClick(this)"
       data-alt-name="Tirage horizontal assis (SmartPress)"
-      data-alt-tip="Assis au sol, jambes tendues, l'armature mousse du SmartPress calée contre les plantes de pieds, une poignée dans chaque main. Dos droit, poitrine haute. Tire les poignées vers le bas-ventre en serrant les omoplates, coudes le long du corps. Contrôle le retour en 3 secondes. La mousse empêche les élastiques de glisser vers toi : tension stable du début à la fin."
-      data-alt-setup="⚙️ SmartPress contre les pieds · assis dos droit · ⚫ 14 kg/bras · serre les omoplates"
+      data-alt-tip="Assis au sol, jambes tendues, l'armature mousse du SmartPress calée contre les plantes de pieds, une poignée dans chaque main. Dos droit, poitrine haute. Tire les poignées vers le bas-ventre en gardant les coudes SERRÉS, collés au corps — c'est ce qui le distingue du rowing penché : ici ce sont les grands dorsaux qui bossent. Serre les omoplates en fin de mouvement. Contrôle le retour en 3 secondes. La mousse empêche les élastiques de glisser vers toi : tension stable du début à la fin."
+      data-alt-setup="⚙️ SmartPress contre les pieds · assis dos droit · ⚫ 14 kg/bras · coudes serrés"
       data-alt-kit="sp">
       <div class="ex-number">02</div>
       <div class="ex-content">
@@ -724,7 +724,7 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Pull complet</strong> Rowing (dos horizontal) + tirage vertical (largeur dorsaux) + face pull (épaules arrière + trapèzes) + 2 variations biceps = couverture totale chaîne postérieure. Le face pull est le garant de la santé long terme de tes épaules.</div>
+  <div class="tip-box"><strong>💡 Pull complet</strong> Rowing penché coudes ouverts (haut du dos) + tirage vertical (largeur des dorsaux — ou tirage assis coudes serrés en mode sans ancrage) + face pull (épaules arrière + trapèzes) + 2 variations biceps = couverture totale chaîne postérieure. En sans ancrage, les 2 tirages s'enchaînent au SmartPress sans rien réinstaller : tu changes juste d'élastiques. Le face pull est le garant de la santé long terme de tes épaules.</div>
   <button onclick="markDayDone(3)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J3 comme terminé</button>
 </div>
 
@@ -1034,6 +1034,13 @@
   function loadWeights() {
     try { var raw = lsGet(WEIGHT_KEY); weightOverrides = raw ? JSON.parse(raw) : {}; }
     catch(e) { weightOverrides = {}; }
+    // RDL (day1-1) et rowing (day3-0) passés au SmartPress : un ancien réglage Elite n'a plus de sens en kg/bras
+    if (lsGet('sw_wmig_sp1') !== '1') {
+      delete weightOverrides['day1-1'];
+      delete weightOverrides['day3-0'];
+      saveWeights();
+      lsSet('sw_wmig_sp1', '1');
+    }
   }
   function saveWeights() { try { lsSet(WEIGHT_KEY, JSON.stringify(weightOverrides)); } catch(e) {} }
 
@@ -1578,7 +1585,7 @@
     'Genou poitrine':        {duration:'30 sec × côté',  steps:['Allongé sur le dos, jambe gauche tendue.','Ramène le genou droit vers la poitrine.','Dos plat au sol.','30 secondes par côté.'], focus:'Étire le bas du dos.'},
     'Saut léger':            {duration:'1 minute',       steps:['Petits sauts légers sur la pointe des pieds.','Genoux légèrement fléchis à l\'atterrissage.','Bras détendus.','L\'objectif c\'est la chaleur, pas l\'intensité.'], focus:'Monte la fréquence cardiaque.'},
     'Rotations complètes':   {duration:'1 minute',       steps:['Rotations tête 10s, épaules 10s, hanches 10s, genoux 10s, chevilles 10s.','Toujours dans les deux sens.','Mouvements amples et lents.','Check-up de toutes les articulations.'], focus:'Mobilise l\'ensemble du corps.'},
-    'Rowing léger':          {duration:'15 répétitions', steps:['Fixe 1 seul élastique léger à la barre.','Pieds sur l\'élastique, dos à 45°.','Tire doucement vers le nombril, relâche lentement.','L\'objectif est d\'activer les dorsaux, pas de travailler.'], focus:'Activation dorsaux et biceps avant la séance.'},
+    'Rowing léger':          {duration:'15 répétitions', steps:['Armature du SmartPress sous les pieds, élastiques blancs ⚪ (les plus légers).','Buste penché à 45°, une poignée dans chaque main.','Tire doucement vers le bas des côtes, relâche lentement.','L\'objectif est d\'activer le dos, pas de travailler.'], focus:'Activation dorsaux et biceps avant la séance.'},
     'Étirement biceps':      {duration:'30 sec × bras',  steps:['Tends le bras à l\'horizontale, paume vers le haut.','Avec l\'autre main, appuie doucement sur les doigts vers le bas.','Sens l\'étirement à l\'intérieur du bras.','30 secondes par bras.'], focus:'Étire les biceps et les fléchisseurs des poignets.'}
   };
 
