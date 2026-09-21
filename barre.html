@@ -441,13 +441,13 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">03</div>
       <div class="ex-content">
-        <div class="ex-name">Fentes avant avec barre</div>
-        <div class="ex-muscles">🎯 Quadriceps · Fessiers</div>
-        <div class="ex-tip">Un pied sur l'élastique, barre en position haute (sur les épaules). Pas en avant, genou avant à 90°, genou arrière qui frôle le sol. Buste droit tout au long. Fais toutes les reps d'une jambe avant de changer.</div>
-        <div class="ex-setup">⚙️ 1 élastique sous le pied avant · barre sur épaules · 💙 15 kg</div>
+        <div class="ex-name">Squat sumo barre</div>
+        <div class="ex-muscles">🎯 Adducteurs · Fessiers · Quadriceps</div>
+        <div class="ex-tip">Barre sur les épaules, pieds deux fois plus larges que les épaules sur l'élastique, pointes ouvertes à 45°. Descends en 2 secondes en poussant les genoux vers l'extérieur — toujours dans l'axe des orteils, jamais vers l'intérieur. Buste bien droit, plus droit qu'au squat classique. Descends jusqu'aux cuisses parallèles (ou juste au-dessus), puis remonte en poussant dans les talons et serre les fessiers en haut. Plus tu écartes les pieds, plus l'élastique est tendu : c'est ton réglage de charge.</div>
+        <div class="ex-setup">⚙️ Barre sur épaules · 1 élastique sous les 2 pieds, très écartés · 🩵 25 kg · pointes ouvertes à 45°</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">8 reps × jambe</span></div>
+          <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -1034,12 +1034,22 @@
   function loadWeights() {
     try { var raw = lsGet(WEIGHT_KEY); weightOverrides = raw ? JSON.parse(raw) : {}; }
     catch(e) { weightOverrides = {}; }
-    // RDL (day1-1) et rowing (day3-0) passés au SmartPress : un ancien réglage Elite n'a plus de sens en kg/bras
-    if (lsGet('sw_wmig_sp1') !== '1') {
-      delete weightOverrides['day1-1'];
-      delete weightOverrides['day3-0'];
+    // Exos remplacés : leur ancien réglage ✏️ et leur ancien chrono ne veulent plus rien dire.
+    // sp1 : RDL + rowing passés au SmartPress (kg/bras) · sumo1 : fentes → squat sumo
+    var PURGES = { sw_wmig_sp1: ['day1-1', 'day3-0'], sw_wmig_sumo1: ['day1-2'] };
+    for (var flag in PURGES) {
+      if (lsGet(flag) === '1') continue;
+      var ids = PURGES[flag];
+      var tl = null;
+      try { var rawTl = lsGet(TIMELOG_KEY); tl = rawTl ? JSON.parse(rawTl) : null; } catch(e) { tl = null; }
+      for (var i = 0; i < ids.length; i++) {
+        delete weightOverrides[ids[i]];
+        var pid = ids[i].split('-')[0];
+        if (tl && tl[pid] && tl[pid].ex) delete tl[pid].ex[ids[i]];
+      }
       saveWeights();
-      lsSet('sw_wmig_sp1', '1');
+      if (tl) lsSet(TIMELOG_KEY, JSON.stringify(tl));
+      lsSet(flag, '1');
     }
   }
   function saveWeights() { try { lsSet(WEIGHT_KEY, JSON.stringify(weightOverrides)); } catch(e) {} }
