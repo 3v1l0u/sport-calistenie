@@ -391,10 +391,10 @@
     <div class="day-icon" style="background:#1a2800;">🦵</div>
     <div>
       <h2>BAS DU CORPS</h2>
-      <p>Quadriceps · Fessiers · Ischio-jambiers · Mollets</p>
+      <p>Quadriceps · Fessiers · Ischio-jambiers · Adducteurs</p>
       <div class="meta-tags">
         <span class="meta-tag" style="background:#001a0a;color:#4ade80;">Lundi</span>
-        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~50 min</span>
+        <span class="meta-tag" style="background:#1e1a00;color:#facc15;">~45 min</span>
         <span class="meta-tag" style="background:#1a1820;color:#a78bfa;">3 séries · 60s repos</span>
       </div>
     </div>
@@ -463,21 +463,6 @@
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
-          <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
-        </div>
-      </div>
-      <div class="check-icon">✓</div>
-    </div>
-    <div class="exercise-card" onclick="handleCardClick(this)">
-      <div class="ex-number">05</div>
-      <div class="ex-content">
-        <div class="ex-name">Élévations de mollets</div>
-        <div class="ex-muscles">🎯 Mollets</div>
-        <div class="ex-tip">Pieds sur les élastiques, barre sur les épaules pour ajouter de la résistance. Monte sur la pointe des pieds lentement en contractant les mollets, descends sans reposer les talons. Amplitude maximale à chaque rep.</div>
-        <div class="ex-setup">⚙️ Élastiques sous les pieds · barre sur épaules · 💙 15 kg</div>
-        <div class="ex-stats">
-          <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
-          <div class="ex-stat"><span class="stat-blue">20 reps</span></div>
           <div class="ex-stat"><span class="stat-orange">60s repos</span></div>
         </div>
       </div>
@@ -1036,7 +1021,7 @@
     catch(e) { weightOverrides = {}; }
     // Exos remplacés : leur ancien réglage ✏️ et leur ancien chrono ne veulent plus rien dire.
     // sp1 : RDL + rowing passés au SmartPress (kg/bras) · sumo1 : fentes → squat sumo
-    var PURGES = { sw_wmig_sp1: ['day1-1', 'day3-0'], sw_wmig_sumo1: ['day1-2'] };
+    var PURGES = { sw_wmig_sp1: ['day1-1', 'day3-0'], sw_wmig_sumo1: ['day1-2'], sw_wmig_mollets1: ['day1-4'] };
     for (var flag in PURGES) {
       if (lsGet(flag) === '1') continue;
       var ids = PURGES[flag];
