@@ -492,10 +492,10 @@
     <div class="exercise-card" onclick="handleCardClick(this)">
       <div class="ex-number">06</div>
       <div class="ex-content">
-        <div class="ex-name">Kickback triceps</div>
-        <div class="ex-muscles">🎯 Triceps</div>
-        <div class="ex-tip">Pieds sur l'élastique, une poignée dans chaque main, buste penché à 45° et dos plat. Remonte les coudes le long des côtes et BLOQUE-les là : ils ne bougent plus de tout le mouvement. Tends les deux bras vers l'arrière jusqu'à l'extension complète, serre le triceps 1 seconde en haut, puis reviens en 3 secondes. Si ton coude redescend, c'est que la charge est trop lourde.</div>
-        <div class="ex-setup">⚙️ Poignées · pieds sur l'élastique · buste à 45° · 💚 10 kg · coudes collés aux côtes</div>
+        <div class="ex-name">Pompes prise serrée inclinées</div>
+        <div class="ex-muscles">🎯 Triceps · Pectoraux (intérieur)</div>
+        <div class="ex-tip">Mains sur le bureau (ou le canapé), écartées de la largeur des épaules, bras tendus, corps en ligne droite des talons à la tête. Vérifie avant de commencer que le support ne glisse pas. Descends la poitrine vers le bureau en 3 secondes, coudes qui frôlent les côtes — ils ne partent surtout pas sur les côtés, sinon ce sont les pecs qui prennent tout le travail. Remonte en poussant fort, sans creuser le bas du dos. Plus le support est haut, plus c'est facile : quand 12 reps passent tranquille, descends sur un support plus bas.</div>
+        <div class="ex-setup">⚙️ Poids du corps · mains sur le bureau, largeur épaules · coudes le long du corps · descente lente 3s</div>
         <div class="ex-stats">
           <div class="ex-stat"><span class="stat-accent">3</span> séries</div>
           <div class="ex-stat"><span class="stat-blue">12 reps</span></div>
@@ -527,7 +527,7 @@
     <div class="warm-item" onclick="showStretch('Enfant (child pose)')">Enfant (child pose) <span>1 min</span></div>
     <div class="warm-item" onclick="showStretch('Rotation cervicales')">Rotation cervicales douces <span>30 sec</span></div>
   </div>
-  <div class="tip-box"><strong>💡 Pousser d'abord, isoler ensuite</strong> Le développé au SmartPress ouvre la séance quand tu es frais : tension dès le premier centimètre et zéro besoin de porte. Les triceps finissent le travail (overhead puis kickback) : ils ont déjà encaissé les deux développés, donc charge légère et tempo lent, coudes fixes. Sur le kickback, si le coude redescend pendant la série, c'est trop lourd.</div>
+  <div class="tip-box"><strong>💡 Pousser d'abord, isoler ensuite</strong> Le développé au SmartPress ouvre la séance quand tu es frais : tension dès le premier centimètre et zéro besoin de porte. Les triceps finissent le travail : l'extension overhead les étire à fond, puis les pompes prise serrée les cuisent au poids du corps — un élastique n'a aucune tension sur un kickback, alors que ton propre poids, lui, ne ment jamais. Coudes le long du corps sur les pompes, c'est toute la différence avec des pompes classiques.</div>
   <button onclick="markDayDone(1)" style="width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#000;border:none;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.5px;">✅ Marquer J1 comme terminé</button>
 </div>
 
@@ -1123,7 +1123,7 @@
     catch(e) { weightOverrides = {}; }
     // Exos remplacés : leur ancien réglage ✏️ et leur ancien chrono ne veulent plus rien dire.
     // sp1 : RDL + rowing passés au SmartPress (kg/bras) · sumo1 : fentes → squat sumo
-    var PURGES = { sw_wmig_sp1: ['day1-1', 'day3-0'], sw_wmig_sumo1: ['day1-2'], sw_wmig_mollets1: ['day1-4'] };
+    var PURGES = { sw_wmig_sp1: ['day1-1', 'day3-0'], sw_wmig_sumo1: ['day1-2'], sw_wmig_mollets1: ['day1-4'], sw_wmig_kick1: ['day1-5'] };
     // Nouveau programme (bras + gainage) : chaque exo a changé de place.
     // Les réglages ✏️ suivent les exos conservés, le reste est jeté.
     var REMAP = { 'day2-0': 'day1-0', 'day2-1': 'day1-1', 'day2-4': 'day1-2', 'day2-2': 'day1-3', 'day2-3': 'day1-4',
